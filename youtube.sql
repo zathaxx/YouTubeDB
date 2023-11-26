@@ -4,7 +4,7 @@ CREATE TABLE CHANNEL(
     channelID int NOT NULL,
     channelSubs int,
     channelAge DATE,
-    CHECK(channnelAge >= '2005-02-13'),
+    CHECK(channelAge >= '2005-02-13'),
     videoCount int,
     channelName varchar(51) NOT NULL,
     channelDescription varchar(510),
@@ -19,10 +19,9 @@ CREATE TABLE VIDEO(
     CHECK(videoUploadDate >= '2005-02-13'),
     videoLikes INT,
     CHECK(videoLikes >= 0),
-    
-    videoDislike
+    videoDislikes INT,
     CHECK(videoDislikes >= 0),
-    
+  
     videoDuration TIME,
     CHECK(videoDuration >= 0),
     videoViews INT,
@@ -34,7 +33,7 @@ CREATE TABLE VIDEO(
 
 CREATE TABLE CATEGORY(
     categoryID INT NOT NULL,
-    categoryvarchar(101),
+    categoryName varchar(101),
     categorySubs INT,
     CHECK(categorySubs >= 0),
     PRIMARY KEY (categoryID)
@@ -77,7 +76,7 @@ CREATE TABLE POST(
     channelID INT NOT NULL,
     postDate DATE,
     CHECK(postDate >= '2005-02-13'), -- post date must be a date that is either on the same day or after the channel age.
-    postDescritption varchar(510),
+    postDescription varchar(510),
     postLikes INT,
     CHECK(postLikes >= 0),
     postDislikes INT,
@@ -90,14 +89,14 @@ CREATE TABLE PROMOTES(
     videoID INT NOT NULL,
     sponsorID INT NOT NULL,
     FOREIGN KEY(videoID) REFERENCES VIDEO (videoID) ON DELETE CASCADE,
-    FOREIGN KEY(sponsor) REFERENCES SPONSOR (sponsorID) ON DELETE CASCADE
+    FOREIGN KEY(sponsorID) REFERENCES SPONSOR (sponsorID) ON DELETE CASCADE
 );
 
 CREATE TABLE CONTAINS(
     categoryID INT NOT NULL,
-    channelID INT NOT NULL
-    FOREIGN KEY (category) REFERENCES CATEGORY (categoryID) ON DELETE CASCADE,
-    FOREIGN KEY (channel) REFERENCES CHANNEL (channelID) ON DELETE CASCADE
+    channelID INT NOT NULL,
+    FOREIGN KEY (categoryID) REFERENCES CATEGORY (categoryID) ON DELETE CASCADE,
+    FOREIGN KEY (channelID) REFERENCES CHANNEL (channelID) ON DELETE CASCADE
 );
 
 CREATE TABLE CATEGORIZED_UNDER(
