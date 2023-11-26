@@ -15,7 +15,7 @@ CREATE TABLE VIDEO(
     videoID INT NOT NULL,
     channelID int NOT NULL,
     videoName varchar(101) DEFAULT 'Untitled Video',
-    videoUploadDate DATE, -- video date must be a date that is either on the same day or after the channel age.
+    videoUploadDate DATE,
     CHECK(videoUploadDate >= '2005-02-13'),
     videoLikes INT,
     CHECK(videoLikes >= 0),
@@ -57,7 +57,7 @@ CREATE TABLE COMMENT(
     commentLikes INT,
     CHECK(commentLikes >= 0),
     commentDate DATE,
-    CHECK(commentDate >= '2005-02-13'), -- comment date must be a date that is either on the same day or after the video upload date.
+    CHECK(commentDate >= '2005-02-13'),
     PRIMARY KEY(commentID, videoID, channelID),
     FOREIGN KEY(videoID) REFERENCES VIDEO(videoID) ON DELETE CASCADE,
     FOREIGN KEY(channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
@@ -67,7 +67,6 @@ CREATE TABLE SPONSOR(
     sponsorID INT NOT NULL,
     sponsorName varchar(101) NOT NULL,
     sponsorWebsite VARCHAR(255),
-    --Check for https:// and domain name
     PRIMARY KEY (sponsorID)
 );
 
@@ -75,7 +74,7 @@ CREATE TABLE POST(
     postID INT NOT NULL,
     channelID INT NOT NULL,
     postDate DATE,
-    CHECK(postDate >= '2005-02-13'), -- post date must be a date that is either on the same day or after the channel age.
+    CHECK(postDate >= '2005-02-13'),
     postDescription varchar(510),
     postLikes INT,
     CHECK(postLikes >= 0),
