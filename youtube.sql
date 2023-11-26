@@ -80,7 +80,7 @@ CREATE TABLE POST(
     CHECK(postLikes >= 0),
     postDislikes INT,
     CHECK(postDislikes >= 0),
-    PRIMARY KEY (postID)
+    PRIMARY KEY (postID),
     FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
 );
 
