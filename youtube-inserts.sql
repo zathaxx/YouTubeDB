@@ -115,10 +115,6 @@ INSERT into VIDEO values ('wAZn9dF3XTo', 'UC2D2CMWXMOVWx7giW1n3LIg', 'A Science-
 INSERT into VIDEO values ('eC9fiJBdMG0', 'UC2D2CMWXMOVWx7giW1n3LIg', 'LIVE EVENT Q&A: Dr. Andrew Huberman Question & Answer in Toronto, ON', '2023-11-15', 2681, '00:39:08', 104228, 'Recently I had the pleasu');
 INSERT into VIDEO values ('W5zqC5cYcS0', 'UC2D2CMWXMOVWx7giW1n3LIg', 'How Tone of Voice Shapes Emotional State of Listeners', '2023-11-14', 7293, '00:00:58', 117449, 'In a recent Huberman Lab ');
 INSERT into VIDEO values ('G_ZNxPGQm60', 'UC2KfmYEM4KCuA1ZurravgYw', 'Linux and Shell Scripting Course OUT NOW - 10 Hours', '2023-11-27', 156, '00:07:03', 2316, 'Unlock the power of Linux');
-INSERT into VIDEO values ('F30gENvQr5Y', 'UC2KfmYEM4KCuA1ZurravgYw', 'Does it really Matter to you?', '2023-11-27', 56, '00:00:56', 1315, '👍🏿 Subscribe to our newsl');
-INSERT into VIDEO values ('HZQmcEeXfS0', 'UC2KfmYEM4KCuA1ZurravgYw', 'Why PR is Good For Developers', '2023-11-26', 96, '00:00:50', 2250, '👍🏿 Subscribe to our newsl');
-INSERT into VIDEO values ('ckfiLnc3J1Q', 'UC2KfmYEM4KCuA1ZurravgYw', 'What are Linux Distributions', '2023-11-25', 75, '00:00:40', 1763, '👍🏿 Subscribe to our newsl');
-INSERT into VIDEO values ('_w_ib110_JI', 'UC2KfmYEM4KCuA1ZurravgYw', 'Should I Peer Review More?', '2023-11-24', 102, '00:00:43', 2256, '👍🏿 Subscribe to our newsl');
 INSERT into VIDEO values ('WF-UbTSaV-0', 'UCQYMhOMi_Cdj1CEAU-fv80A', 'Python Special Programs - Armstrong Number', '2023-11-24', 61, '00:17:30', 4381, 'Python Programming: Pytho');
 INSERT into VIDEO values ('oOCromcWnfc', 'UCQYMhOMi_Cdj1CEAU-fv80A', 'FIRST() and FOLLOW() Functions', '2023-02-12', 1520, '00:11:53', 105320, 'Compiler Design: FIRST() ');
 INSERT into VIDEO values ('yvdtwKF87Ts', 'UCQYMhOMi_Cdj1CEAU-fv80A', 'Representations of Floating Point Numbers', '2022-12-04', 1515, '00:13:50', 87677, 'COA: Representations of F');
@@ -266,3 +262,11 @@ INSERT into VIDEO values ('8eCovKu12h4', 'UC_pT_Iz6XjuM-eMTlXghdfw', 'What I ate
 INSERT into VIDEO values ('wxeZxUVfZ9A', 'UC_pT_Iz6XjuM-eMTlXghdfw', 'I Fermented Beef in KIMCHI for 10 Days (and ate it)', '2023-11-24', 6084, '00:15:55', 121517, 'We know marinating beef i');
 INSERT into VIDEO values ('MchzmS7qu7A', 'UC_pT_Iz6XjuM-eMTlXghdfw', 'Wagyu A5 Steak Accordion', '2023-11-24', 151509, '00:01:00', 1824399, 'Thanks to YouTube for spo');
 INSERT into VIDEO values ('xNMTeHu8R8w', 'UC_pT_Iz6XjuM-eMTlXghdfw', 'Deep Fried Turkey', '2023-11-19', 289354, '00:00:36', 3908909, 'Turkey looks different th');
+
+-- BAD VIDEO INSERTS
+-- Non-inclusive to emojis
+INSERT into VIDEO values ('F30gENvQr5Y', 'UC2KfmYEM4KCuA1ZurravgYw', 'Does it really Matter to you?', '2023-11-27', 56, '00:00:56', 1315, '👍🏿 Subscribe to our newsl');
+INSERT into VIDEO values ('HZQmcEeXfS0', 'UC2KfmYEM4KCuA1ZurravgYw', 'Why PR is Good For Developers', '2023-11-26', 96, '00:00:50', 2250, '👍🏿 Subscribe to our newsl');
+INSERT into VIDEO values ('ckfiLnc3J1Q', 'UC2KfmYEM4KCuA1ZurravgYw', 'What are Linux Distributions', '2023-11-25', 75, '00:00:40', 1763, '👍🏿 Subscribe to our newsl');
+INSERT into VIDEO values ('_w_ib110_JI', 'UC2KfmYEM4KCuA1ZurravgYw', 'Should I Peer Review More?', '2023-11-24', 102, '00:00:43', 2256, '👍🏿 Subscribe to our newsl');
+INSERT into VIDEO values ('OWserfpkMao', 'UCMSYZVlQmyG8_2MkIKzg0kw', 'A Navy Seal Saved MrBallens Life From a Grenade Explosion ✊', '2023-11-21', 14608, '00:00:57', 253351, 'Full Vid: https://youtu.b');
