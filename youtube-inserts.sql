@@ -1,5 +1,5 @@
 -- SQLBook: Code
--- Category Inserts
+-- Category Insert
 INSERT INTO CATEGORY VALUES (1, 'Film & Animation', 10000000);
 INSERT INTO CATEGORY VALUES (2, 'Music', 10000000);
 INSERT INTO CATEGORY VALUES (3, 'Sports');
