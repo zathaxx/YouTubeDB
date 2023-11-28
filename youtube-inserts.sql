@@ -270,3 +270,7 @@ INSERT into VIDEO values ('HZQmcEeXfS0', 'UC2KfmYEM4KCuA1ZurravgYw', 'Why PR is 
 INSERT into VIDEO values ('ckfiLnc3J1Q', 'UC2KfmYEM4KCuA1ZurravgYw', 'What are Linux Distributions', '2023-11-25', 75, '00:00:40', 1763, '👍🏿 Subscribe to our newsl');
 INSERT into VIDEO values ('_w_ib110_JI', 'UC2KfmYEM4KCuA1ZurravgYw', 'Should I Peer Review More?', '2023-11-24', 102, '00:00:43', 2256, '👍🏿 Subscribe to our newsl');
 INSERT into VIDEO values ('OWserfpkMao', 'UCMSYZVlQmyG8_2MkIKzg0kw', 'A Navy Seal Saved MrBallens Life From a Grenade Explosion ✊', '2023-11-21', 14608, '00:00:57', 253351, 'Full Vid: https://youtu.b');
+
+
+
+INSERT into SPONSORS VALUES('1', )

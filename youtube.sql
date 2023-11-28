@@ -140,10 +140,9 @@ END$$
 DELIMITER ;
 
 CREATE TABLE SPONSOR(
-    sponsorID INT NOT NULL,
     sponsorName varchar(101) NOT NULL,
     sponsorWebsite VARCHAR(255),
-    PRIMARY KEY (sponsorID)
+    PRIMARY KEY (sponsorName)
 );
 
 CREATE TABLE POST(
@@ -199,9 +198,9 @@ DELIMITER ;
 
 CREATE TABLE PROMOTES(
     videoID char(11) NOT NULL,
-    sponsorID INT NOT NULL,
+    sponsorName varchar(101) NOT NULL,
     FOREIGN KEY(videoID) REFERENCES VIDEO (videoID) ON DELETE CASCADE,
-    FOREIGN KEY(sponsorID) REFERENCES SPONSOR (sponsorID) ON DELETE CASCADE
+    FOREIGN KEY(sponsorName) REFERENCES SPONSOR (sponsorName) ON DELETE CASCADE
 );
 
 CREATE TABLE CONTAINS(
