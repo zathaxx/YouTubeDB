@@ -273,4 +273,32 @@ INSERT into VIDEO values ('OWserfpkMao', 'UCMSYZVlQmyG8_2MkIKzg0kw', 'A Navy Sea
 
 
 
-INSERT into SPONSORS VALUES('1', )
+INSERT into SPONSOR VALUES('Crunch Labs', 'https://www.crunchlabs.com/');
+INSERT INTO SPONSOR VALUES('Roblox','https://www.roblox.com/');
+INSERT INTO SPONSOR VALUES('Trolli','https://www.trolli.com/');
+INSERT INTO SPONSOR VALUES('The Freeze Pipe','https://thefreezepipe.com/');
+INSERT INTO SPONSOR VALUES('LiquidIV','https://www.liquid-iv.com/');
+INSERT INTO SPONSOR VALUES('Policygenius','https://www.policygenius.com/');
+INSERT INTO SPONSOR VALUES('Master Class','https://www.masterclass.com/');
+INSERT INTO SPONSOR VALUES('Shopify','https://www.shopify.com/');
+INSERT INTO SPONSOR VALUES('Better Help','https://www.betterhelp.com/');
+INSERT INTO SPONSOR VALUES('Eightsleep','https://www.eightsleep.com/');
+INSERT INTO SPONSOR VALUES('Notion','https://www.notion.so/');
+INSERT INTO SPONSOR VALUES('ExpressVPN','https://www.expressvpn.com/');
+INSERT INTO SPONSOR VALUES('LMNT','https://drinklmnt.com/');
+INSERT INTO SPONSOR VALUES('Simplisafe','https://simplisafe.com/');
+
+INSERT INTO SPONSOR VALUES('Inside Tracker','https://www.insidetracker.com/');
+INSERT INTO SPONSOR VALUES('AG1','https://drinkag1.com/');
+INSERT INTO SPONSOR VALUES('Oracle-Cloud','https://www.oracle.com/cloud/');
+INSERT INTO SPONSOR VALUES('StreamYard','https://streamyard.com/');
+INSERT INTO SPONSOR VALUES('Incogni','https://incogni.com/');
+INSERT INTO SPONSOR VALUES('Brilliant','https://brilliant.org/');
+INSERT INTO SPONSOR VALUES('Plunge','https://plunge.com/');
+INSERT INTO SPONSOR VALUES('Anthros','https://www.anthros.com/');
+INSERT INTO SPONSOR VALUES('Oracle-Netsuite','https://www.netsuite.com/portal/home.shtml?noredirect=T');
+INSERT INTO SPONSOR VALUES('Kajabi','https://kajabi.com/');
+INSERT INTO SPONSOR VALUES('Webull','https://www.webull.com/');
+
+-- INSERT INTO SPONSOR VALUES('','');
+
