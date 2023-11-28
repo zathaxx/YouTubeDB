@@ -88,15 +88,14 @@ CREATE TABLE PLAYLIST(
 CREATE TABLE COMMENT(
     commentID INT NOT NULL,
     videoID char(11) NOT NULL,
-    channelID char(24) NOT NULL,
+    channelName NOT NULL,
     commentDescription varchar(5001),
     commentLikes INT,
     CHECK(commentLikes >= 0),
     commentDate DATE,
     CHECK(commentDate >= '2005-02-13'),
-    PRIMARY KEY(commentID, videoID, channelID),
-    FOREIGN KEY(videoID) REFERENCES VIDEO(videoID) ON DELETE CASCADE,
-    FOREIGN KEY(channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
+    PRIMARY KEY(commentID, videoID),
+    FOREIGN KEY(videoID) REFERENCES VIDEO(videoID) ON DELETE CASCADE
 );
 
 
