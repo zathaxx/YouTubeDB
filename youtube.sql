@@ -78,7 +78,6 @@ CREATE TABLE PLAYLIST(
     playlistID INT NOT NULL,
     channelID char(24) NOT NULL,
     playlistName varchar(101) DEFAULT 'Untitled Playlist',
-    numOfVideos INT,
     CHECK(numOfVideos >= 0),
     PRIMARY KEY (playlistID),
     FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
