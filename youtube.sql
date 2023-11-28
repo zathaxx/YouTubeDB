@@ -30,6 +30,43 @@ CREATE TABLE VIDEO(
     FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
 );
 
+-- Post Triggers that check the channelAge upon insert/update
+CREATE TRIGGER check_insert_video
+BEFORE INSERT
+ON VIDEO FOR EACH ROW
+BEGIN
+    DECLARE channel_age DATE;
+
+    -- Get's the channel age from table channel
+    SELECT channelAge INTO channel_age
+    FROM CHANNEL
+    WHERE channelID = NEW.channelID;
+
+    -- Check if videoUploadDate is greater than or equal to the channelAge
+    IF NEW.videoUploadDate < channel_age THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'videoUploadDate must be greater than or equal to the channelAge';
+    END IF;
+END;
+
+CREATE TRIGGER check_update_video
+BEFORE UPDATE
+ON VIDEO FOR EACH ROW
+BEGIN
+    DECLARE channel_age DATE;
+
+    -- Get's the channel age from table channel
+    SELECT channelAge INTO channel_age
+    FROM CHANNEL
+    WHERE channelID = NEW.channelID;
+
+    -- Check if videoUploadDate is greater than or equal to the channelAge
+    IF NEW.videoUploadDate < channel_age THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'videoUploadDate must be greater than or equal to the channelAge';
+    END IF;
+END;
+
 CREATE TABLE CATEGORY(
     categoryID INT NOT NULL,
     categoryName varchar(101),
@@ -62,6 +99,42 @@ CREATE TABLE COMMENT(
     FOREIGN KEY(channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
 );
 
+
+-- Post Triggers that check the commentDate upon insert/update
+CREATE TRIGGER before_comment_insert
+BEFORE INSERT 
+ON COMMENT
+FOR EACH ROW
+BEGIN
+    DECLARE channel_age DATE;
+
+    SELECT channelAge INTO channel_age
+    FROM CHANNEL
+    WHERE channelID = NEW.channelID;
+
+    IF NEW.commentDate < channel_age THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'commentDate must be greater than or equal to channelAge';
+    END IF;
+END;
+
+CREATE TRIGGER before_comment_update
+BEFORE UPDATE 
+ON COMMENT
+FOR EACH ROW
+BEGIN
+    DECLARE channel_age DATE;
+
+    SELECT channelAge INTO channel_age
+    FROM CHANNEL
+    WHERE channelID = NEW.channelID;
+
+    IF NEW.commentDate < channel_age THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'commentDate must be greater than or equal to channelAge';
+    END IF;
+END;
+
 CREATE TABLE SPONSOR(
     sponsorID INT NOT NULL,
     sponsorName varchar(101) NOT NULL,
@@ -82,6 +155,41 @@ CREATE TABLE POST(
     PRIMARY KEY (postID),
     FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
 );
+
+-- Post Triggers that check the postDate upon insert/update
+CREATE TRIGGER before_post_insert
+BEFORE INSERT 
+ON POST
+FOR EACH ROW
+BEGIN
+    DECLARE channel_age DATE;
+
+    SELECT channelAge INTO channel_age
+    FROM CHANNEL
+    WHERE channelID = NEW.channelID;
+
+    IF NEW.postDate < channel_age THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'postDate must be greater than or equal to channelAge';
+    END IF;
+END;
+
+CREATE TRIGGER before_post_update
+BEFORE UPDATE 
+ON POST
+FOR EACH ROW
+BEGIN
+    DECLARE channel_age DATE;
+
+    SELECT channelAge INTO channel_age
+    FROM CHANNEL
+    WHERE channelID = NEW.channelID;
+
+    IF NEW.postDate < channel_age THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'postDate must be greater than or equal to channelAge';
+    END IF;
+END;
 
 CREATE TABLE PROMOTES(
     videoID INT NOT NULL,
