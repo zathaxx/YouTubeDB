@@ -16,7 +16,6 @@ CREATE TABLE VIDEO(
     channelID char(24) NOT NULL,
     videoName varchar(101) DEFAULT 'Untitled Video',
     videoUploadDate DATE,
-    CHECK(videoUploadDate >= '2005-02-13'),
     videoLikes INT,
     CHECK(videoLikes >= 0),
     videoDuration TIME,
@@ -50,7 +49,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE TRIGGER check_insert_video BEFORE UPDATE ON VIDEO 
+CREATE TRIGGER check_update_video BEFORE UPDATE ON VIDEO 
 FOR EACH ROW
 BEGIN
     DECLARE channel_age DATE;
@@ -93,7 +92,6 @@ CREATE TABLE COMMENT(
     commentLikes INT,
     CHECK(commentLikes >= 0),
     commentDate DATE,
-    CHECK(commentDate >= '2005-02-13'),
     PRIMARY KEY(commentID, videoID),
     FOREIGN KEY(videoID) REFERENCES VIDEO(videoID) ON DELETE CASCADE
 );
@@ -102,7 +100,7 @@ CREATE TABLE COMMENT(
 -- Post Triggers that check the commentDate upon insert/update
 DELIMITER $$
 
-CREATE TRIGGER check_insert_video BEFORE INSERT ON COMMENT 
+CREATE TRIGGER check_insert_comment BEFORE INSERT ON COMMENT 
 FOR EACH ROW
 BEGIN
     DECLARE channel_age DATE;
@@ -121,7 +119,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE TRIGGER check_insert_video BEFORE UPDATE ON COMMENT 
+CREATE TRIGGER check_update_comment BEFORE UPDATE ON COMMENT 
 FOR EACH ROW
 BEGIN
     DECLARE channel_age DATE;
@@ -148,7 +146,6 @@ CREATE TABLE POST(
     postID INT NOT NULL,
     channelID char(24) NOT NULL,
     postDate DATE,
-    CHECK(postDate >= '2005-02-13'),
     postDescription varchar(510),
     postLikes INT,
     CHECK(postLikes >= 0),
@@ -159,7 +156,7 @@ CREATE TABLE POST(
 -- Post Triggers that check the postDate upon insert/update
 DELIMITER $$
 
-CREATE TRIGGER check_insert_video BEFORE INSERT ON POST 
+CREATE TRIGGER check_insert_post BEFORE INSERT ON POST 
 FOR EACH ROW
 BEGIN
     DECLARE channel_age DATE;
@@ -178,7 +175,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE TRIGGER check_insert_video BEFORE UPDATE ON POST 
+CREATE TRIGGER check_update_post BEFORE UPDATE ON POST 
 FOR EACH ROW
 BEGIN
     DECLARE channel_age DATE;
