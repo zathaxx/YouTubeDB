@@ -19,8 +19,6 @@ CREATE TABLE VIDEO(
     CHECK(videoUploadDate >= '2005-02-13'),
     videoLikes INT,
     CHECK(videoLikes >= 0),
-    videoDislikes INT,
-    CHECK(videoDislikes >= 0),
     videoDuration TIME,
     CHECK(videoDuration >= 0),
     videoViews INT,
@@ -150,8 +148,6 @@ CREATE TABLE POST(
     postDescription varchar(510),
     postLikes INT,
     CHECK(postLikes >= 0),
-    postDislikes INT,
-    CHECK(postDislikes >= 0),
     PRIMARY KEY (postID),
     FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
 );
