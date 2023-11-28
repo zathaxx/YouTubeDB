@@ -272,7 +272,7 @@ INSERT into VIDEO values ('_w_ib110_JI', 'UC2KfmYEM4KCuA1ZurravgYw', 'Should I P
 INSERT into VIDEO values ('OWserfpkMao', 'UCMSYZVlQmyG8_2MkIKzg0kw', 'A Navy Seal Saved MrBallens Life From a Grenade Explosion ✊', '2023-11-21', 14608, '00:00:57', 253351, 'Full Vid: https://youtu.b');
 
 
-
+-- Inserts for Sponsors
 INSERT into SPONSOR VALUES('Crunch Labs', 'https://www.crunchlabs.com/');
 INSERT INTO SPONSOR VALUES('Roblox','https://www.roblox.com/');
 INSERT INTO SPONSOR VALUES('Trolli','https://www.trolli.com/');
@@ -302,6 +302,7 @@ INSERT INTO SPONSOR VALUES('Webull','https://www.webull.com/');
 
 -- INSERT INTO SPONSOR VALUES('','');
 
+--Inserts for Comments
 INSERT INTO COMMENT VALUES ('UgzT9t_LuhN9ulTC1Wp4AaABAg', 'Zb01RStdzEs', 'Mark Rober', 'Just doing my part to protect the sad and candyless. Ask for the CrunchLabs Build Box for Christmas ', 11918, '2023-11-01');
 INSERT INTO COMMENT VALUES ('UgzE0kWv9_prE_XJayV4AaABAg', 'Zb01RStdzEs', 'Gayan udugama', 'I wish you could do something about all these shoplifters- it’s getting out of hand', 0, '2023-11-28');
 INSERT INTO COMMENT VALUES ('UgwVXGiEkU5KHwZ9E294AaABAg', 'Zb01RStdzEs', 'Mrgigawatt', 'This is the start of his villain arch.', 0, '2023-11-28');
@@ -691,6 +692,19 @@ INSERT INTO COMMENT VALUES ('Ugyv90DfwNJH2t8doDx4AaABAg', 'T4Uve6UQIho', 'Zane',
 INSERT INTO COMMENT VALUES ('UgxkIgEmT2lPmO-b_8B4AaABAg', 'T4Uve6UQIho', 'Alan', 'Get a boat Jesus, you got more on that jet ski than I have on my 22ft bass tracker', 4, '2023-11-23');
 
 
+-- Inserts for Posts
+INSERT INTO POST VALUES(400033, 'UCY1kMZp36IQSyNx_9h4mpCg', '2022-11-28', 'NEW VIDEO!! I built 5 robots to beat the 5 most popular arcade games. I also uncovered a few SCAM arcade games with the evidence to prove it!', 3054);
+INSERT INTO POST VALUES(470919, 'UCY1kMZp36IQSyNx_9h4mpCg', '2022-11-28', 'I brought some science with me to truly dominate the hot wings of death.  Which was a good idea... in theory.', 8957);
+INSERT INTO POST VALUES(634598, 'UCBJycsmduvYEL83R_U4JriQ', '2023-11-14', 'Introducing a new colorway and updated design: 251.1. Now in matte black. (Plus a new water repellent ripstop mesh and a little touch of silver reflective detail for the winter)', 31262);
+INSERT INTO POST VALUES(174491, 'UCBJycsmduvYEL83R_U4JriQ', '2023-4-28', 'Just shot a PRODUCT LAUNCH VIDEO this week! I’m beyond excited to share everything we’ve been working on, and this will all make sense… SOON', 39607);
+INSERT INTO POST VALUES(922175, 'UC_pT_Iz6XjuM-eMTlXghdfw', '2023-11-25', 'Salt Bae vs Max… vid coming soon who do you think won? But more importantly Maxjerky is 50% off only for a couple more days!! All you need to do is shop though YouTubes shop features (linked on my last video or click the store on my profile)', 4997);
+-- Bad Posts inserts
+INSERT INTO POST VALUES(823313, 'UC_pT_Iz6XjuM-eMTlXghdfw', '2023-10-28', 'Filet mignon tastes best cooked to...? In this video I cooked mine like a brisket 😱 ', 916);
+INSERT INTO POST VALUES(247187, 'UCY1kMZp36IQSyNx_9h4mpCg', '2023-6-23', 'MIT commencement speech tomorrow 😬. I’m not promising my graduation hat isn’t gonna fly away 400ft into the air at the end :)', 66483);
+INSERT INTO POST VALUES(186818, 'UCBJycsmduvYEL83R_U4JriQ', '2023-5-28', 'Greatest day of my life?! My collab with Elmo and the @SesameStreet crew is up 🥺', 74165);
+INSERT INTO POST VALUES(678551, 'UC_pT_Iz6XjuM-eMTlXghdfw', '2023-11-27', 'Only 9 more hours to get 50% off MaxJerky! Click “store” on my YouTube channel and shop through any link, applied at checkout. Hope you take advantage and thanks for the support 😃 This is me and Kyle (MaxJerky co-founder) at our factory working on some new products!', 764);
+
+-- Inserts for Promotes
 INSERT INTO PROMOTES VALUES('7__r4FVj-EI','CrunchLabs');
 INSERT INTO PROMOTES VALUES('JdFRjsEZrmU','Roblox');
 INSERT INTO PROMOTES VALUES('JdFRjsEZrmU','CrunchLabs');
