@@ -764,6 +764,7 @@ INSERT INTO CATEGORIZED_UNDER VALUES('UCMyOj6fhvKFMjxUCp3b_3gA', 15);
 INSERT INTO CATEGORIZED_UNDER VALUES('UC5nc_ZtjKW1htCVZVRxlQAQ', 2);
 INSERT INTO CATEGORIZED_UNDER VALUES('UCvJiYiBUbw4tmpRSZT2r1Hw', 7);
 
+-- INSERT for PLAYLIST
 INSERT into PLAYLIST values ('PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8', 'UCY1kMZp36IQSyNx_9h4mpCg', 'Glitterbomb Series');
 INSERT into PLAYLIST values ('PLzBq1zjrpqSh9YgC3Wxg7VQkZN1WCfhOA', 'UC4AGeYoOM9lRH6-L7wNFgTQ', 'Power Spike - LoL Podcast');
 INSERT into PLAYLIST values ('PLrAXtmErZgOcl7mvyfkQTHFnOGZxWtN55', 'UCSHZKyawb77ixDdsGog4iWA', 'Technical and Philosophical Videos');
@@ -776,3 +777,33 @@ INSERT into PLAYLIST values ('PLmZTDWJGfRq3gedx0SUsqcwNCBo6VCS36', 'UCaWd5_7JhbQ
 INSERT into PLAYLIST values ('PLPNW_gerXa4NKRk-x4U-Cuza8FPV8dx5x', 'UC2D2CMWXMOVWx7giW1n3LIg', 'Neuroplasticity and Behavior Change');
 INSERT into PLAYLIST values ('PLwvrYc43l1MzECd7MbiL0Rf0nH7YUl12I', 'UC2KfmYEM4KCuA1ZurravgYw', 'Shorts');
 INSERT into PLAYLIST values ('PLBlnK6fEyqRjSgal6OIEfzK4upXvkHSxW', 'UCQYMhOMi_Cdj1CEAU-fv80A', 'Lists in Python');
+INSERT into PLAYLIST values ('PLZPZq0r_RZOO1zkgO4bIdfuLpizCeHYKv', 'UC4SVo0Ue36XCfOyb5Lh1viQ', 'JavaScript tutorial for beginners  (2024)');
+INSERT into PLAYLIST values ('PLWKjhJtqVAbmMuZ3saqRIBimAKIMYkt0E', 'UC8butISFwT-Wl7EV0hUK0BQ', 'Front End Developer Learning Path');
+INSERT into PLAYLIST values ('PLt6w0DW8L3D_AJ4MmW8WBYONdO2aSpxMM', 'UCpKXTEQJDiOtfeLa23_U5hg', 'Fred Grunwalds Crocodile Corner | Kamp Kenan');
+INSERT into PLAYLIST values ('PL25B4xxmjSoH48nflAtnzftZMvJ8nT0tl', 'UCN7gui0EQHP-xOihtVARRDA', 'Under The Influence 24/7 [Playlist For Studying, Working, Sleeping, Gym, Long Drives]');
+INSERT into PLAYLIST values ('PLTFhqSNTKUqNneZsgaVM2YF8xbd4HuCdY', 'UCP0ok1nSEenuz-e_ulNAJjg', 'Watches in Geneva');
+INSERT into PLAYLIST values ('PLJtitKU0CAejiJisqHdCX4O-1-zJzfW36', 'UCiDJtJKMICpb9B1qf7qjEOA', 'Starfield Build!');
+INSERT into PLAYLIST values ('PLb2quItt3GbgjRLBuSm87KxbH8G-p_3fd', 'UCfPhyExfcaqJBKc3HO3cNBw', 'JK Overtime');
+INSERT into PLAYLIST values ('PLTG7gE4uO07km5g8gLk2pPDdMj3b9z50j', 'UC4HttNRwamCTHVu_H6i-uvw', 'High Profile Cases');
+INSERT into PLAYLIST values ('PL6LiZhLBnvbz7CP1rjIs_Nk_1cLXynlpl', 'UCAQHQEO4QpI5dXtr3vLoFCg', 'Quick Fix');
+INSERT into PLAYLIST values ('PL8mG-RkN2uTxBHGnZ0zbwqfEQ1A9e9Gna', 'UCXuqSBlHAE6Xw-yeJA0Tunw', 'April Fools Day');
+INSERT into PLAYLIST values ('PLDfKAXSi6kUanTpTHzfpmI-XWAbZxJwT9', 'UC5nc_ZtjKW1htCVZVRxlQAQ', 'Sad but feel like dancing');
+INSERT into PLAYLIST values ('PLI58wFzoCdH0EEHCyAPdet4FcKRMcrLiZ', 'UCMyOj6fhvKFMjxUCp3b_3gA', 'Chicken & Egg');
+INSERT into PLAYLIST values ('PLW1Mwtj8qAjkZxbtyTIH51oigqGHhEk13', 'UCwiTOchWeKjrJZw7S1H__1g', 'Food Tours');
+INSERT into PLAYLIST values ('PLMZGo0XFCzEf-UGMk1Ws4-FBo5BwMny8E', 'UCamOhwLG5yGainNSkCfWrSA', 'SeaDoo Sends!');
+INSERT into PLAYLIST values ('PLRiBFsLyF9QKzRy2_P4rdVaxbsLmTzkzj', 'UC0CRYvGlWGlsGxBNgvkUbAg', 'How To Do a Ketogenic Diet for Fat Loss');
+INSERT into PLAYLIST values ('PLHprOf0KRyMR8Y9deh1Otq0R5G_4dcuiS', 'UCRd9JHiQvqwT8O4d0QGI9jQ', 'Worlds Greatest Con');
+INSERT into PLAYLIST values ('PL8L0MzSk_V6KhbqiAJ-bRcWVwS8iuF3qJ', 'UCpJmBQ8iNHXeQ7jQWDyGe3A', 'Fighting Aging with SENS');
+INSERT into PLAYLIST values ('PL39_ud5aKSvmVMlBDeoiUAw0OXrl0GYz7', 'UCvJiYiBUbw4tmpRSZT2r1Hw', 'Mission Unexplained');
+INSERT into PLAYLIST values ('PLmLSJce1bY_Mi2tcXt44kBwouuxx4Lxvt', 'UC8cP3F7DseB_k-D1Afmstzw', 'Military MADNESS');
+INSERT into PLAYLIST values ('PLU_bQfSFrM2NP1mMhRdYWIWO-er4GgZF8', 'UC65afEgL62PGFWXY7n6CUbA', 'Trap City | Best of 2Scratch ');
+INSERT into PLAYLIST values ('PLLvHklUmDlPuqMbuqFmcW-ol9h0yYVghc', 'UCrZsKQXXq652czHn8XmOIEw', 'Best of Chill City');
+INSERT into PLAYLIST values ('PLiUYFNOwqQoR97YUj5-m_ALIIIA_2pIbf', 'UCeSRjhfeeqIgr--AcP9qhyg', '#GWR2024');
+INSERT into PLAYLIST values ('PL6vXvGaH4gpP56wzRB7IZP6VsBn_7zwp2', 'UCHy8o-_zR_vHqpPN4uNUvkg', 'Best Korean BBQ etc.,  ');
+INSERT into PLAYLIST values ('PLiUYFNOwqQoR97YUj5-m_ALIIIA_2pIbf', 'UCeSRjhfeeqIgr--AcP9qhyg', '#GWR2024');
+INSERT into PLAYLIST values ('PLVLP-bhbxACYXg0LBkDl9LVVCAc65q44w', 'UC3w193M5tYPJqF0Hi-7U-2g', 'Eggs');
+INSERT into PLAYLIST values ('PLBEIBBdgAOArK19RXJ-DUoKQB592eTyDA', 'UCCvcd0FYi58LwyTQP9LITpA', 'Thailand');
+INSERT into PLAYLIST values ('PLU3f28nK5R4ux-4rB1ef3fn0-SMYho4-a', 'UC_pT_Iz6XjuM-eMTlXghdfw', 'MAXJERKY');
+
+
+-- VIDEOS for PLAYLIST
