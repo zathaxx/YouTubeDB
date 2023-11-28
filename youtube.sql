@@ -85,9 +85,9 @@ CREATE TABLE PLAYLIST(
 ); 
 
 CREATE TABLE COMMENT(
-    commentID INT NOT NULL,
+    commentID char(26) NOT NULL,
     videoID char(11) NOT NULL,
-    channelName NOT NULL,
+    channelName varchar(255) NOT NULL,
     commentDescription varchar(5001),
     commentLikes INT,
     CHECK(commentLikes >= 0),
@@ -106,7 +106,7 @@ BEGIN
     DECLARE video_age DATE;
 
     -- Get the channel age from the VIDEO table
-    SET video_age = (SELECT videoUploadDate FROM CHANNEL WHERE videoID = NEW.videoID);
+    SET video_age = (SELECT videoUploadDate FROM VIDEO WHERE videoID = NEW.videoID);
 
     -- Check if commentDate is greater than or equal to the videoAge
     IF NEW.commentDate < video_age THEN
@@ -125,7 +125,7 @@ BEGIN
     DECLARE video_age DATE;
 
     -- Get the channel age from the VIDEO table
-    SET video_age = (SELECT videoUploadDate FROM CHANNEL WHERE videoID = NEW.videoID);
+    SET video_age = (SELECT videoUploadDate FROM VIDEO WHERE videoID = NEW.videoID);
 
     -- Check if commentDate is greater than or equal to the videoAge
     IF NEW.commentDate < video_age THEN
