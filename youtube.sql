@@ -75,11 +75,10 @@ CREATE TABLE CATEGORY(
 );
 
 CREATE TABLE PLAYLIST(
-    playlistID INT NOT NULL,
+    playlistID char(34) NOT NULL,
     channelID char(24) NOT NULL,
     playlistName varchar(101) DEFAULT 'Untitled Playlist',
-    CHECK(numOfVideos >= 0),
-    PRIMARY KEY (playlistID),
+    PRIMARY KEY (channelID, playlistID),
     FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
 ); 
 

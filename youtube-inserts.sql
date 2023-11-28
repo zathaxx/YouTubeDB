@@ -764,3 +764,15 @@ INSERT INTO CATEGORIZED_UNDER VALUES('UCMyOj6fhvKFMjxUCp3b_3gA', 15);
 INSERT INTO CATEGORIZED_UNDER VALUES('UC5nc_ZtjKW1htCVZVRxlQAQ', 2);
 INSERT INTO CATEGORIZED_UNDER VALUES('UCvJiYiBUbw4tmpRSZT2r1Hw', 7);
 
+INSERT into PLAYLIST values ('PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8', 'UCY1kMZp36IQSyNx_9h4mpCg', 'Glitterbomb Series');
+INSERT into PLAYLIST values ('PLzBq1zjrpqSh9YgC3Wxg7VQkZN1WCfhOA', 'UC4AGeYoOM9lRH6-L7wNFgTQ', 'Power Spike - LoL Podcast');
+INSERT into PLAYLIST values ('PLrAXtmErZgOcl7mvyfkQTHFnOGZxWtN55', 'UCSHZKyawb77ixDdsGog4iWA', 'Technical and Philosophical Videos');
+INSERT into PLAYLIST values ('PLFZUTBfukS69hFld-7sc-RT8t5Ot8_Sbu', 'UCMSYZVlQmyG8_2MkIKzg0kw', 'Personality Podcasts');
+INSERT into PLAYLIST values ('PL0iVR8sl9TiVEVpDbbUb8Aya_hZCENw0K', 'UC4QZ_LsYcvcq7qOsOhpAX4A', 'History');
+INSERT into PLAYLIST values ('PL8qcvQ7Byc3Pj-4qke7S12VjhsI_dwOn7', 'UCnYMOamNKLGVlJgRUbamveA', 'FEATURED');
+INSERT into PLAYLIST values ('PLPdoRGhsS-tvyUu29bf1hFgQqJsZRbAGo', 'UCV6KDgJskWaEckne5aPA0aQ', 'Millionaire Interviews');
+INSERT into PLAYLIST values ('PLBsP89CPrMeNIuvr9j3_EQaMwaNJ6rhuQ', 'UCBJycsmduvYEL83R_U4JriQ', 'Retro Tech S2');
+INSERT into PLAYLIST values ('PLmZTDWJGfRq3gedx0SUsqcwNCBo6VCS36', 'UCaWd5_7JhbQBe4dknZhsHJg', 'Conspiracy Theories');
+INSERT into PLAYLIST values ('PLPNW_gerXa4NKRk-x4U-Cuza8FPV8dx5x', 'UC2D2CMWXMOVWx7giW1n3LIg', 'Neuroplasticity and Behavior Change');
+INSERT into PLAYLIST values ('PLwvrYc43l1MzECd7MbiL0Rf0nH7YUl12I', 'UC2KfmYEM4KCuA1ZurravgYw', 'Shorts');
+INSERT into PLAYLIST values ('PLBlnK6fEyqRjSgal6OIEfzK4upXvkHSxW', 'UCQYMhOMi_Cdj1CEAU-fv80A', 'Lists in Python');
