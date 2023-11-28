@@ -103,13 +103,13 @@ DELIMITER $$
 CREATE TRIGGER check_insert_comment BEFORE INSERT ON COMMENT 
 FOR EACH ROW
 BEGIN
-    DECLARE channel_age DATE;
+    DECLARE video_age DATE;
 
-    -- Get the channel age from the CHANNEL table
-    SET channel_age = (SELECT channelAge FROM CHANNEL WHERE channelID = NEW.channelID);
+    -- Get the channel age from the VIDEO table
+    SET video_age = (SELECT videoUploadDate FROM CHANNEL WHERE videoID = NEW.videoID);
 
-    -- Check if commentDate is greater than or equal to the channelAge
-    IF NEW.commentDate < channel_age THEN
+    -- Check if commentDate is greater than or equal to the videoAge
+    IF NEW.commentDate < video_age THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'commentDate must be greater than or equal to channelAge';
     END IF;
@@ -122,13 +122,13 @@ DELIMITER $$
 CREATE TRIGGER check_update_comment BEFORE UPDATE ON COMMENT 
 FOR EACH ROW
 BEGIN
-    DECLARE channel_age DATE;
+    DECLARE video_age DATE;
 
-    -- Get the channel age from the CHANNEL table
-    SET channel_age = (SELECT channelAge FROM CHANNEL WHERE channelID = NEW.channelID);
+    -- Get the channel age from the VIDEO table
+    SET video_age = (SELECT videoUploadDate FROM CHANNEL WHERE videoID = NEW.videoID);
 
-    -- Check if commentDate is greater than or equal to the channelAge
-    IF NEW.commentDate < channel_age THEN
+    -- Check if commentDate is greater than or equal to the videoAge
+    IF NEW.commentDate < video_age THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'commentDate must be greater than or equal to channelAge';
     END IF;
