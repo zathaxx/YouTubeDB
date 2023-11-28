@@ -12,7 +12,7 @@ CREATE TABLE CHANNEL(
 );
 
 CREATE TABLE VIDEO(
-    videoID INT NOT NULL,
+    videoID char(11) NOT NULL,
     channelID char(24) NOT NULL,
     videoName varchar(101) DEFAULT 'Untitled Video',
     videoUploadDate DATE,
@@ -85,7 +85,7 @@ CREATE TABLE PLAYLIST(
 
 CREATE TABLE COMMENT(
     commentID INT NOT NULL,
-    videoID INT NOT NULL,
+    videoID char(11) NOT NULL,
     channelID char(24) NOT NULL,
     commentDescription varchar(5001),
     commentLikes INT,
@@ -188,7 +188,7 @@ BEGIN
 END;
 
 CREATE TABLE PROMOTES(
-    videoID INT NOT NULL,
+    videoID char(11) NOT NULL,
     sponsorID INT NOT NULL,
     FOREIGN KEY(videoID) REFERENCES VIDEO (videoID) ON DELETE CASCADE,
     FOREIGN KEY(sponsorID) REFERENCES SPONSOR (sponsorID) ON DELETE CASCADE
