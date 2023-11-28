@@ -266,3 +266,7 @@ INSERT into VIDEO values ('8eCovKu12h4', 'UC_pT_Iz6XjuM-eMTlXghdfw', 'What I ate
 INSERT into VIDEO values ('wxeZxUVfZ9A', 'UC_pT_Iz6XjuM-eMTlXghdfw', 'I Fermented Beef in KIMCHI for 10 Days (and ate it)', '2023-11-24', 6084, '00:15:55', 121517, 'We know marinating beef i');
 INSERT into VIDEO values ('MchzmS7qu7A', 'UC_pT_Iz6XjuM-eMTlXghdfw', 'Wagyu A5 Steak Accordion', '2023-11-24', 151509, '00:01:00', 1824399, 'Thanks to YouTube for spo');
 INSERT into VIDEO values ('xNMTeHu8R8w', 'UC_pT_Iz6XjuM-eMTlXghdfw', 'Deep Fried Turkey', '2023-11-19', 289354, '00:00:36', 3908909, 'Turkey looks different th');
+
+
+
+INSERT into SPONSORS VALUES('1', )
