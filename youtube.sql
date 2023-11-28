@@ -1,7 +1,7 @@
 -- SQLBook: Code
--- SQLBook: Code
+
 CREATE TABLE CHANNEL(
-    channelID int NOT NULL,
+    channelID char(24) NOT NULL,
     channelSubs int,
     channelAge DATE,
     CHECK(channelAge >= '2005-02-13'),
@@ -13,15 +13,14 @@ CREATE TABLE CHANNEL(
 
 CREATE TABLE VIDEO(
     videoID INT NOT NULL,
-    channelID int NOT NULL,
+    channelID char(24) NOT NULL,
     videoName varchar(101) DEFAULT 'Untitled Video',
     videoUploadDate DATE,
-    CHECK(videoUploadDate >= (SELECT channelAge FROM CHANNEL WHERE channelID = video.channelID)),
+    CHECK(videoUploadDate >= '2005-02-13'),
     videoLikes INT,
     CHECK(videoLikes >= 0),
     videoDislikes INT,
     CHECK(videoDislikes >= 0),
-  
     videoDuration TIME,
     CHECK(videoDuration >= 0),
     videoViews INT,
@@ -41,7 +40,7 @@ CREATE TABLE CATEGORY(
 
 CREATE TABLE PLAYLIST(
     playlistID INT NOT NULL,
-    channelID INT NOT NULL,
+    channelID char(24) NOT NULL,
     playlistName varchar(101) DEFAULT 'Untitled Playlist',
     numOfVideos INT,
     CHECK(numOfVideos >= 0),
@@ -52,12 +51,12 @@ CREATE TABLE PLAYLIST(
 CREATE TABLE COMMENT(
     commentID INT NOT NULL,
     videoID INT NOT NULL,
-    channelID int NOT NULL,
+    channelID char(24) NOT NULL,
     commentDescription varchar(5001),
     commentLikes INT,
     CHECK(commentLikes >= 0),
     commentDate DATE,
-    CHECK(commentDate >= (SELECT channelAge FROM CHANNEL WHERE channelID = comment.channelID)),
+    CHECK(commentDate >= '2005-02-13'),
     PRIMARY KEY(commentID, videoID, channelID),
     FOREIGN KEY(videoID) REFERENCES VIDEO(videoID) ON DELETE CASCADE,
     FOREIGN KEY(channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
@@ -72,9 +71,9 @@ CREATE TABLE SPONSOR(
 
 CREATE TABLE POST(
     postID INT NOT NULL,
-    channelID INT NOT NULL,
+    channelID char(24) NOT NULL,
     postDate DATE,
-    CHECK(commentDate >= (SELECT channelAge FROM CHANNEL WHERE channelID = post.channelID)),
+    CHECK(postDate >= '2005-02-13'),
     postDescription varchar(510),
     postLikes INT,
     CHECK(postLikes >= 0),
@@ -93,13 +92,13 @@ CREATE TABLE PROMOTES(
 
 CREATE TABLE CONTAINS(
     categoryID INT NOT NULL,
-    channelID INT NOT NULL,
+    channelID char(24) NOT NULL,
     FOREIGN KEY (categoryID) REFERENCES CATEGORY (categoryID) ON DELETE CASCADE,
     FOREIGN KEY (channelID) REFERENCES CHANNEL (channelID) ON DELETE CASCADE
 );
 
 CREATE TABLE CATEGORIZED_UNDER(
-    channelID INT NOT NULL,
+    channelID char(24) NOT NULL,
     categoryID INT NOT NULL,
     FOREIGN KEY(channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE,
     FOREIGN KEY(categoryID) REFERENCES CATEGORY(categoryID) ON DELETE CASCADE
