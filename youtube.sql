@@ -78,7 +78,7 @@ CREATE TABLE PLAYLIST(
     playlistID char(34) NOT NULL,
     channelID char(24) NOT NULL,
     playlistName varchar(101) DEFAULT 'Untitled Playlist',
-    PRIMARY KEY (channelID, playlistID),
+    PRIMARY KEY (playlistID),
     FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
 ); 
 
@@ -199,10 +199,12 @@ CREATE TABLE PROMOTES(
 
 CREATE TABLE CONTAINS(
     playlistID char(34) NOT NULL,
-    channelID char(24) NOT NULL,
-    FOREIGN KEY (categoryID) REFERENCES CATEGORY (categoryID) ON DELETE CASCADE,
-    FOREIGN KEY (channelID) REFERENCES CHANNEL (channelID) ON DELETE CASCADE
+    videoID char(11) NOT NULL,
+    PRIMARY KEY (playlistID, videoID),
+    FOREIGN KEY (playlistID) REFERENCES PLAYLIST(playlistID) ON DELETE CASCADE,
+    FOREIGN KEY (videoID) REFERENCES VIDEO(videoID) ON DELETE CASCADE
 );
+
 
 CREATE TABLE CATEGORIZED_UNDER(
     channelID char(24) NOT NULL,
