@@ -27,7 +27,7 @@ CREATE TABLE VIDEO(
     FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
 );
 
--- Post Triggers that check the channelAge upon insert/update
+-- Video Triggers that check the channelAge upon insert/update
 DELIMITER $$
 
 CREATE TRIGGER check_insert_video BEFORE INSERT ON VIDEO 
@@ -95,7 +95,7 @@ CREATE TABLE COMMENT(
 );
 
 
--- Post Triggers that check the commentDate upon insert/update
+-- Comment Triggers that check the commentDate upon insert/update
 DELIMITER $$
 
 CREATE TRIGGER check_insert_comment BEFORE INSERT ON COMMENT 
