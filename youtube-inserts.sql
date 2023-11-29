@@ -315,7 +315,7 @@ INSERT INTO SPONSOR VALUES('ExpressVPN','https://www.expressvpn.com/');
 INSERT INTO SPONSOR VALUES('LMNT','https://drinklmnt.com/');
 INSERT INTO SPONSOR VALUES('Simplisafe','https://simplisafe.com/');
 
-INSERT INTO SPONSOR VALUES('Inside Tracker','https://www.insidetracker.com/');
+INSERT INTO SPONSOR VALUES('InsideTracker','https://www.insidetracker.com/');
 INSERT INTO SPONSOR VALUES('AG1','https://drinkag1.com/');
 INSERT INTO SPONSOR VALUES('Oracle-Cloud','https://www.oracle.com/cloud/');
 INSERT INTO SPONSOR VALUES('StreamYard','https://streamyard.com/');
@@ -326,6 +326,36 @@ INSERT INTO SPONSOR VALUES('Anthros','https://www.anthros.com/');
 INSERT INTO SPONSOR VALUES('Oracle-Netsuite','https://www.netsuite.com/portal/home.shtml?noredirect=T');
 INSERT INTO SPONSOR VALUES('Kajabi','https://kajabi.com/');
 INSERT INTO SPONSOR VALUES('Webull','https://www.webull.com/');
+INSERT INTO SPONSOR VALUES('Surfshark','https://surfshark.com/');
+INSERT INTO SPONSOR VALUES('dBrand','https://dbrand.com/');
+INSERT INTO SPONSOR VALUES('LiveMomentous','https://www.livemomentous.com/');
+INSERT INTO SPONSOR VALUES('WakingUp','https://www.wakingup.com/');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('','');
+
 
 -- INSERT INTO SPONSOR VALUES('','');
 
