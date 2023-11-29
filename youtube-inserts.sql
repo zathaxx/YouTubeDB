@@ -272,15 +272,15 @@ INSERT into VIDEO values ('OWserfpkMao', 'UCMSYZVlQmyG8_2MkIKzg0kw', 'A Navy Sea
 
 
 -- Inserts for Sponsors
-INSERT into SPONSOR VALUES('Crunch Labs', 'https://www.crunchlabs.com/');
+INSERT into SPONSOR VALUES('CrunchLabs', 'https://www.crunchlabs.com/');
 INSERT INTO SPONSOR VALUES('Roblox','https://www.roblox.com/');
 INSERT INTO SPONSOR VALUES('Trolli','https://www.trolli.com/');
-INSERT INTO SPONSOR VALUES('The Freeze Pipe','https://thefreezepipe.com/');
+INSERT INTO SPONSOR VALUES('TheFreezePipe','https://thefreezepipe.com/');
 INSERT INTO SPONSOR VALUES('LiquidIV','https://www.liquid-iv.com/');
 INSERT INTO SPONSOR VALUES('Policygenius','https://www.policygenius.com/');
-INSERT INTO SPONSOR VALUES('Master Class','https://www.masterclass.com/');
+INSERT INTO SPONSOR VALUES('MasterClass','https://www.masterclass.com/');
 INSERT INTO SPONSOR VALUES('Shopify','https://www.shopify.com/');
-INSERT INTO SPONSOR VALUES('Better Help','https://www.betterhelp.com/');
+INSERT INTO SPONSOR VALUES('BetterHelp','https://www.betterhelp.com/');
 INSERT INTO SPONSOR VALUES('Eightsleep','https://www.eightsleep.com/');
 INSERT INTO SPONSOR VALUES('Notion','https://www.notion.so/');
 INSERT INTO SPONSOR VALUES('ExpressVPN','https://www.expressvpn.com/');
@@ -708,7 +708,6 @@ INSERT INTO PROMOTES VALUES('7__r4FVj-EI','CrunchLabs');
 INSERT INTO PROMOTES VALUES('JdFRjsEZrmU','Roblox');
 INSERT INTO PROMOTES VALUES('JdFRjsEZrmU','CrunchLabs');
 INSERT INTO PROMOTES VALUES('Zb01RStdzEs','CrunchLabs');
-
 INSERT INTO PROMOTES VALUES('tgPzgQBDIwM','Trolli');
 INSERT INTO PROMOTES VALUES('tgPzgQBDIwM','TheFreezePipe');
 INSERT INTO PROMOTES VALUES('Uvn1FE0cieQ','LiquidIV');
