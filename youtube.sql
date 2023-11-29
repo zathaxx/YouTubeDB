@@ -14,6 +14,7 @@ CREATE TABLE CHANNEL(
 CREATE TABLE VIDEO(
     videoID char(11) NOT NULL,
     channelID char(24) NOT NULL,
+    categoryID INT NOT NULL,
     videoName varchar(101) DEFAULT 'Untitled Video',
     videoUploadDate DATE,
     videoLikes INT,
@@ -24,7 +25,8 @@ CREATE TABLE VIDEO(
     CHECK(videoViews >= 0),
     description varchar(510),
     PRIMARY KEY (videoID),
-    FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
+    FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE,
+    FOREIGN KEY (categoryID) REFERENCES CHANNEL(categoryID) ON DELETE CASCADE
 );
 
 -- Video Triggers that check the channelAge upon insert/update
