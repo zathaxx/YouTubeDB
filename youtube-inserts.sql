@@ -330,33 +330,32 @@ INSERT INTO SPONSOR VALUES('Surfshark','https://surfshark.com/');
 INSERT INTO SPONSOR VALUES('dBrand','https://dbrand.com/');
 INSERT INTO SPONSOR VALUES('LiveMomentous','https://www.livemomentous.com/');
 INSERT INTO SPONSOR VALUES('WakingUp','https://www.wakingup.com/');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
-INSERT INTO SPONSOR VALUES('','');
+INSERT INTO SPONSOR VALUES('FlukerFarms','https://flukerfarms.com/');
+INSERT INTO SPONSOR VALUES('iFixit','https://www.ifixit.com/');
 
-
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
+-- INSERT INTO SPONSOR VALUES('','');
 -- INSERT INTO SPONSOR VALUES('','');
 
 --Inserts for Comments
@@ -2135,6 +2134,41 @@ INSERT INTO PROMOTES VALUES('h05g8AbXW2c','Incogni');
 INSERT INTO PROMOTES VALUES('h05g8AbXW2c','Webull');
 INSERT INTO PROMOTES VALUES('VDqAww1Dby0','Webull');
 
+INSERT INTO PROMOTES VALUES('Jkly2r-pa_A','Surfshark');
+INSERT INTO PROMOTES VALUES('Jkly2r-pa_A','Webull');
+
+INSERT INTO PROMOTES VALUES('cn5DsF9FXls','Eightsleep');
+
+INSERT INTO PROMOTES VALUES('piYf4gDthjY','dBrand');
+
+INSERT INTO PROMOTES VALUES('3gtvNYa3Nd8','Eightsleep');
+INSERT INTO PROMOTES VALUES('3gtvNYa3Nd8','WakingUp');
+INSERT INTO PROMOTES VALUES('3gtvNYa3Nd8','LiveMomentous');
+INSERT INTO PROMOTES VALUES('3gtvNYa3Nd8','InsideTracker');
+INSERT INTO PROMOTES VALUES('3gtvNYa3Nd8','AG1');
+
+INSERT INTO PROMOTES VALUES('wAZn9dF3XTo','AG1');
+INSERT INTO PROMOTES VALUES('wAZn9dF3XTo','Eightsleep');
+INSERT INTO PROMOTES VALUES('wAZn9dF3XTo','WakingUp');
+INSERT INTO PROMOTES VALUES('wAZn9dF3XTo','LiveMomentous');
+INSERT INTO PROMOTES VALUES('wAZn9dF3XTo','InsideTracker');
+INSERT INTO PROMOTES VALUES('wAZn9dF3XTo','LMNT');
+
+INSERT INTO PROMOTES VALUES('eC9fiJBdMG0','AG1');
+INSERT INTO PROMOTES VALUES('eC9fiJBdMG0','Eightsleep');
+INSERT INTO PROMOTES VALUES('Lp1k-GG36a4','FlukerFarms');
+INSERT INTO PROMOTES VALUES('4Wyji1ZgQi8','FlukerFarms');
+INSERT INTO PROMOTES VALUES('BF8J1L4TTak','FlukerFarms');
+INSERT INTO PROMOTES VALUES('QJNXXcf-tlo','FlukerFarms');
+INSERT INTO PROMOTES VALUES('K7kDRpSiKUU','iFixit');
+
+-- INSERT INTO PROMOTES VALUES('','');
+-- INSERT INTO PROMOTES VALUES('','');
+-- INSERT INTO PROMOTES VALUES('','');
+
+-- INSERT INTO PROMOTES VALUES('','');
+
+
 -- INSERT for CATEGORIZED_UNDER
 INSERT INTO CATEGORIZED_UNDER VALUES('UCY1kMZp36IQSyNx_9h4mpCg', 28);
 INSERT INTO CATEGORIZED_UNDER VALUES('UCBJycsmduvYEL83R_U4JriQ', 28);
@@ -2213,16 +2247,13 @@ INSERT into VIDEO values ('3m3YRZS5exo', 'UCMSYZVlQmyG8_2MkIKzg0kw', 27, 'Reacti
 INSERT into VIDEO values ('Y0kpYoGJE0k', 'UC4QZ_LsYcvcq7qOsOhpAX4A', 28, 'The Story of the Sony Playstation | ColdFusion', '2015-10-29', 13489, '00:07:18', 394112, 'Subscribe here: https://g');
 INSERT into VIDEO values ('LfycThKOX8c', 'UC4QZ_LsYcvcq7qOsOhpAX4A', 28, 'The First Human in Space - A Mysterious Death', '2019-12-18', 19466, '00:13:03', 533383, 'When Yuri Gagarin became ');
 INSERT into VIDEO values ('oNnlmq05hGc', 'UC4QZ_LsYcvcq7qOsOhpAX4A', 28, '6 People Who Predicted the Future With Stunning Accuracy', '2020-03-06', 50805, '00:19:00', 3510304, 'With the current accelera');
-INSERT into VIDEO values ('8sTy8466MoE', 'UC4QZ_LsYcvcq7qOsOhpAX4A', 28, 'A Brief History of the Internet - First Website, First Meme..', '2018-12-06', 13771, '00:13:14', 365466, 'Article 13 Resources: 
-ht');
+INSERT into VIDEO values ('8sTy8466MoE', 'UC4QZ_LsYcvcq7qOsOhpAX4A', 28, 'A Brief History of the Internet - First Website, First Meme..', '2018-12-06', 13771, '00:13:14', 365466, 'Article 13 Resources: ht');
 INSERT into VIDEO values ('X5lpOskKF9I', 'UC4QZ_LsYcvcq7qOsOhpAX4A', 28, 'The PC that started Microsoft & Apple! (Altair 8800)', '2016-03-18', 17004, '00:11:39', 434760, 'Subscribe here: https://g');
 INSERT into VIDEO values ('78I9dTB9vqM', 'UCnYMOamNKLGVlJgRUbamveA', 22, 'If You Want To COMPLETELY CHANGE Your Life In 7 Days, WATCH THIS! | David Goggins', '2017-05-23', 180624, '00:57:40', 7458452, 'Upgrade Your Life in 7 Da');
 INSERT into VIDEO values ('lPYmD7CyHlY', 'UCnYMOamNKLGVlJgRUbamveA', 25, 'ECONOMIC CRISIS: Ray Dalios Warning For The Banking Collapse, US Dollar & Upcoming Recession', '2023-04-15', 47374, '01:55:03', 4759969, 'FREE! 10 Steps to Beast-');
 INSERT into VIDEO values ('IEz1P4i1P7s', 'UCnYMOamNKLGVlJgRUbamveA', 27, 'Harvard Professor REVEALS How To SLOW & REVERSE AGING | Dr. David Sinclair', '2019-09-19', 115631, '00:47:54', 5757939, 'Restart Your Life in 7 Da');
 INSERT into VIDEO values ('xLORsLlcT48', 'UCnYMOamNKLGVlJgRUbamveA', 27, 'Dopamine Detox: How To Tack Back Control Of Your Life From Laziness & Addiction | Andrew Huberman', '2021-09-23', 105305, '01:03:53', 4405495, 'Upgrade Your Life in 7 Da');
-INSERT into VIDEO values ('E-6bv8_pj-E', 'UCnYMOamNKLGVlJgRUbamveA', 27, '“People DON’T KNOW What’s Coming!” Prepare For The CHANGING WORLD ORDER | Ray Dalio', '2022-04-26', 48748, '01:33:49', 2998267, 'On Todays Episode: 
-
-If ');
+INSERT into VIDEO values ('E-6bv8_pj-E', 'UCnYMOamNKLGVlJgRUbamveA', 27, '“People DON’T KNOW What’s Coming!” Prepare For The CHANGING WORLD ORDER | Ray Dalio', '2022-04-26', 48748, '01:33:49', 2998267, 'On Todays Episode: If ');
 INSERT into VIDEO values ('4gx5iavv6js', 'UCV6KDgJskWaEckne5aPA0aQ', 27, 'I Secretly Pitched A Fake Business On Shark Tank', '2023-02-10', 5500, '00:12:58', 123146, 'I flew to New York City s');
 INSERT into VIDEO values ('0Cdqs2Q1Vis', 'UCV6KDgJskWaEckne5aPA0aQ', 27, 'Touring Elon Musk’s $50,000 Tiny Home', '2023-01-30', 30614, '00:10:32', 1629490, 'Inside Elon Musks $50,00');
 INSERT into VIDEO values ('xAdSM_Y80Zs', 'UCV6KDgJskWaEckne5aPA0aQ', 27, 'Spending 24 Hours With MrBeast', '2023-01-25', 10498, '00:10:11', 213098, 'I Spent 24 Hours With MrB');
