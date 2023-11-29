@@ -11,6 +11,14 @@ CREATE TABLE CHANNEL(
     PRIMARY KEY (channelID)
 );
 
+CREATE TABLE CATEGORY(
+    categoryID INT NOT NULL,
+    categoryName varchar(101),
+    categorySubs INT,
+    CHECK(categorySubs >= 0),
+    PRIMARY KEY (categoryID)
+);
+
 CREATE TABLE VIDEO(
     videoID char(11) NOT NULL,
     channelID char(24) NOT NULL,
@@ -26,7 +34,7 @@ CREATE TABLE VIDEO(
     description varchar(510),
     PRIMARY KEY (videoID),
     FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE,
-    FOREIGN KEY (categoryID) REFERENCES CHANNEL(categoryID) ON DELETE CASCADE
+    FOREIGN KEY (categoryID) REFERENCES CATEGORY(categoryID) ON DELETE CASCADE
 );
 
 -- Video Triggers that check the channelAge upon insert/update
@@ -67,14 +75,6 @@ BEGIN
 END$$
 
 DELIMITER ;
-
-CREATE TABLE CATEGORY(
-    categoryID INT NOT NULL,
-    categoryName varchar(101),
-    categorySubs INT,
-    CHECK(categorySubs >= 0),
-    PRIMARY KEY (categoryID)
-);
 
 CREATE TABLE PLAYLIST(
     playlistID char(34) NOT NULL,
