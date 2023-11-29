@@ -2330,12 +2330,9 @@ INSERT into VIDEO values ('VeT1LFVdUV0', 'UCXuqSBlHAE6Xw-yeJA0Tunw', 28, 'I Cant
 INSERT into VIDEO values ('pYQtusd8deU', 'UCXuqSBlHAE6Xw-yeJA0Tunw', 28, 'The Truth about LinusTechTips - EXPOSED (April Fools 2020)', '2020-04-01', 153964, '00:06:54', 2094603, 'Get 50% off your first 3 ');
 INSERT into VIDEO values ('fkNjMuvtpLU', 'UC5nc_ZtjKW1htCVZVRxlQAQ', 24, 'Hoang & RUNN - People Change', '2023-01-27', 3811, '00:03:12', 107466, '  MrSuicideSheep Links ');
 INSERT into VIDEO values ('4joKhMsRivs', 'UC5nc_ZtjKW1htCVZVRxlQAQ', 24, 'Dabin - Rings & Roses (feat. Conor Byrne)', '2019-02-27', 23539, '00:03:57', 1626811, 'Dabin - Rings & Roses (fe');
-INSERT into VIDEO values ('hdnHnVDoKHo', 'UC5nc_ZtjKW1htCVZVRxlQAQ', 24, 'ILLENIUM - Take You Down', '2018-08-03', 37669, '00:03:42', 1470495, 'ILLENIUM - Take You Down
-');
+INSERT into VIDEO values ('hdnHnVDoKHo', 'UC5nc_ZtjKW1htCVZVRxlQAQ', 24, 'ILLENIUM - Take You Down', '2018-08-03', 37669, '00:03:42', 1470495, 'ILLENIUM - Take You Down');
 INSERT into VIDEO values ('421TtTLtiJk', 'UC5nc_ZtjKW1htCVZVRxlQAQ', 24, 'Louis the Child - Better Not (feat. Wafia)', '2018-04-13', 25964, '00:03:43', 1397814, 'Louis the Child - Better ');
-INSERT into VIDEO values ('KgXKIoB9PDY', 'UC5nc_ZtjKW1htCVZVRxlQAQ', 24, 'HYDDE & RUNN - Gemini', '2017-01-16', 20416, '00:03:26', 1531298, 'HYDDE & RUNN - Gemini
-
- ');
+INSERT into VIDEO values ('KgXKIoB9PDY', 'UC5nc_ZtjKW1htCVZVRxlQAQ', 24, 'HYDDE & RUNN - Gemini', '2017-01-16', 20416, '00:03:26', 1531298, 'HYDDE & RUNN - Gemini');
 INSERT into VIDEO values ('rc_wlk5y6Zs', 'UCMyOj6fhvKFMjxUCp3b_3gA', 22, 'Buffalo Chicken Wings', '2021-01-10', 130481, '00:06:22', 3948709, 'Youll love these, I prom');
 INSERT into VIDEO values ('AiHg580DFOE', 'UCMyOj6fhvKFMjxUCp3b_3gA', 22, 'Barbecue Chicken Wings', '2021-01-19', 169098, '00:05:21', 5399416, 'Crispy, tangy, sweet, and');
 INSERT into VIDEO values ('3-Ndlmn2Zqs', 'UCMyOj6fhvKFMjxUCp3b_3gA', 22, 'Parmesan Garlic Wings', '2020-12-14', 40188, '00:03:28', 1006655, 'Try making these wings! Y');
@@ -2383,8 +2380,7 @@ INSERT into VIDEO values ('vPLu6iUZUr0', 'UC65afEgL62PGFWXY7n6CUbA', 10, '2Scrat
 INSERT into VIDEO values ('p2BTltXs2nc', 'UCrZsKQXXq652czHn8XmOIEw', 10, 'Bryson Tiller - Finesse (Drake Cover)', '2018-09-12', 72567, '00:02:53', 9301554, 'Bryson Tiller - Finesse (');
 INSERT into VIDEO values ('gf1bishMT3U', 'UCrZsKQXXq652czHn8XmOIEw', 10, 'Joji - Glimpse Of Us (Cella Remix)', '2023-11-22', 43, '00:03:32', 989, 'Joji - Glimpse Of Us (Cel');
 INSERT into VIDEO values ('12JsbKQwY7M', 'UCrZsKQXXq652czHn8XmOIEw', 10, 'Zerb - Mwaki (feat. Sofiya Nzau)', '2023-11-09', 108, '00:03:36', 3657, 'Zerb - Mwaki (feat. Sofiy');
-INSERT into VIDEO values ('PVOB_1i5j0s', 'UCrZsKQXXq652czHn8XmOIEw', 10, 'Rift Child - Dream', '2023-11-03', 72, '00:02:24', 2690, 'Rift Child - Dream
-Stream');
+INSERT into VIDEO values ('PVOB_1i5j0s', 'UCrZsKQXXq652czHn8XmOIEw', 10, 'Rift Child - Dream', '2023-11-03', 72, '00:02:24', 2690, 'Rift Child - DreamStream');
 INSERT into VIDEO values ('4LVmEZOf3cI', 'UCrZsKQXXq652czHn8XmOIEw', 10, 'Chris Norman, Suzi Quatro - Stumblin in (CYRIL Remix)', '2023-10-31', 1710, '00:03:34', 71549, 'Chris Norman, Suzi Quatro');
 INSERT into VIDEO values ('cEItmb_a20M', 'UCeSRjhfeeqIgr--AcP9qhyg', 24, 'The Fastest Man On Two Hands - Guinness World Records', '2021-09-22', 1000747, '00:04:01', 52526967, 'Subscribe || http://gwr.c');
 INSERT into VIDEO values ('24tEL1Aewo0', 'UCeSRjhfeeqIgr--AcP9qhyg', 24, 'Cutting The Worlds LONGEST HAIR - Guinness World Records', '2021-04-14', 158093, '00:04:45', 19015493, 'Watch the GWR’s Favourite');
@@ -2414,8 +2410,7 @@ INSERT into VIDEO values ('gfUa_lfxcag', 'UCCvcd0FYi58LwyTQP9LITpA', 1, 'Thai Tr
 INSERT into VIDEO values ('3mppFmB_HSA', 'UC_pT_Iz6XjuM-eMTlXghdfw', 22, '1,000 Pounds of Bacon Jerky', '2023-05-10', 392451, '00:00:49', 7147159, 'This is how we make our h');
 INSERT into VIDEO values ('OPrKalN7ZSU', 'UC_pT_Iz6XjuM-eMTlXghdfw', 22, 'I Soaked Chicken in Hot Sauce for 24hrs THEN Dry Aged it', '2023-05-14', 50214, '00:13:38', 2171967, 'Dry aging does wonders fo');
 INSERT into VIDEO values ('jsrkJNd7bno', 'UC_pT_Iz6XjuM-eMTlXghdfw', 22, 'How Chicken Jerky is Made', '2023-07-13', 136622, '00:00:45', 1752855, 'How Chicken Jerky is Made');
-INSERT into VIDEO values ('hl4hDyMBVvA', 'UC_pT_Iz6XjuM-eMTlXghdfw', 22, 'Dry Aged Buffalo Chicken', '2023-07-16', 1509345, '00:00:44', 26882940, 'Dry Aged Buffalo Chicken
-');
+INSERT into VIDEO values ('hl4hDyMBVvA', 'UC_pT_Iz6XjuM-eMTlXghdfw', 22, 'Dry Aged Buffalo Chicken', '2023-07-16', 1509345, '00:00:44', 26882940, 'Dry Aged Buffalo Chicken');
 INSERT into VIDEO values ('IiChHK-mzeo', 'UC_pT_Iz6XjuM-eMTlXghdfw', 22, 'Can I move to FL before my meat defrosts?', '2023-07-20', 498758, '00:00:54', 6103916, 'Can I move to FL before m');
 
 
