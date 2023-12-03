@@ -149,7 +149,7 @@ CREATE TABLE POST(
     postDescription varchar(510),
     postLikes INT,
     CHECK(postLikes >= 0),
-    PRIMARY KEY (postID),
+    PRIMARY KEY (postID, channelID),
     FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
 );
 
