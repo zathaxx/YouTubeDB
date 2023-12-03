@@ -32,7 +32,7 @@ CREATE TABLE VIDEO(
     videoViews INT,
     CHECK(videoViews >= 0),
     description varchar(510),
-    PRIMARY KEY (videoID),
+    PRIMARY KEY (videoID, channelID),
     FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE,
     FOREIGN KEY (categoryID) REFERENCES CATEGORY(categoryID) ON DELETE CASCADE
 );
