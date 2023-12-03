@@ -80,7 +80,7 @@ CREATE TABLE PLAYLIST(
     playlistID char(34) NOT NULL,
     channelID char(24) NOT NULL,
     playlistName varchar(101) DEFAULT 'Untitled Playlist',
-    PRIMARY KEY (playlistID),
+    PRIMARY KEY (playlistID, channelID),
     FOREIGN KEY (channelID) REFERENCES CHANNEL(channelID) ON DELETE CASCADE
 ); 
 
