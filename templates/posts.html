@@ -20,6 +20,9 @@
         </nav>
 </header>
 <body>
-    <p>My first paragraph.</p>
+    <h1>Posts</h1>
+    {% for row in playlists %}
+        <p>{{ row }}</p>
+    {% endfor %}
 </body>
 </html>

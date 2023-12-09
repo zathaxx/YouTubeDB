@@ -34,5 +34,35 @@ def categories():
     categories = cursor.fetchall()
     return render_template('categories.html', categories=categories)
 
+@app.route('/videos')
+def categories():
+    cursor.execute("SELECT * FROM VIDEO;")
+    videos = cursor.fetchall()
+    return render_template('videos.html', videos=videos)
+
+@app.route('/playlists')
+def categories():
+    cursor.execute("SELECT * FROM PLAYLIST;")
+    playlists = cursor.fetchall()
+    return render_template('playlists.html', playlists=playlists)
+
+@app.route('/comments')
+def categories():
+    cursor.execute("SELECT * FROM COMMENT;")
+    comments = cursor.fetchall()
+    return render_template('comments.html', comments=comments)
+
+@app.route('/sponsors')
+def categories():
+    cursor.execute("SELECT * FROM SPONSOR;")
+    sponsors = cursor.fetchall()
+    return render_template('sponsors.html', sponsors=sponsors)
+
+@app.route('/posts')
+def categories():
+    cursor.execute("SELECT * FROM POST;")
+    posts = cursor.fetchall()
+    return render_template('posts.html', posts=posts)
+
 if __name__ == '__main__':
     app.run()

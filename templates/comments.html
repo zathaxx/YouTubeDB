@@ -20,6 +20,9 @@
         </nav>
 </header>
 <body>
-    <p>My first paragraph.</p>
+    <h1>Comments</h1>
+    {% for row in comments %}
+        <p>{{ row }}</p>
+    {% endfor %}
 </body>
 </html>
