@@ -28,12 +28,5 @@ def channels():
         output.append(f"<p>{row}</p>")
     return "\n".join(output)
 
-@app.route('/test', methods=['GET', 'POST'])
-def test():
-  if request.method == 'POST':
-    cursor.execute(request.values.get('channel_id'))
-  else:
-    return "Page under construction"
-
 if __name__ == '__main__':
     app.run()
