@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return 'gaming'
+    return """<a href="/channels">Channel</a>"""
 
 @app.route('/channels')
 def channels():
