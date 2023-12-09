@@ -25,8 +25,8 @@ def home():
 @app.route('/channels')
 def channels():
     cursor.execute("SELECT * FROM CHANNEL;")
-    channels_data = cursor.fetchall()
-    return render_template('channels.html', channels=channels_data)
+    channels = cursor.fetchall()
+    return render_template('channels.html', channels)
 
 if __name__ == '__main__':
     app.run()
