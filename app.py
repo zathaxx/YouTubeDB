@@ -26,7 +26,7 @@ def home():
 def channels():
     cursor.execute("SELECT * FROM CHANNEL;")
     channels = cursor.fetchall()
-    return render_template('channels.html', channels)
+    return render_template('channels.html', channels=channels)
 
 if __name__ == '__main__':
     app.run()
