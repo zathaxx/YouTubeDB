@@ -35,31 +35,31 @@ def categories():
     return render_template('categories.html', categories=categories)
 
 @app.route('/videos')
-def categories():
+def videos():
     cursor.execute("SELECT * FROM VIDEO;")
     videos = cursor.fetchall()
     return render_template('videos.html', videos=videos)
 
 @app.route('/playlists')
-def categories():
+def playlists():
     cursor.execute("SELECT * FROM PLAYLIST;")
     playlists = cursor.fetchall()
     return render_template('playlists.html', playlists=playlists)
 
 @app.route('/comments')
-def categories():
+def comments():
     cursor.execute("SELECT * FROM COMMENT;")
     comments = cursor.fetchall()
     return render_template('comments.html', comments=comments)
 
 @app.route('/sponsors')
-def categories():
+def sponsors():
     cursor.execute("SELECT * FROM SPONSOR;")
     sponsors = cursor.fetchall()
     return render_template('sponsors.html', sponsors=sponsors)
 
 @app.route('/posts')
-def categories():
+def posts():
     cursor.execute("SELECT * FROM POST;")
     posts = cursor.fetchall()
     return render_template('posts.html', posts=posts)
