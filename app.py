@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import mysql.connector
 import os
 from dotenv import load_dotenv
@@ -27,6 +27,13 @@ def channels():
     for row in cursor.fetchall():
         output.append(f"<p>{row}</p>")
     return "\n".join(output)
+
+@app.route('/test', methods=['GET', 'POST'])
+def test(query):
+  if request.method == 'POST':
+    cursor.execute(request.args['channel_id'])
+  else:
+    return "Page under construction"
 
 if __name__ == '__main__':
     app.run()
