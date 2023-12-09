@@ -8,8 +8,11 @@ load_dotenv()
 db = mysql.connector.connect(
   host="localhost",
   user=os.environ["USERNAME"],
-  password=os.environ["PASSWORD"]
+  password=os.environ["PASSWORD"],
+  db="youtube"
 )
+
+cursor = db.cursor()
 
 app = Flask(__name__)
 
@@ -19,7 +22,11 @@ def hello():
 
 @app.route('/channels')
 def channels():
-    return 'gaming'
+    cursor.execute("SELECT * FROM CHANNEL;")
+    output = []
+    for row in cursor.fetchall():
+        output.append(f"<p>{row}</p>")
+    return "\n".join(output)
 
 if __name__ == '__main__':
     app.run()
