@@ -25,10 +25,8 @@ def home():
 @app.route('/channels')
 def channels():
     cursor.execute("SELECT * FROM CHANNEL;")
-    output = []
-    for row in cursor.fetchall():
-        output.append(f"<p>{row}</p>")
-    return "\n".join(output)
+    channels_data = cursor.fetchall()
+    return render_template('channels.html', channels=channels_data)
 
 if __name__ == '__main__':
     app.run()
