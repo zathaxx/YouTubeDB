@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import mysql.connector
 import os
 from dotenv import load_dotenv
@@ -19,6 +19,8 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     return """<a href="/channels">Channel</a>"""
+
+
 
 @app.route('/channels')
 def channels():
