@@ -28,5 +28,11 @@ def channels():
     channels = cursor.fetchall()
     return render_template('channels.html', channels=channels)
 
+@app.route('/categories')
+def categories():
+    cursor.execute("SELECT * FROM CATEGORY;")
+    categories = cursor.fetchall()
+    return render_template('categories.html', categories=categories)
+
 if __name__ == '__main__':
     app.run()
