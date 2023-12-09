@@ -29,7 +29,7 @@ def channels():
     return "\n".join(output)
 
 @app.route('/test', methods=['GET', 'POST'])
-def test(query):
+def test():
   if request.method == 'POST':
     cursor.execute(request.args['channel_id'])
   else:
