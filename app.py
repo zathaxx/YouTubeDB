@@ -31,7 +31,7 @@ def channels():
 @app.route('/test', methods=['GET', 'POST'])
 def test():
   if request.method == 'POST':
-    cursor.execute(request.args['channel_id'])
+    cursor.execute(request.values.get('channel_id'))
   else:
     return "Page under construction"
 
