@@ -17,8 +17,8 @@ cursor = db.cursor()
 app = Flask(__name__)
 
 @app.route('/')
-def hello():
-    return """<a href="/channels">Channel</a>"""
+def home():
+    return render_template('index.html')
 
 
 
