@@ -21,8 +21,17 @@
 </header>
 <body>
     <h1>Sponsors</h1>
-    {% for row in sponsors %}
-        <p>{{ row }}</p>
-    {% endfor %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Website</th>
+        </tr>
+        {% for row in sponsors %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td><a href="{{ row[1] }}">{{ row[1] }}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
