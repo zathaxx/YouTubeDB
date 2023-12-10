@@ -72,7 +72,7 @@ def comments():
 
     for comment in comments:
         comment_id = comment[0]
-        cursor.execute(f"SELECT DISTINCT VIDEO.videoName FROM VIDEO JOIN COMMENT ON VIDEO.videoID = COMMENT.commentID AND COMMENT.commentID = '{comment_id}';")
+        cursor.execute(f"SELECT DISTINCT VIDEO.videoName FROM VIDEO JOIN COMMENT ON VIDEO.videoID = COMMENT.videoID AND COMMENT.commentID = '{comment_id}';")
         video_name = cursor.fetchone()
 
         if video_name is not None:
