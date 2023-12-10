@@ -3,7 +3,7 @@ import json
 import re
 import os
 
-API_KEY = os.environ["API_KEY"]
+API_KEY = os.environ.get("API_KEY")
 BASE_URL = "https://www.googleapis.com/youtube/v3"
 YT_CHANNEL_ID = "" # Insert desired YouTube channel here
 
