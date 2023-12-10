@@ -261,19 +261,23 @@ LIMIT 5;
 -- Example Queries from Iteration 2
 -- Query that pull the average video length for a youtuber (Max the Meat Guy)
 SELECT
-    channelName AS 'Channel Name',
-    AVG(videoDuration) AS average_video_length
+    c.channelName AS 'Channel Name',
+    AVG(v.videoDuration) AS average_video_length
 FROM
-    VIDEO
+    VIDEO v
+    JOIN CHANNEL c ON c.channelID = v.channelID
 WHERE
-    channelID = 'UC_pT_Iz6XjuM-eMTlXghdfw';
+    c.channelID = 'UC_pT_Iz6XjuM-eMTlXghdfw'
+GROUP BY
+    c.channelID, c.channelName;
+
 -- Query that gets the engagement rates for a specific video 
 -- (number of likes, comments, etc for Mark Robers octopus maze vid).
 SELECT
     v.videoName,
     v.videoViews,
     v.videoLikes,
-    COUNT(c)
+    COUNT(c.commentID)
 FROM
     VIDEO v
     JOIN COMMENT c ON v.videoID = c.videoID
