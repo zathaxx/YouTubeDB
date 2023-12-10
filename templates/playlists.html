@@ -21,8 +21,17 @@
 </header>
 <body>
     <h1>Playlists</h1>
-    {% for row in playlists %}
-        <p>{{ row }}</p>
-    {% endfor %}
+    <table>
+        <tr>
+            <th>Channel</th>
+            <th>Title</th>
+        </tr>
+        {% for row in playlists %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[3] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
