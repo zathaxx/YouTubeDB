@@ -45,9 +45,14 @@ def update_channel(channel_id):
     description = channel_overview['description'][:10]
     description = clean_text(description)
 
-    return (f"UPDATE CHANNEL 
-            SET channelSubs = {channel_statistics['subscriberCount']}, videoCount = {channel_statistics['videoCount']}, channelName = '{channel_overview['title']}', channelDescription = '{description}' 
-            WHERE channelID = '{channel_id}';")
+    return f"""
+            UPDATE CHANNEL 
+            SET channelSubs = {channel_statistics['subscriberCount']}, 
+                videoCount = {channel_statistics['videoCount']}, 
+                channelName = '{channel_overview['title']}', 
+                channelDescription = '{description}' 
+            WHERE channelID = '{channel_id}';
+            """
 
 
 def get_latest_videos(channel_id, max_results=5):
