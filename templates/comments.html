@@ -21,8 +21,23 @@
 </header>
 <body>
     <h1>Comments</h1>
-    {% for row in comments %}
-        <p>{{ row }}</p>
-    {% endfor %}
+    <table>
+        <tr>
+            <th>Video Name</th>
+            <th>Author</th>
+            <th>Contents</th>
+            <th>Published</th>
+            <th>Likes</th>
+        </tr>
+        {% for row in comments %}
+            <tr>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[4] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

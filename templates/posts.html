@@ -21,8 +21,21 @@
 </header>
 <body>
     <h1>Posts</h1>
-    {% for row in posts %}
-        <p>{{ row }}</p>
-    {% endfor %}
+    <table>
+        <tr>
+            <th>Channel</th>
+            <th>Contents</th>
+            <th>Published</th>
+            <th>Likes</th>
+        </tr>
+        {% for row in posts %}
+            <tr>
+                <td>{{ row[1] }}</td>
+                <td style="max-width: 600px;">{{ row[3] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[4] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
