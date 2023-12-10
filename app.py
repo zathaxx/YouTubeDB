@@ -38,13 +38,18 @@ def categories():
 def videos():
     cursor.execute("SELECT * FROM VIDEO;")
     videos = cursor.fetchall()
-    for i, video in enumerate(videos):
+    updated_videos = []
+
+    for video in videos:
         video_id = video[0]
         cursor.execute(f"SELECT DISTINCT CHANNEL.channelName FROM CHANNEL JOIN VIDEO ON CHANNEL.channelID = VIDEO.channelID AND VIDEO.videoID = '{video_id}';")
         channel_name = cursor.fetchone()
-        videos[i] = (channel_name[0],) + video[1:]
 
-    return render_template('videos.html', videos=videos)
+        updated_video = [channel_name[0]] + list(video[1:])
+        updated_videos.append(tuple(updated_video))
+
+    return render_template('videos.html', videos=updated_videos)
+
 
 @app.route('/playlists')
 def playlists():
