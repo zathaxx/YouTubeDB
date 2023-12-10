@@ -93,6 +93,14 @@ def delete_video(video_id):
         db.commit()
     return redirect(url_for('videos'))
 
+@app.route('/update_video/<string:video_id>', methods=['POST'])
+def update_video_route(video_id):
+    if video_id:
+        update_query = update_video(video_id)
+        cursor.execute(update_query)
+        db.commit()
+    return redirect(url_for('videos'))
+
 @app.route('/playlists')
 def playlists():
     cursor.execute("SELECT * FROM PLAYLIST;")

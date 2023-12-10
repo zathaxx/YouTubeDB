@@ -96,6 +96,29 @@ def get_video(video_id):
 
     return (f"INSERT into VIDEO values ('{items[0]['id']}', '{v_snippet['channelId']}', {category_id}, '{title}', '{v_snippet['publishedAt'][0:10]}', {likes}, '{duration_to_hhmmss(v_details['duration'])}', {v_stats['viewCount']}, '{description}');")
 
+def update_video(video_id):
+    params = {
+        'part': 'snippet,statistics, contentDetails',
+        'id': video_id,
+        'key': API_KEY,
+    }
+    response = requests.get(f"{BASE_URL}/videos", params=params)
+    items = response.json().get('items', [])
+
+    v_snippet = items[0]["snippet"]
+    v_stats = items[0]["statistics"]
+    v_details = items[0]["contentDetails"]
+
+    title = v_snippet['title'].replace("'", '')
+    title = clean_text(title)
+    description = v_snippet.get('description', '')[:25].replace("'", '')
+    description = clean_text(description)
+    likes = v_stats.get('likeCount', 0)
+
+    return (f"UPDATE VIDEO SET channelID = '{v_snippet['channelId']}', videoName = '{title}', "
+            f"videoLikes = {likes}, videoDuration = '{duration_to_hhmmss(v_details['duration'])}', "
+            f"videoViews = {v_stats['viewCount']}, description = '{description}' "
+            f"WHERE videoID = '{video_id}';")
 
     
 def duration_to_hhmmss(duration):
