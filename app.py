@@ -25,6 +25,7 @@ def home():
 def channels():
     if request.method == 'POST':
         channel_id = request.form['channel_id']
+        print(channel_id)
         if channel_id:
             query = get_channel(channel_id)
             cursor.execute(query)
