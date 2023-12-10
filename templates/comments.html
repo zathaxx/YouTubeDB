@@ -23,15 +23,15 @@
     <h1>Comments</h1>
     <table>
         <tr>
-            <th>Video Name</th>
-            <th>Author</th>
+            <th>Video Commented On</th>
+            <th>Author of Comment</th>
             <th>Contents</th>
             <th>Published</th>
             <th>Likes</th>
         </tr>
         {% for row in comments %}
             <tr>
-                <td>{{ row[1] }}</td>
+                <td>{{ row[6] }}</td>
                 <td>{{ row[2] }}</td>
                 <td>{{ row[3] }}</td>
                 <td>{{ row[5] }}</td>

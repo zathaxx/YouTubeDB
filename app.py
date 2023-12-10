@@ -20,8 +20,6 @@ app = Flask(__name__, static_url_path='/static')
 def home():
     return render_template('index.html')
 
-
-
 @app.route('/channels')
 def channels():
     cursor.execute("SELECT * FROM CHANNEL;")
@@ -70,7 +68,21 @@ def playlists():
 def comments():
     cursor.execute("SELECT * FROM COMMENT;")
     comments = cursor.fetchall()
-    return render_template('comments.html', comments=comments)
+    updated_comments = []
+
+    for comment in comments:
+        comment_id = comment[0]
+        cursor.execute(f"SELECT DISTINCT VIDEO.videoName FROM VIDEO JOIN COMMENT ON VIDEO.videoID = COMMENT.videoID AND COMMENT.commentID = '{comment_id}';")
+        video_name = cursor.fetchone()
+
+        if video_name is not None:
+            updated_comment = comment + (video_name[0],)
+            updated_comments.append(updated_comment)
+        else:
+            print(f"No video name found for comment ID: {comment_id}")
+
+    return render_template('comments.html', comments=updated_comments)
+
 
 @app.route('/sponsors')
 def sponsors():
