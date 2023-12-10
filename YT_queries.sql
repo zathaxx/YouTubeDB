@@ -15,5 +15,6 @@ SELECT videoViews
 WHERE videoViews > 10000 AND postDate = postDate.year == 2019 JOIN postDate = postDate.month == 12
 
 
+
 -- Question #2
 -- List all channels that have over 20k subscribers, that were created last year, including their most popular video with the playlist if the video is in one. 
