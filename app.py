@@ -44,6 +44,15 @@ def delete_channel(channel_id):
         db.commit()
     return redirect(url_for('channels'))
 
+@app.route('/update_channel/<string:channel_id>', methods=['POST'])
+def update_channel_route(channel_id):
+    if channel_id:
+        update_query = update_channel(channel_id)
+        cursor.execute(update_query)
+        db.commit()
+
+    return redirect(url_for('channels'))
+
 @app.route('/categories')
 def categories():
     cursor.execute("SELECT * FROM CATEGORY;")

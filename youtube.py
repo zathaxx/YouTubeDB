@@ -28,6 +28,28 @@ def get_channel(channel_id):
 
     return (f"INSERT INTO CHANNEL VALUES ('{channel_id}', {channel_statistics['subscriberCount']}, '{channel_overview['publishedAt'][0:10]}', {channel_statistics['videoCount']}, '{channel_overview['title']}', '{description}');")
 
+def update_channel(channel_id):
+    params = {
+        'part': 'id,snippet,contentDetails,statistics',
+        'id': channel_id,
+        'key': API_KEY,
+    }
+    response = requests.get(f"{BASE_URL}/channels", params)
+    print(response)
+    initial = response.json()
+    first_item = initial["items"][0]
+    channel_id = first_item["id"]
+    channel_details = first_item["contentDetails"]
+    channel_overview = first_item["snippet"]
+    channel_statistics = first_item["statistics"]
+    description = channel_overview['description'][:10]
+    description = clean_text(description)
+
+    return (f"UPDATE CHANNEL 
+            SET channelSubs = {channel_statistics['subscriberCount']}, videoCount = {channel_statistics['videoCount']}, channelName = '{channel_overview['title']}', channelDescription = '{description}' 
+            WHERE channelID = '{channel_id}';")
+
+
 def get_latest_videos(channel_id, max_results=5):
     params = {
         'part': 'id',
