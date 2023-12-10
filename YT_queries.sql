@@ -27,7 +27,7 @@ SELECT
     video.videoViews AS 'Video Views'
 FROM
     VIDEO video
-    JOIN CONTAINS contains ON video.videoID = contains.videoID
+    JOIN CONTAIN contains ON video.videoID = contains.videoID
     JOIN PLAYLIST playlist ON contains.playlistID = playlist.playlistID
     JOIN CHANNEL channel ON playlist.channelID = channel.channelID
 WHERE
@@ -37,14 +37,34 @@ WHERE
         SELECT
             AVG(v.videoViews)
         FROM
-            CONTAINS c
+            CONTAIN c
             JOIN VIDEO v ON c.videoID = v.videoID
         WHERE
             playlistID = 'PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8'
     );
 
 -- Question #4
--- 
+-- List all the youtubers under the "Science & Technology" catagory that have more subscribers
+-- than the average number of subscribers that a "Science & Technology" youtuber has
+SELECT
+    ch.channelName AS 'YouTuber Name',
+    ch.channelSubs AS 'Subscribers'
+FROM
+    CHANNEL ch
+    JOIN CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
+    JOIN CATEGORY cat ON cu.categoryID = cat.categoryID
+WHERE
+    cat.categoryName = 'Science & Technology'
+    AND ch.channelSubs > (
+        SELECT
+            AVG(ch_sub.channelSubs)
+        FROM
+            CHANNEL ch_sub
+            JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
+            JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
+        WHERE
+            cat_sub.categoryName = 'Science & Technology'
+    );
 
 -- Question #5
 -- 
