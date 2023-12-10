@@ -22,9 +22,8 @@ def get_channel(channel_id):
     channel_details = first_item["contentDetails"]
     channel_overview = first_item["snippet"]
     channel_statistics = first_item["statistics"]
-
     description = channel_overview['description'][:10]
-    description.replace("'", '')
+    description = clean_text(description)
 
 
     return (f"INSERT INTO CHANNEL VALUES ('{channel_id}', {channel_statistics['subscriberCount']}, '{channel_overview['publishedAt'][0:10]}', {channel_statistics['videoCount']}, '{channel_overview['title']}', '{description}');")
