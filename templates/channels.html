@@ -36,6 +36,7 @@
             <th>Date Created</th>
             <th>Number of Videos</th>
             <th>Description</th>
+            <th>Action</th>
         </tr>
         {% for row in channels %}
             <tr>
@@ -44,6 +45,11 @@
                 <td>{{ row[2] }}</td>
                 <td>{{ row[3] }}</td>
                 <td>{{ row[5] }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('delete_channel', channel_id=row[0]) }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </table>

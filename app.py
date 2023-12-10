@@ -36,6 +36,14 @@ def channels():
     channels = cursor.fetchall()
     return render_template('channels.html', channels=channels)
 
+@app.route('/delete_channel/<string:channel_id>', methods=['POST'])
+def delete_channel(channel_id):
+    if channel_id:
+        query = f"DELETE FROM CHANNEL WHERE channelID = '{channel_id}';"
+        cursor.execute(query)
+        db.commit()
+    return redirect(url_for('channels'))
+
 @app.route('/categories')
 def categories():
     cursor.execute("SELECT * FROM CATEGORY;")
