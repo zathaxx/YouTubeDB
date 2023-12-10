@@ -22,6 +22,12 @@
 <body>
     <h1>Channels</h1>
 
+    <form method="post" action="{{ url_for('channels') }}">
+        <label for="channel_id">YouTube Channel ID:</label>
+        <input type="text" id="channel_id" name="channel_id" required>
+        <button type="submit">Insert Channel</button>
+    </form>
+
     <table>
         <tr>
             <th>Name</th>

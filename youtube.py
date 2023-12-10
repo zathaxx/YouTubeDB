@@ -1,8 +1,9 @@
 import requests
 import json
 import re
+import os
 
-API_KEY = "" # Generate YouTube API key here
+API_KEY = os.environ["API_KEY"]
 BASE_URL = "https://www.googleapis.com/youtube/v3"
 YT_CHANNEL_ID = "" # Insert desired YouTube channel here
 
