@@ -44,19 +44,27 @@ def videos():
         video_id = video[0]
         cursor.execute(f"SELECT DISTINCT CHANNEL.channelName FROM CHANNEL JOIN VIDEO ON CHANNEL.channelID = VIDEO.channelID AND VIDEO.videoID = '{video_id}';")
         channel_name = cursor.fetchone()
-        print(channel_name)
-        updated_video = [channel_name[0]] + list(video[1:])
-        updated_videos.append(tuple(updated_video))
-        print(updated_video)
 
-    return render_template('videos.html', videos=videos)
+        updated_video = video + (channel_name[0],)
+        updated_videos.append(updated_video)
 
+    return render_template('videos.html', videos=updated_videos)
 
 @app.route('/playlists')
 def playlists():
     cursor.execute("SELECT * FROM PLAYLIST;")
     playlists = cursor.fetchall()
-    return render_template('playlists.html', playlists=playlists)
+    updated_playlists = []
+
+    for playlist in playlists:
+        playlist_id = playlist[0]
+        cursor.execute(f"SELECT DISTINCT CHANNEL.channelName FROM CHANNEL JOIN PLAYLIST ON CHANNEL.channelID = PLAYLIST.channelID AND PLAYLIST.playlistID = '{playlist_id}';")
+        channel_name = cursor.fetchone()
+
+        updated_playlist = playlist + (channel_name[0],)
+        updated_playlists.append(updated_playlist) 
+
+    return render_template('playlists.html', playlists=updated_playlists)
 
 @app.route('/comments')
 def comments():
