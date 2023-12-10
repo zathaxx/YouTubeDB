@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 import mysql.connector
 import os
 from dotenv import load_dotenv
@@ -23,6 +23,14 @@ def home():
 
 @app.route('/channels')
 def channels():
+    if request.method == 'POST':
+        channel_id = request.form['channel_id']
+        if channel_id:
+            query = get_channel(channel_id)
+            cursor.execute(query)
+            db.commit()
+            return redirect(url_for('channels'))
+    
     cursor.execute("SELECT * FROM CHANNEL;")
     channels = cursor.fetchall()
     return render_template('channels.html', channels=channels)
