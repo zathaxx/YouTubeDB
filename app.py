@@ -21,7 +21,7 @@ app = Flask(__name__, static_url_path='/static')
 def home():
     return render_template('index.html')
 
-@app.route('/channels')
+@app.route('/channels', methods=['GET', 'POST'])
 def channels():
     if request.method == 'POST':
         channel_id = request.form['channel_id']
