@@ -151,7 +151,7 @@ def posts():
         updated_posts.append(updated_post)
     return render_template('posts.html', posts=updated_posts)
 
-@app.route('/')
+@app.route('/query')
 def query():
     return render_template('query.html')
 
