@@ -67,18 +67,14 @@ def videos():
             
             cursor.execute(f"SELECT channelID FROM VIDEO WHERE videoID = '{video_id}';")
             result = cursor.fetchone()
-            
             if result:
                 channel_id = result[0]
-
                 cursor.execute(f"SELECT * FROM CHANNEL WHERE channelID = '{channel_id}';")
                 existing_channel = cursor.fetchone()
-
-                if not existing_channel:
+                if existing_channel is None:
                     channel_query = get_channel(channel_id)
                     cursor.execute(channel_query)
                     db.commit()
-
             cursor.execute(query)
             db.commit()
             return redirect(url_for('videos'))
