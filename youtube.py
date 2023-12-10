@@ -92,8 +92,9 @@ def get_video(video_id):
     description = v_snippet.get('description', '')[:25].replace("'", '')
     description = clean_text(description)
     likes = v_stats.get('likeCount', 0)
+    category_id = v_snippet.get('categoryId', '')
 
-    return (f"INSERT into VIDEO values ('{items[0]['id']}', '{v_snippet['channelId']}', '{title}', '{v_snippet['publishedAt'][0:10]}', {likes}, '{duration_to_hhmmss(v_details['duration'])}', {v_stats['viewCount']}, '{description}');")
+    return (f"INSERT into VIDEO values ('{items[0]['id']}', '{v_snippet['channelId']}', {category_id}, '{title}', '{v_snippet['publishedAt'][0:10]}', {likes}, '{duration_to_hhmmss(v_details['duration'])}', {v_stats['viewCount']}, '{description}');")
 
 
     
