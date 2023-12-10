@@ -85,6 +85,14 @@ def videos():
 
     return render_template('videos.html', videos=updated_videos)
 
+@app.route('/delete_video/<string:video_id>', methods=['POST'])
+def delete_video(video_id):
+    if video_id:
+        query = f"DELETE FROM VIDEO WHERE videoID = '{video_id}';"
+        cursor.execute(query)
+        db.commit()
+    return redirect(url_for('videos'))
+
 @app.route('/playlists')
 def playlists():
     cursor.execute("SELECT * FROM PLAYLIST;")

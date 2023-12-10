@@ -38,6 +38,7 @@
             <th>Duration</th>
             <th>Description</th>
             <th>Category</th>
+            <th>Actions</th>
 
         </tr>
         {% for row in videos %}
@@ -50,6 +51,11 @@
                 <td>{{ row[6] }}</td>
                 <td>{{ row[8] }}</td>
                 <td>{{ row[10] }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('delete_video', video_id=video[0]) }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </table>
