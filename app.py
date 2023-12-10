@@ -47,9 +47,9 @@ def videos():
         category_name = cursor.fetchone()
         print(category_name)
 
-        updated_video = video + (channel_name[0],)
+        updated_video = video + (channel_name[0],) + (category_name[0],)
         updated_videos.append(updated_video)
-        updated_videos.append((category_name[0],))
+        print(updated_videos)
 
     return render_template('videos.html', videos=updated_videos)
 
