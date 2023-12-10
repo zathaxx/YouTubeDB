@@ -1,7 +1,7 @@
 -- Queries for YT project 
 -- complex queries  = "utilizing more than three tables"
 
--- Question #1
+-- QUERY #1
 --(PostDate, VideoViews, Comments)
 -- List all videos that was made 5 years ago today, with at least 1 thousand views made by a channel that has over 10 thousand subscriber
 SELECT 
@@ -24,7 +24,28 @@ WHERE
     AND postDate = postDate.year == 2019 
     JOIN postDate = postDate.month == 12;
 
--- Question #2
+-- corrected vers of Q1 (returns empty set)
+SELECT 
+    v.videoID,
+    v.videoName,
+    v.videoViews,
+    c.channelName,
+    c.channelSubs,
+    p.postDate
+FROM 
+    VIDEO v
+JOIN 
+    CHANNEL c ON v.channelID = c.channelID
+JOIN 
+    POST p ON v.channelID = p.channelID
+WHERE 
+    c.channelSubs > 10000 
+    AND v.videoViews > 1000 
+    AND YEAR(p.postDate) = YEAR(CURDATE()) - 5 
+    AND MONTH(p.postDate) = MONTH(CURDATE()) 
+    AND DAY(p.postDate) = DAY(CURDATE());
+
+-- QUERY #2
 -- List all of the video inside of Mark Robers "Glitterbomb" series playlist that have more views than
 -- the average amount of views from all the videos in this series.
 SELECT
@@ -49,7 +70,7 @@ WHERE
             p1.playlistID = 'PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8'
     );
 
--- Question #3
+-- QUERY #3
 -- List all the youtubers under the "Science & Technology" catagory that have more subscribers
 -- than the average number of subscribers that a "Science & Technology" youtuber has
 SELECT
@@ -72,7 +93,7 @@ WHERE
             cat_sub.categoryName = 'Science & Technology'
     );
 
--- Question #4
+-- QUERY #4
 -- List all the youtubers under the "Science & Technology" catagory that have more videos
 -- than the average number of videos that a "Science & Technology" youtuber has
 SELECT
@@ -107,7 +128,7 @@ HAVING
                 ch_sub_inner.channelID) AS avg_video_count
     );
 
--- Question #5
+-- QUERY #5
 -- Find the channel that has the most viewed video matching the category video and channel
 SELECT
     ch.channelName AS channelName,
@@ -130,39 +151,37 @@ WHERE
         LIMIT 1
     );
 
--- Question #6
+-- QUERY #6 (returns empty set)
 -- List the top 5 channel within the technology category that has the most enagagement and order it by best to worst
-SELECT
-    ch.channelID,
-    ch.channelName,
-    AVG(commentCount) AS avgCommentsPerVideo
-FROM
-    CHANNEL ch
-JOIN
-    VIDEO v ON ch.channelID = v.channelID
-JOIN
-    (
-        SELECT
-            videoID,
-            COUNT(*) AS commentCount
-        FROM
-            COMMENT
-        GROUP BY
-            videoID
-    ) c ON v.videoID = c.videoID
-WHERE
-    v.categoryID = (
-        SELECT categoryID
-        FROM CATEGORY
-        WHERE categoryName = 'Technology'
-    )
-GROUP BY
-    ch.channelID, ch.channelName
-ORDER BY
-    avgCommentsPerVideo DESC
-LIMIT 5;
+SELECT 
+    ch.channelid,
+    ch.channelname,
+    Avg(commentcount) AS avgCommentsPerVideo
+FROM   
+    channel ch
+    JOIN video v ON ch.channelid = v.channelid
+    JOIN (
+        SELECT 
+            videoid,
+            Count(*) AS commentCount
+        FROM   
+            comment
+        GROUP BY 
+        videoid) 
+        c ON v.videoid = c.videoid
+WHERE  
+    v.categoryid = (
+        SELECT 
+            categoryid
+        FROM   
+            category
+        WHERE  
+            categoryname = 'Technology')
+GROUP  BY ch.channelid, ch.channelname
+ORDER  BY avgcommentspervideo DESC
+LIMIT  5; 
 
--- Question #7
+-- QUERY #7 (returns empty set)
 -- Find a channel that has a video at least one video in each category and get the average video duration of all videos
 SELECT
     ch.channelID,
@@ -170,16 +189,14 @@ SELECT
     AVG(v.videoDuration) AS avgVideoDuration
 FROM
     CHANNEL ch
-JOIN
-    CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
-JOIN
-    VIDEO v ON ch.channelID = v.channelID
+    JOIN CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
+    JOIN VIDEO v ON ch.channelID = v.channelID
 GROUP BY
     ch.channelID, ch.channelName
 HAVING
     COUNT(DISTINCT v.categoryID) = (SELECT COUNT(*) FROM CATEGORY);
 
--- Question #8
+-- QUERY #8
 -- What video under the 'gaming category that has the highest likes to view ratio?'
 SELECT
     v.videoID,
@@ -197,7 +214,7 @@ ORDER BY
     likesToViewsRatio DESC
 LIMIT 5;
 
--- Queries #9
+-- QUERY #9 (returns empty set)
 -- Identifies all channels that have posted videos in all categories at least once.
 SELECT
     ch.channelID,
@@ -218,7 +235,7 @@ HAVING
     AND COUNT(DISTINCT po.postID) > 0;
 
 
--- Question #10
+-- QUERY #10
 -- Find the top 5 videos with more than 10k views, list the names, video ID, likes to view ratio as well as category name and the channel name that posted it ADD
 -- and make the view from descending order based on likes to dislikes as well as limit the searches to 5.
 SELECT
