@@ -108,6 +108,18 @@ FROM
     VIDEO
 WHERE
     channelID = 'UC_pT_Iz6XjuM-eMTlXghdfw';
--- Query that gets the engagement rates (number of likes, comments, etc).
--- Query that gets number of average views per channel or average channel engagement rates. 
+-- Query that gets the engagement rates for a specific video 
+-- (number of likes, comments, etc for Mark Robers octopus maze vid).
+SELECT
+    v.videoName,
+    v.videoViews,
+    v.videoLikes,
+    COUNT(c)
+FROM
+    VIDEO v
+    JOIN COMMENT c ON v.videoID = c.videoID
+WHERE
+    v.videoID = '7__r4FVj-EI';
+
+-- Query that gets number of average views per channel or average channel engagement rates
 -- Query that gets the the average length of videos within specific genres or categories.
