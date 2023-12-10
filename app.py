@@ -42,6 +42,7 @@ def videos():
         video_id = video[0]
         cursor.execute(f"SELECT DISTINCT CHANNEL.channelName FROM CHANNEL JOIN VIDEO ON CHANNEL.channelID = VIDEO.channelID AND VIDEO.videoID = '{video_id}';")
         channel_name = cursor.fetchone()
+        print(channel_name)
         
         videos[i] = (channel_name[0],) + video[1:]
 
