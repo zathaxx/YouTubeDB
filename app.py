@@ -50,7 +50,6 @@ def update_channel_route(channel_id):
         update_query = update_channel(channel_id)
         cursor.execute(update_query)
         db.commit()
-
     return redirect(url_for('channels'))
 
 @app.route('/categories')
@@ -59,8 +58,17 @@ def categories():
     categories = cursor.fetchall()
     return render_template('categories.html', categories=categories)
 
-@app.route('/videos')
+@app.route('/videos', methods=['GET', 'POST'])
 def videos():
+    if request.method == 'POST':
+        video_id = request.form['video_id']
+        print(video_id)
+        if video_id:
+            query = get_video(video_id)  # Assuming you have a get_video function
+            cursor.execute(query)
+            db.commit()
+            return redirect(url_for('videos'))
+    
     cursor.execute("SELECT * FROM VIDEO;")
     videos = cursor.fetchall()
     updated_videos = []
@@ -76,6 +84,14 @@ def videos():
         updated_videos.append(updated_video)
 
     return render_template('videos.html', videos=updated_videos)
+
+@app.route('/delete_video/<string:video_id>', methods=['POST'])
+def delete_video(video_id):
+    if video_id:
+        query = f"DELETE FROM VIDEO WHERE videoID = '{video_id}';"
+        cursor.execute(query)
+        db.commit()
+    return redirect(url_for('videos'))
 
 @app.route('/playlists')
 def playlists():
