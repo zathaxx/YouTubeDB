@@ -62,21 +62,27 @@ def categories():
 def videos():
     if request.method == 'POST':
         video_id = request.form['video_id']
-        print(video_id)
         if video_id:
             query = get_video(video_id)
+            
             cursor.execute(f"SELECT channelID FROM VIDEO WHERE videoID = '{video_id}';")
-            channel_id = cursor.fetchone()[0]
-            cursor.execute(f"SELECT * FROM CHANNEL WHERE channelID = '{channel_id}';")
-            existing_channel = cursor.fetchone()
-            if not existing_channel:
-                channel_query = get_channel(channel_id)
-                cursor.execute(channel_query)
-                db.commit()
+            result = cursor.fetchone()
+            
+            if result:
+                channel_id = result[0]
+
+                cursor.execute(f"SELECT * FROM CHANNEL WHERE channelID = '{channel_id}';")
+                existing_channel = cursor.fetchone()
+
+                if not existing_channel:
+                    channel_query = get_channel(channel_id)
+                    cursor.execute(channel_query)
+                    db.commit()
+
             cursor.execute(query)
             db.commit()
             return redirect(url_for('videos'))
-    
+
     cursor.execute("SELECT * FROM VIDEO;")
     videos = cursor.fetchall()
     updated_videos = []
@@ -92,6 +98,7 @@ def videos():
         updated_videos.append(updated_video)
 
     return render_template('videos.html', videos=updated_videos)
+
 
 @app.route('/delete_video/<string:video_id>', methods=['POST'])
 def delete_video(video_id):
