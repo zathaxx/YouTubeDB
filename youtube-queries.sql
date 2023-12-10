@@ -4,15 +4,25 @@
 -- Question #1
 --(PostDate, VideoViews, Comments)
 -- List all videos that was made 5 years ago today, with at least 1 thousand views made by a channel that has over 10 thousand subscriber
-
-SELECT postDate AS 'POST_DATE:', videoViews AS 'Video_Views:', channelName AS 
-'Channel Name: ' 
-FROM VIDEO, CHANNEL, POST 
+SELECT 
+    postDate AS 'POST_DATE:', 
+    videoViews AS 'Video_Views:', 
+    channelName AS 'Channel Name: ' 
+FROM 
+    VIDEO, 
+    CHANNEL, 
+    POST 
 WHERE 
-SELECT Count (*) subs 
-FROM subs.channel = channelSubs < 10000 ON videoViews 
-SELECT videoViews
-WHERE videoViews > 10000 AND postDate = postDate.year == 2019 JOIN postDate = postDate.month == 12
+    SELECT 
+        Count (*) subs 
+    FROM 
+        subs.channel = channelSubs < 10000 ON videoViews 
+    SELECT 
+        videoViews
+    WHERE 
+    videoViews > 10000 
+    AND postDate = postDate.year == 2019 
+    JOIN postDate = postDate.month == 12;
 
 -- Question #2
 -- List all of the video inside of Mark Robers "Glitterbomb" series playlist that have more views than
@@ -22,7 +32,7 @@ SELECT
     v.videoViews AS 'Video Views'
 FROM
     VIDEO v
-    JOIN CONTAIN co ON v.videoID = co.videoID
+    JOIN CONTAINS co ON v.videoID = co.videoID
     JOIN PLAYLIST p ON co.playlistID = p.playlistID
     JOIN CHANNEL ch ON p.channelID = ch.channelID
 WHERE
@@ -32,7 +42,7 @@ WHERE
         SELECT
             AVG(v1.videoViews)
         FROM
-            CONTAIN c1
+            CONTAINS c1
             JOIN VIDEO v1 ON c1.videoID = v1.videoID
             JOIN PLAYLIST p1 ON c1.playlistID = p1.playlistID
         WHERE
@@ -66,32 +76,35 @@ WHERE
 -- List all the youtubers under the "Science & Technology" catagory that have more videos
 -- than the average number of videos that a "Science & Technology" youtuber has
 SELECT
-    ch.channelName AS 'YouTuber Name',
-    COUNT(v.videoID) AS 'Number of Videos'
+    ch_sub.channelID,
+    ch_sub.channelName AS 'YouTuber Name',
+    COUNT(v_sub.videoID) AS 'Number of Videos'
 FROM
-    CHANNEL ch
-    JOIN VIDEO v ON ch.channelID = v.channelID
-    JOIN CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
-    JOIN CATEGORY cat ON cu.categoryID = cat.categoryID
+    CHANNEL ch_sub
+    JOIN VIDEO v_sub ON ch_sub.channelID = v_sub.channelID
+    JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
+    JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
 WHERE
-    cat.categoryName = 'Science & Technology'
+    cat_sub.categoryName = 'Science & Technology'
+GROUP BY
+    ch_sub.channelID, ch_sub.channelName
 HAVING
-    COUNT(v.videoID) > (
+    COUNT(v_sub.videoID) > (
         SELECT
             AVG(video_count)
         FROM
             (SELECT
-                ch_sub.channelID,
-                COUNT(v_sub.videoID) AS video_count
+                ch_sub_inner.channelID,
+                COUNT(v_sub_inner.videoID) AS video_count
             FROM
-                CHANNEL ch_sub
-                JOIN VIDEO v_sub ON ch_sub.channelID = v_sub.channelID
-                JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
-                JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
+                CHANNEL ch_sub_inner
+                JOIN VIDEO v_sub_inner ON ch_sub_inner.channelID = v_sub_inner.channelID
+                JOIN CATEGORIZED_UNDER cu_sub_inner ON ch_sub_inner.channelID = cu_sub_inner.channelID
+                JOIN CATEGORY cat_sub_inner ON cu_sub_inner.categoryID = cat_sub_inner.categoryID
             WHERE
-                cat_sub.categoryName = 'Science & Technology'
+                cat_sub_inner.categoryName = 'Science & Technology'
             GROUP BY
-                ch_sub.channelID) AS avg_video_count
+                ch_sub_inner.channelID) AS avg_video_count
     );
 
 -- Question #5
