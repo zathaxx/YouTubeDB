@@ -21,6 +21,13 @@
 </header>
 <body>
     <h1>Videos</h1>
+
+    <form method="post" action="{{ url_for('videos') }}">
+        <label for="video_id">YouTube Video ID:</label>
+        <input type="text" id="video_id" name="video_id" required>
+        <button type="submit">Insert/Update Video</button>
+    </form>
+
     <table>
         <tr>
             <th>Channel</th>
