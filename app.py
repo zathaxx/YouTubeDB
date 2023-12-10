@@ -75,9 +75,14 @@ def comments():
         cursor.execute(f"SELECT DISTINCT VIDEO.videoName FROM VIDEO JOIN COMMENT ON VIDEO.videoID = COMMENT.commentID AND COMMENT.commentID = '{comment_id}';")
         video_name = cursor.fetchone()
 
-        updated_comment = comment + (video_name[0],)
-        updated_comments.append(updated_comment) 
+        if video_name is not None:
+            updated_comment = comment + (video_name[0],)
+            updated_comments.append(updated_comment)
+        else:
+            print(f"No video name found for comment ID: {comment_id}")
+
     return render_template('comments.html', comments=updated_comments)
+
 
 @app.route('/sponsors')
 def sponsors():
