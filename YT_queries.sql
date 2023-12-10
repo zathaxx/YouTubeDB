@@ -23,24 +23,25 @@ WHERE videoViews > 10000 AND postDate = postDate.year == 2019 JOIN postDate = po
 -- List all of the video inside of Mark Robers "Glitterbomb" series playlist that have more views than
 -- the average amount of views from all the videos in this series.
 SELECT
-    video.videoName AS 'Video Name',
-    video.videoViews AS 'Video Views'
+    v.videoName AS 'Video Name',
+    v.videoViews AS 'Video Views'
 FROM
-    VIDEO video
-    JOIN CONTAIN contains ON video.videoID = contains.videoID
-    JOIN PLAYLIST playlist ON contains.playlistID = playlist.playlistID
-    JOIN CHANNEL channel ON playlist.channelID = channel.channelID
+    VIDEO v
+    JOIN CONTAIN co ON v.videoID = co.videoID
+    JOIN PLAYLIST p ON co.playlistID = p.playlistID
+    JOIN CHANNEL ch ON p.channelID = ch.channelID
 WHERE
-    channel.channelName = 'Mark Rober'
-    AND playlist.playlistID = 'PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8'
-    AND video.videoViews > (
+    ch.channelName = 'Mark Rober'
+    AND p.playlistID = 'PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8'
+    AND v.videoViews > (
         SELECT
-            AVG(v.videoViews)
+            AVG(v1.videoViews)
         FROM
-            CONTAIN c
-            JOIN VIDEO v ON c.videoID = v.videoID
+            CONTAIN c1
+            JOIN VIDEO v1 ON c1.videoID = v1.videoID
+            JOIN PLAYLIST p1 ON c1.playlistID = p1.playlistID
         WHERE
-            playlistID = 'PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8'
+            p1.playlistID = 'PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8'
     );
 
 -- Question #4
@@ -67,7 +68,36 @@ WHERE
     );
 
 -- Question #5
--- 
+-- List all the youtubers under the "Science & Technology" catagory that have more videos
+-- than the average number of videos that a "Science & Technology" youtuber has
+SELECT
+    ch.channelName AS 'YouTuber Name',
+    COUNT(v.videoID) AS 'Number of Videos'
+FROM
+    CHANNEL ch
+    JOIN VIDEO v ON ch.channelID = v.channelID
+    JOIN CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
+    JOIN CATEGORY cat ON cu.categoryID = cat.categoryID
+WHERE
+    cat.categoryName = 'Science & Technology'
+HAVING
+    COUNT(v.videoID) > (
+        SELECT
+            AVG(video_count)
+        FROM
+            (SELECT
+                ch_sub.channelID,
+                COUNT(v_sub.videoID) AS video_count
+            FROM
+                CHANNEL ch_sub
+                JOIN VIDEO v_sub ON ch_sub.channelID = v_sub.channelID
+                JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
+                JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
+            WHERE
+                cat_sub.categoryName = 'Science & Technology'
+            GROUP BY
+                ch_sub.channelID) AS avg_video_count
+    );
 
 -- Example Queries from Iteration 2
 -- Query that pull the average video length for a youtuber (Max the Meat Guy)
