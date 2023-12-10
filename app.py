@@ -40,11 +40,15 @@ def videos():
 
     for video in videos:
         video_id = video[0]
+        category_id = video[2]
         cursor.execute(f"SELECT DISTINCT CHANNEL.channelName FROM CHANNEL JOIN VIDEO ON CHANNEL.channelID = VIDEO.channelID AND VIDEO.videoID = '{video_id}';")
         channel_name = cursor.fetchone()
+        cursor.execute(f"SELECT DISTINCT CATEGORY.categoryName FROM CATEGORY JOIN VIDEO ON CATEGORY.categoryID = VIDEO.categoryID AND CATEGORY.categoryID = '{category_id}';")
+        category_name = cursor.fetchone()
 
         updated_video = video + (channel_name[0],)
         updated_videos.append(updated_video)
+        updated_videos.append(category_name)
 
     return render_template('videos.html', videos=updated_videos)
 
