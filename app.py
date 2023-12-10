@@ -94,7 +94,17 @@ def sponsors():
 def posts():
     cursor.execute("SELECT * FROM POST;")
     posts = cursor.fetchall()
-    return render_template('posts.html', posts=posts)
+
+    updated_posts = []
+
+    for post in posts:
+        post_id = post[0]
+        cursor.execute(f"SELECT DISTINCT CHANNEL.channelName FROM CHANNEL JOIN POST ON CHANNEL.channelID = POST.channelID AND POST.postID = '{post_id}';")
+        channel_name = cursor.fetchone()
+
+        updated_post = post + (channel_name[0],)
+        updated_posts.append(updated_post)
+    return render_template('posts.html', posts=updated_posts)
 
 if __name__ == '__main__':
     app.run()
