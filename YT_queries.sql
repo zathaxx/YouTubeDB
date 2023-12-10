@@ -17,4 +17,27 @@ WHERE videoViews > 10000 AND postDate = postDate.year == 2019 JOIN postDate = po
 
 
 -- Question #2
--- List all channels that have over 20k subscribers, that were created last year, including their most popular video with the playlist if the video is in one. 
+-- List all channels that have over 20k subscribers, that were created last year, including their most popular video with the playlist if the video is in one.
+
+-- Question #3
+-- 
+
+-- Question #4
+-- 
+
+-- Question #5
+-- 
+
+-- Example Queries from Iteration 2
+-- Query that pull the average video length for a youtuber (Max the Meat Guy)
+SELECT
+    channelName AS 'Channel Name',
+    AVG(videoDuration) AS average_video_length
+FROM
+    VIDEO
+WHERE
+    channelID = 'UC_pT_Iz6XjuM-eMTlXghdfw';
+    
+-- Query that gets the engagement rates (number of likes, comments, etc). 
+-- Query that gets number of average views per channel or average channel engagement rates. 
+-- Query that gets the the average length of videos within specific genres or categories.
