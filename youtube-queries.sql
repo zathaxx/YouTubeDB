@@ -110,25 +110,24 @@ HAVING
 -- Question #5
 -- Find the channel that has the most viewed video matching the category video and channel
 SELECT
-    ch.channelID,
-    ch.channelName,
-    v.videoID AS mostViewedVideoID,
+    ch.channelName AS channelName,
+    v.videoName AS mostViewedVideoName,
     v.videoViews AS mostViewedVideoViews
 FROM
     CHANNEL ch
-JOIN
-    VIDEO v ON ch.channelID = v.channelID
+    JOIN VIDEO v ON ch.channelID = v.channelID
 WHERE
     (v.categoryID, v.videoViews) = (
         SELECT
             video.categoryID,
-            MAX(videoViews) AS maxViews
+            video.videoViews AS maxViews
         FROM
-            VIDEO
+            VIDEO video
         WHERE
             video.channelID = ch.channelID
-        GROUP BY
-            video.categoryID
+        ORDER BY
+            video.videoViews DESC
+        LIMIT 1
     );
 
 -- Question #6
@@ -220,7 +219,8 @@ HAVING
 
 
 -- Question #10
--- Find the top 5 videos with more than 10k views, list the names, video ID, likes to view ratio as well as category name and the channel name that posted it. and make the view from descending order based on likes to dislikes as well as limit the searches to 5.
+-- Find the top 5 videos with more than 10k views, list the names, video ID, likes to view ratio as well as category name and the channel name that posted it ADD
+-- and make the view from descending order based on likes to dislikes as well as limit the searches to 5.
 SELECT
     v.videoID,
     v.videoName,
