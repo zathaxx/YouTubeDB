@@ -36,15 +36,6 @@ def channels():
     channels = cursor.fetchall()
     return render_template('channels.html', channels=channels)
 
-@app.route('/insert_channel', methods=['POST'])
-def insert_channel():
-    channel_id = request.form['channel_id']
-    if channel_id:
-        query = get_channel(channel_id)
-        cursor.execute(query)
-        db.commit()
-    return redirect(url_for('channels'))
-
 @app.route('/categories')
 def categories():
     cursor.execute("SELECT * FROM CATEGORY;")

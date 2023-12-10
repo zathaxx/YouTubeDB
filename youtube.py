@@ -15,6 +15,7 @@ def get_channel(channel_id):
         'key': API_KEY,
     }
     response = requests.get(f"{BASE_URL}/channels", params)
+    print(response)
     initial = response.json()
     first_item = initial["items"][0]
     channel_id = first_item["id"]
