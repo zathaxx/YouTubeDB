@@ -48,7 +48,7 @@ def videos():
 
         updated_video = video + (channel_name[0],)
         updated_videos.append(updated_video)
-        updated_videos.append(category_name)
+        updated_videos.append((category_name[0],))
 
     return render_template('videos.html', videos=updated_videos)
 
