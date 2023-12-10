@@ -123,3 +123,157 @@ WHERE
 
 -- Query that gets number of average views per channel or average channel engagement rates
 -- Query that gets the the average length of videos within specific genres or categories.
+
+
+
+-- Queries for YT project 
+-- complex queries  = "utilizing more than three tables"
+
+
+--Quesrion #1 Find the channel that has the most viewed video matching the category video and channel
+
+
+SELECT
+    ch.channelID,
+    ch.channelName,
+    v.videoID AS mostViewedVideoID,
+    v.videoViews AS mostViewedVideoViews
+FROM
+    CHANNEL ch
+JOIN
+    VIDEO v ON ch.channelID = v.channelID
+WHERE
+    (v.categoryID, v.videoViews) = (
+        SELECT
+            video.categoryID,
+            MAX(videoViews) AS maxViews
+        FROM
+            VIDEO
+        WHERE
+            video.channelID = ch.channelID
+        GROUP BY
+            video.categoryID
+    );
+
+-- Question #2
+--Question #2 Find a channel that has a video at least one video in each category and get the average video duration of all videos
+
+    SELECT
+    ch.channelID,
+    ch.channelName,
+    AVG(v.videoDuration) AS avgVideoDuration
+FROM
+    CHANNEL ch
+JOIN
+    CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
+JOIN
+    VIDEO v ON ch.channelID = v.channelID
+GROUP BY
+    ch.channelID, ch.channelName
+HAVING
+    COUNT(DISTINCT v.categoryID) = (SELECT COUNT(*) FROM CATEGORY);
+
+
+
+
+
+--Question #3 What video under the 'gaming category that has the highest likes to view ratio?'
+    SELECT
+    v.videoID,
+    v.videoName,
+    v.videoLikes,
+    v.videoViews,
+    v.videoLikes / v.videoViews AS likesToViewsRatio
+FROM
+    VIDEO v
+JOIN
+    CATEGORY c ON v.categoryID = c.categoryID
+WHERE
+    c.categoryName = 'Gaming'
+ORDER BY
+    likesToViewsRatio DESC
+LIMIT 5;
+
+
+
+-- Identifies all channels that have posted videos in all categories at least once.
+
+SELECT
+    ch.channelID,
+    ch.channelName,
+    AVG(po.postLikes) AS avgLikesPerPost
+FROM
+    CHANNEL ch
+JOIN
+    VIDEO v ON ch.channelID = v.channelID
+JOIN
+    POST po ON ch.channelID = po.channelID
+JOIN
+    CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
+GROUP BY
+    ch.channelID, ch.channelName
+HAVING
+    COUNT(DISTINCT v.categoryID) = (SELECT COUNT(*) FROM CATEGORY)
+    AND COUNT(DISTINCT po.postID) > 0;
+
+
+
+-- Question #5 Find the top 5 videos with more than 10k views, list the names, video ID, likes to view ratio as well as category name and the channel name that posted it. and make the view from descending order based on likes to dislikes as well as limit the searches to 5.
+SELECT
+    v.videoID,
+    v.videoName,
+    v.videoLikes,
+    v.videoViews,
+    v.videoLikes / v.videoViews AS likesToViewsRatio,
+    ch.channelName,
+    c.categoryName
+FROM
+    VIDEO v
+JOIN
+    CHANNEL ch ON v.channelID = ch.channelID
+JOIN
+    CATEGORY c ON v.categoryID = c.categoryID
+WHERE
+    v.videoViews > 10000
+ORDER BY
+    likesToViewsRatio DESC
+LIMIT 5;
+
+
+
+
+
+
+
+--Question #6 List the top 5 channel within the technology category that has the most enagagement and order it by best to worst
+SELECT
+    ch.channelID,
+    ch.channelName,
+    AVG(commentCount) AS avgCommentsPerVideo
+FROM
+    CHANNEL ch
+JOIN
+    VIDEO v ON ch.channelID = v.channelID
+JOIN
+    (
+        SELECT
+            videoID,
+            COUNT(*) AS commentCount
+        FROM
+            COMMENT
+        GROUP BY
+            videoID
+    ) c ON v.videoID = c.videoID
+WHERE
+    v.categoryID = (
+        SELECT categoryID
+        FROM CATEGORY
+        WHERE categoryName = 'Technology'
+    )
+GROUP BY
+    ch.channelID, ch.channelName
+ORDER BY
+    avgCommentsPerVideo DESC
+LIMIT 5;
+
+
