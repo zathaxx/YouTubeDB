@@ -275,6 +275,14 @@ def delete_post(post_id):
         db.commit()
     return redirect(url_for('posts'))
 
+def update_post(post_id):
+    if post_id:
+        updated_contents = request.form['updated_contents']
+        update_query = f"UPDATE POST SET postDescription = '{updated_contents}' WHERE postID = '{post_id}';"
+        cursor.execute(update_query)
+        db.commit()
+    return redirect(url_for('posts'))
+
 @app.route('/query')
 def query():
     return render_template('query.html')

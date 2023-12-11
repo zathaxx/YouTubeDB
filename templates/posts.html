@@ -54,6 +54,10 @@
                     <form method="post" action="{{ url_for('delete_post', post_id=row[0]) }}">
                         <button type="submit">Delete</button>
                     </form>
+                    <form method="post" action="{{ url_for('update_post', post_id=row[0]) }}">
+                        <input type="text" name="updated_contents" required>
+                        <button type="submit">Update</button>
+                    </form>
                 </td>
             </tr>
         {% endfor %}
