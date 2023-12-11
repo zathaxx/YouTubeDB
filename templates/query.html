@@ -42,7 +42,19 @@
     </section>
 
     <section class="query-results">
-        <!-- Display query results here -->
+        {% if results %}
+            <h2>Query Results</h2>
+            <table>
+                <!-- Display results in a table or format as needed -->
+                {% for result in results %}
+                    <tr>
+                        {% for column in result %}
+                            <td>{{ column }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
     </section>
 
     <script>
