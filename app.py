@@ -257,7 +257,7 @@ def insert_post():
 
 
         if channel_id and post_description and post_date and post_likes:
-            postID = random.randInt(100000, 999999) 
+            postID = random.randint(100000, 999999) 
             insert_query = (
                 "INSERT INTO POST "
                 f"VALUES ({postID}, '{channel_id}', '{post_description}', '{post_date}', {post_likes});"
