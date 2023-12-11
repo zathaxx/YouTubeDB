@@ -323,38 +323,40 @@ def query():
 
     if request.method == 'POST':
         query_type = request.form.get('queryType')
+        first_param = request.form.get('first_param')
+        second_param = request.form.get('second_param')
+
         sql_query = ""
 
         if query_type:
             if query_type == '1':
-                sql_query = "SELECT * FROM CHANNEL ORDER BY channelSubs DESC LIMIT 10;"
+                sql_query = print(f"SELECT * FROM CHANNEL ORDER BY channelSubs DESC LIMIT 10;")
             elif query_type == '2':
-                sql_query = "SELECT * FROM VIDEO ORDER BY videoViews DESC LIMIT 10;"
+                sql_query = print(f"SELECT * FROM VIDEO ORDER BY videoViews DESC LIMIT 10;")
             elif query_type == '3':
-                sql_query = """
+                sql_query = f"""
                     SELECT
-                        ch.channelName AS channelName,
-                        v.videoName AS mostViewedVideoName,
-                        v.videoViews AS mostViewedVideoViews
+                        v.videoID,
+                        v.videoName,
+                        v.videoLikes,
+                        v.videoViews,
+                        v.videoLikes / v.videoViews AS likesToViewsRatio,
+                        ch.channelName,
+                        c.categoryName
                     FROM
-                        CHANNEL ch
-                        JOIN VIDEO v ON ch.channelID = v.channelID
+                        VIDEO v
+                    JOIN
+                        CHANNEL ch ON v.channelID = ch.channelID and ch.channelID = {first_param}
+                    JOIN
+                        CATEGORY c ON v.categoryID = c.categoryID
                     WHERE
-                        (v.categoryID, v.videoViews) = (
-                            SELECT
-                                video.categoryID,
-                                video.videoViews AS maxViews
-                            FROM
-                                VIDEO video
-                            WHERE
-                                video.channelID = ch.channelID
-                            ORDER BY
-                                video.videoViews DESC
-                            LIMIT 1
-                        );
+                        v.videoViews > 10000
+                    ORDER BY
+                        likesToViewsRatio DESC
+                    LIMIT 5;
                 """
             elif query_type == '4':
-                sql_query = """
+                sql_query = f"""
                     SELECT
                         v.videoName AS 'Video Name',
                         v.videoViews AS 'Video Views'
@@ -364,8 +366,8 @@ def query():
                         JOIN PLAYLIST p ON co.playlistID = p.playlistID
                         JOIN CHANNEL ch ON p.channelID = ch.channelID
                     WHERE
-                        ch.channelName = 'Mark Rober'
-                        AND p.playlistName = 'Glitterbomb Series'
+                        ch.channelName = {first_param}
+                        AND p.playlistName = {second_param}
                         AND v.videoViews > (
                             SELECT
                                 AVG(v1.videoViews)
@@ -374,11 +376,11 @@ def query():
                                 JOIN VIDEO v1 ON c1.videoID = v1.videoID
                                 JOIN PLAYLIST p1 ON c1.playlistID = p1.playlistID
                             WHERE
-                                p1.playlistID = 'PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8'
+                                p1.playlistName = {second_param}
                             );
                 """
             elif query_type == '5':
-                sql_query = """
+                sql_query = f"""
                     SELECT
                         ch.channelName AS 'YouTuber Name',
                         ch.channelSubs AS 'Subscribers'
@@ -387,7 +389,7 @@ def query():
                         JOIN CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
                         JOIN CATEGORY cat ON cu.categoryID = cat.categoryID
                     WHERE
-                        cat.categoryName = 'Science & Technology'
+                        cat.categoryName = {first_param}
                         AND ch.channelSubs > (
                             SELECT
                                 AVG(ch_sub.channelSubs)
@@ -396,11 +398,11 @@ def query():
                                 JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
                                 JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
                             WHERE
-                                cat_sub.categoryName = 'Science & Technology'
+                                cat_sub.categoryName = {first_param}
                         );
                 """
             elif query_type == '6':
-                sql_query = """
+                sql_query = f"""
                     SELECT
                         ch_sub.channelID,
                         ch_sub.channelName AS 'YouTuber Name',
@@ -411,7 +413,7 @@ def query():
                         JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
                         JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
                     WHERE
-                        cat_sub.categoryName = 'Science & Technology'
+                        cat_sub.categoryName = {first_param}
                     GROUP BY
                         ch_sub.channelID, ch_sub.channelName
                     HAVING
@@ -428,7 +430,7 @@ def query():
                                     JOIN CATEGORIZED_UNDER cu_sub_inner ON ch_sub_inner.channelID = cu_sub_inner.channelID
                                     JOIN CATEGORY cat_sub_inner ON cu_sub_inner.categoryID = cat_sub_inner.categoryID
                                 WHERE
-                                    cat_sub_inner.categoryName = 'Science & Technology'
+                                    cat_sub_inner.categoryName = {first_param}
                                 GROUP BY
                                     ch_sub_inner.channelID) AS avg_video_count
                         );
@@ -439,11 +441,6 @@ def query():
             headers = [desc[0] for desc in cursor.description]
 
     return render_template('query.html', results=results, headers=headers, query_type=query_type)
-
-
-@app.route('/submit_query')
-def submit_query():
-    return redirect(url_for('query'))
 
 if __name__ == '__main__':
     app.run()

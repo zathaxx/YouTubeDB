@@ -37,7 +37,18 @@
             <button type="submit">Execute</button>
         </form>
 
-        <p id="queryDescription"></p> 
+        <!--Add the ability to select specific data wanted to retrieve here-->
+        <form method="/query" action="{{ url_for('query') }}">
+            <!-- First parameter input -->
+            <label for="first_param" id="firstParamLabel" style="display: none;">First Parameter:</label>
+            <input type="text" id="first_param" name="first_param" required style="display: none;">
+
+            <!-- Second parameter input -->
+            <label for="second_param" id="secondParamLabel" style="display: none;">Second Parameter:</label>
+            <input type="text" id="second_param" name="second_param" required style="display: none;">
+        </form>
+
+        <p id="queryDescription"></p>        
 
     </section>
 
@@ -67,6 +78,21 @@
         document.getElementById('queryType').addEventListener('change', function () {
             var description = "Query Description: ";
             var selectedQuery = this.value;
+            var firstParamLabel = document.getElementById('firstParamLabel');
+            var firstParamInput = document.getElementById('first_param');
+            var secondParamLabel = document.getElementById('secondParamLabel');
+            var secondParamInput = document.getElementById('second_param');
+
+            if (selectedQuery === '3' || selectedQuery === '5' || selectedQuery === '6') {
+                firstParamLabel.style.display = 'block';
+                firstParamInput.style.display = 'block';
+            } else {
+                firstParamLabel.style.display = 'none';
+                firstParamInput.style.display = 'none';
+            }
+
+            secondParamLabel.style.display = (selectedQuery === '4') ? 'block' : 'none';
+            secondParamInput.style.display = (selectedQuery === '4') ? 'block' : 'none';
                 
             switch (selectedQuery) {
                 case '1':
@@ -76,16 +102,16 @@
                     description += "This query lists videos with the highest number of views.";
                     break;
                 case '3':
-                    description += "This query identifies the YouTube channel with the highest-viewed video in the specified category.";
+                    description += "Find the top 5 videos that a give YouTuber has posted, given it has more than 10k views. Results are ordered by the \"Views to Likes\" ratio. ";
                     break;
                 case '4':
-                    description += "This query retrieves videos in Mark Rober's \"Glitterbomb\" series playlist with views exceeding the series' average views.";
+                    description += "This query retrieves videos from a youtubers playlist with views exceeding the series average views count.";
                     break;
                 case '5':
-                    description += "This query retrieves YouTube channels in the \"Science & Technology\" category with subscriber counts exceeding the average for channels within this category.";
+                    description += "This query retrieves YouTube channels in a specific category with subscriber counts exceeding the average for channels within this category.";
                     break;
                 case '6':
-                    description += "This query retrieves YouTube channels in the \"Science & Technology\" category with video counts exceeding the average video count for channels within this category.";
+                    description += "This query retrieves YouTube channels in a specific category with video counts exceeding the average video count for channels within this category.";
                     break;
                 default:
                     description += "Please select a query to see its description.";

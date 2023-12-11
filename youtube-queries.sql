@@ -67,7 +67,7 @@ WHERE
             JOIN VIDEO v1 ON c1.videoID = v1.videoID
             JOIN PLAYLIST p1 ON c1.playlistID = p1.playlistID
         WHERE
-            p1.playlistID = 'PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8'
+            p1.playlistName = 'Glitterbomb Series'
     );
 
 -- QUERY #3
@@ -150,6 +150,12 @@ WHERE
             video.videoViews DESC
         LIMIT 1
     );
+
+-- NEW QUERY #5
+-- Given a channel name, find their most viewed viewed video, and join the VIDEO, CHANNEL, and CATEGORY tables to display this information.ADD
+
+
+
 -- QUERY #6
 -- List the top 3 channel within the Education category that has the most enagagement and order it by best to worst
 SELECT 
@@ -250,6 +256,30 @@ WHERE
 ORDER BY
     likesToViewsRatio DESC
 LIMIT 5;
+
+-- QUERY #10 (Improved Version)
+-- Find the top 5 videos from a given YouTuber with more than 10k views, list the names, video ID, likes to view ratio as well as category name and the channel name that posted it ADD
+-- and make the view from descending order based on likes to dislikes as well as limit the searches to 5.
+SELECT
+    v.videoID,
+    v.videoName,
+    v.videoLikes,
+    v.videoViews,
+    v.videoLikes / v.videoViews AS likesToViewsRatio,
+    ch.channelName,
+    c.categoryName
+FROM
+    VIDEO v
+JOIN
+    CHANNEL ch ON v.channelID = ch.channelID and ch.channelID = {first_attribute}
+JOIN
+    CATEGORY c ON v.categoryID = c.categoryID
+WHERE
+    v.videoViews > 10000
+ORDER BY
+    likesToViewsRatio DESC
+LIMIT 5;
+
 
 -- Example Queries from Iteration 2
 -- Query that pull the average video length for a youtuber (Max the Meat Guy)
