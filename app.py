@@ -279,6 +279,7 @@ def delete_post(post_id):
 def update_post(post_id):
     if post_id:
         updated_contents = request.form['updated_contents']
+        updated_contents = clean_text(updated_contents)
         update_query = f"UPDATE POST SET postDescription = '{updated_contents}' WHERE postID = '{post_id}';"
         cursor.execute(update_query)
         db.commit()
