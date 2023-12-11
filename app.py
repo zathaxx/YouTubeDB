@@ -34,7 +34,12 @@ def home():
 def login():
     if request.method == "POST":
         session["password"] = request.form.get("password")
-        return redirect(request.args.get("redirect", default="/"))
+        path = request.args.get("redirect")
+        print(path)
+        if not path:
+            path = "/"
+        return redirect(path)
+        #return redirect(request.args.get("redirect", default="/"))
     else:
       return render_template("login.html")
 
