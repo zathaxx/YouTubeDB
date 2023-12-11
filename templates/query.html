@@ -43,7 +43,6 @@
         {% if results %}
             <h2>Query Results</h2>
             <table>
-                <!-- Display results in a table or format as needed -->
                 {% for result in results %}
                     <tr>
                         {% for column in result %}
@@ -70,6 +69,9 @@
                     break;
                 case value = 3:
                     description += "This query lists the channel that has the most viewed video matching the category video and channel";
+                    break;
+                case value = 4:
+                    description += "Retrieve videos in Mark Rober's \"Glitterbomb\" series playlist with views exceeding the series' average views.";
                     break;
                 default:
                     description += "Please select a query to see its description.";

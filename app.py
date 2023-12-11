@@ -322,6 +322,30 @@ def query():
                             LIMIT 1
                         );
                 """
+            elif query_type == '4':
+                sql_query = """
+                    SELECT
+                        v.videoName AS 'Video Name',
+                        v.videoViews AS 'Video Views'
+                    FROM
+                        VIDEO v
+                        JOIN CONTAINS co ON v.videoID = co.videoID
+                        JOIN PLAYLIST p ON co.playlistID = p.playlistID
+                        JOIN CHANNEL ch ON p.channelID = ch.channelID
+                    WHERE
+                        ch.channelName = 'Mark Rober'
+                        AND p.playlistID = 'PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8'
+                        AND v.videoViews > (
+                            SELECT
+                                AVG(v1.videoViews)
+                            FROM
+                                CONTAINS c1
+                                JOIN VIDEO v1 ON c1.videoID = v1.videoID
+                                JOIN PLAYLIST p1 ON c1.playlistID = p1.playlistID
+                            WHERE
+                                p1.playlistID = 'PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8'
+                            );
+                """
 
             cursor.execute(sql_query)
             results = cursor.fetchall()
