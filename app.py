@@ -225,7 +225,7 @@ def delete_sponsor(sponsor_id):
 def update_sponsor(sponsor_id):
     if sponsor_id:
         updated_website = request.form['updated_website']
-        update_query = f"UPDATE SPONSOR SET sponsorWebsite = '{updated_website}' WHERE sponsorID = '{sponsor_id}';"
+        update_query = f"UPDATE SPONSOR SET sponsorWebsite = '{updated_website}' WHERE sponsorName = '{sponsor_id}';"
         cursor.execute(update_query)
         db.commit()
     return redirect(url_for('sponsors'))
