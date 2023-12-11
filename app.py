@@ -186,6 +186,14 @@ def delete_comment(comment_id):
         db.commit()
     return redirect(url_for('comments'))
 
+@app.route('/update_comment/<string:comment_id>', methods=['POST'])
+def update_comment_route(comment_id):
+    if comment_id:
+        query= update_comment(comment_id)
+        cursor.execute(query)
+        db.commit()
+    return redirect(url_for('comments'))
+
 @app.route('/sponsors')
 def sponsors():
     cursor.execute("SELECT * FROM SPONSOR;")
