@@ -178,6 +178,12 @@ def comments():
 
     return render_template('comments.html', comments=updated_comments)
 
+def delete_comment(comment_id):
+    if comment_id:
+        query = f"DELETE FROM COMMENT WHERE commentID = '{comment_id}';"
+        cursor.execute(query)
+        db.commit()
+    return redirect(url_for('comments'))
 
 @app.route('/sponsors')
 def sponsors():

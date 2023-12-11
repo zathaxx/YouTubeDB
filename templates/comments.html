@@ -34,6 +34,7 @@
             <th>Contents</th>
             <th>Published</th>
             <th>Likes</th>
+            <th>Action</th>
         </tr>
         {% for row in comments %}
             <tr>
@@ -42,6 +43,11 @@
                 <td>{{ row[3] }}</td>
                 <td>{{ row[5] }}</td>
                 <td>{{ row[4] }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('delete_comment', comment_id=comment[0]) }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </table>
