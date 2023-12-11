@@ -324,9 +324,9 @@ def query():
     if request.method == 'POST':
         query_type = request.form.get('queryType')
         first_param = request.form.get('first_param')
-        print(first_param)
+        print("First Param Value: ", first_param)
         second_param = request.form.get('second_param')
-        print(second_param)
+        print("Second Param Value: ", second_param)
 
         sql_query = ""
 
