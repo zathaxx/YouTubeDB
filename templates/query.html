@@ -34,12 +34,7 @@
                 <option value="5" {% if query_type == '5' %}selected{% endif %}>Query 5</option>
                 <option value="6" {% if query_type == '6' %}selected{% endif %}>Query 6</option>
             </select>
-            <button type="submit">Execute</button>
-        </form>
 
-        <!--Add the ability to select specific data wanted to retrieve here-->
-        <form method="POST" action="{{ url_for('query') }}">
-            <!-- First parameter input -->
             <label for="first_param" id="firstParamLabel" style="display: none;">First Parameter:</label>
             <input type="text" id="first_param" name="first_param" required style="display: none;">
 
@@ -47,7 +42,7 @@
             <label for="second_param" id="secondParamLabel" style="display: none;">Second Parameter:</label>
             <input type="text" id="second_param" name="second_param" required style="display: none;">
 
-            <button type="submit">Submit Parameter(s)</button>
+            <button type="submit">Execute</button>
         </form>
 
         <p id="queryDescription"></p>        
