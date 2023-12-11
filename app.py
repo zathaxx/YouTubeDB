@@ -268,8 +268,11 @@ def insert_post():
 
 @app.route('/query')
 def query():
-    
     return render_template('query.html')
+
+@app.route('/submit_query')
+def submit_query():
+    return redirect(url_for('query'))
 
 if __name__ == '__main__':
     app.run()
