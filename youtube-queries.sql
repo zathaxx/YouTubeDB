@@ -150,7 +150,7 @@ WHERE
             video.videoViews DESC
         LIMIT 1
     );
-
+-- QUERY #6
 -- List the top 3 channel within the Education category that has the most enagagement and order it by best to worst
 SELECT 
     ch.channelid,
@@ -179,7 +179,7 @@ WHERE
 GROUP  BY ch.channelid, ch.channelname
 ORDER  BY avgcommentspervideo DESC
 LIMIT  3; 
-
+-- QUERY #7
 -- Find a channel that has a video at least one video in 3 different category and get the average video duration of all videos
 SELECT
     ch.channelID,
@@ -212,6 +212,7 @@ ORDER BY
     likesToViewsRatio DESC
 LIMIT 5;
 
+-- QUERY #8
 -- Identifies all channels that have posted videos in at least 3 categories and grab the number of average likes 
 SELECT
     ch.channelID,
