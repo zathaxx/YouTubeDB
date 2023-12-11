@@ -32,16 +32,12 @@ def home():
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
+    path = request.args.get("redirect", "/")
     if request.method == "POST":
         session["password"] = request.form.get("password")
-        path = request.args.get("redirect")
-        print(path)
-        if not path:
-            path = "/"
         return redirect(path)
-        #return redirect(request.args.get("redirect", default="/"))
     else:
-      return render_template("login.html")
+      return render_template("login.html", path=path)
 
 @app.route("/example")
 def example():
