@@ -46,7 +46,7 @@ def login():
 @app.route("/example")
 def example():
   if session.get("password") != PASSWORD:
-    return redirect(f"/login?redirect=/example")
+    return redirect(url_for("login", redirect="/example"))
   else:
     return "Welcome, authenticated team member!"
 
