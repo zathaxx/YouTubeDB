@@ -178,6 +178,7 @@ def comments():
 
     return render_template('comments.html', comments=updated_comments)
 
+@app.route('/delete_comment/<string:comment_id>', methods=['POST'])
 def delete_comment(comment_id):
     if comment_id:
         query = f"DELETE FROM COMMENT WHERE commentID = '{comment_id}';"
