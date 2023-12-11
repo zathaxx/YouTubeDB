@@ -380,23 +380,23 @@ def query():
                 sql_query = """
                     SELECT
                         ch.channelName AS 'YouTuber Name',
-                            ch.channelSubs AS 'Subscribers'
-                        FROM
-                            CHANNEL ch
-                            JOIN CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
-                            JOIN CATEGORY cat ON cu.categoryID = cat.categoryID
-                        WHERE
-                            cat.categoryName = 'Science & Technology'
-                            AND ch.channelSubs > (
-                                SELECT
-                                    AVG(ch_sub.channelSubs)
-                                FROM
-                                    CHANNEL ch_sub
-                                    JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
-                                    JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
-                                WHERE
-                                    cat_sub.categoryName = 'Science & Technology'
-                            );
+                        ch.channelSubs AS 'Subscribers'
+                    FROM
+                        CHANNEL ch
+                        JOIN CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
+                        JOIN CATEGORY cat ON cu.categoryID = cat.categoryID
+                    WHERE
+                        cat.categoryName = 'Science & Technology'
+                        AND ch.channelSubs > (
+                            SELECT
+                                AVG(ch_sub.channelSubs)
+                            FROM
+                                CHANNEL ch_sub
+                                JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
+                                JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
+                            WHERE
+                                cat_sub.categoryName = 'Science & Technology'
+                        );
                 """
             elif query_type == '6':
                 sql_query = """
