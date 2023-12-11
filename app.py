@@ -254,6 +254,7 @@ def insert_post():
         post_description = request.form['post_description']
         post_date = request.form['post_date']
         post_likes = request.form['post_likes']
+        post_description=clean_text(post_description)
 
 
         if channel_id and post_description and post_date and post_likes:
