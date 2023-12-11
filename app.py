@@ -254,13 +254,14 @@ def insert_post():
         post_description = request.form['post_description']
         post_date = request.form['post_date']
         post_likes = request.form['post_likes']
+        post_description=clean_text(post_description)
 
 
         if channel_id and post_description and post_date and post_likes:
             postID = random.randint(100000, 999999) 
             insert_query = (
                 "INSERT INTO POST "
-                f"VALUES ({postID}, '{channel_id}', '{post_description}', '{post_date}', {post_likes});"
+                f"VALUES ({postID}, '{channel_id}', '{post_date}', '{post_description}', {post_likes});"
             )
             cursor.execute(insert_query)
             db.commit()
