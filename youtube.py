@@ -286,6 +286,3 @@ def get_top_comments(video_id, max_results=10):
         )
 
     return top_comments_sql
-
-
-

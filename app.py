@@ -148,8 +148,19 @@ def update_playlist_route(playlist_id):
         db.commit()
     return redirect(url_for('playlists'))
 
-@app.route('/comments')
-def comments():
+
+@app.route('/comments', methods=['GET', 'POST'])
+def comments():        
+    if request.method == 'POST':
+        video_id = request.form['video_id']
+        if video_id:
+            top_comments_sql = get_top_comments(video_id)
+
+            if top_comments_sql:
+                for comment_sql in top_comments_sql:
+                    cursor.execute(comment_sql)
+                    db.commit()
+    
     cursor.execute("SELECT * FROM COMMENT;")
     comments = cursor.fetchall()
     updated_comments = []
