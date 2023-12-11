@@ -64,7 +64,7 @@ def videos():
         video_id = request.form['video_id']
         if video_id:
             query = get_video(video_id)
-            
+
             cursor.execute(f"SELECT channelID FROM VIDEO WHERE videoID = '{video_id}';")
             result = cursor.fetchone()
             if result:
@@ -75,6 +75,8 @@ def videos():
                     channel_query = get_channel(channel_id)
                     cursor.execute(channel_query)
                     db.commit()
+            cursor.execute(f"SELECT channelID FROM VIDEO WHERE videoID = '{video_id}';")
+            channel_id = cursor.fetchone()[0]
             cursor.execute(query)
             db.commit()
             return redirect(url_for('videos'))
