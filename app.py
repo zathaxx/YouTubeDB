@@ -110,6 +110,14 @@ def update_video_route(video_id):
 
 @app.route('/playlists')
 def playlists():
+    if request.method == 'POST':
+        playlist_id = request.form['playlist_id']
+        if playlist_id:
+            query = get_playlist(playlist_id)
+            cursor.execute(query)
+            db.commit()
+            return redirect(url_for('playlists'))
+    
     cursor.execute("SELECT * FROM PLAYLIST;")
     playlists = cursor.fetchall()
     updated_playlists = []

@@ -22,6 +22,13 @@
 </header>
 <body>
     <h1>Playlists</h1>
+
+    <form method="post" action="{{ url_for('playlists') }}">
+        <label for="playlist_id">Playlist ID:</label>
+        <input type="text" id="playlist_id" name="playlist_id" required>
+        <button type="submit">Insert</button>
+    </form>
+
     <table>
         <tr>
             <th>Channel</th>
