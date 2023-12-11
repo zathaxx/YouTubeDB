@@ -281,4 +281,26 @@ WHERE
 -- Query that gets number of average views per channel or average channel engagement rates
 -- Query that gets the the average length of videos within specific genres or categories.
 
+-- List Channels with Most Subscribers
+SELECT
+    channelID,
+    channelName,
+    channelSubs
+FROM
+    CHANNEL
+ORDER BY
+    channelSubs DESC
+LIMIT 10;
+
+-- List Videos with Highest Views
+SELECT
+    videoID,
+    videoName,
+    videoViews
+FROM
+    VIDEO
+ORDER BY
+    videoViews DESC
+LIMIT 10;
+
 
