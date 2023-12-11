@@ -43,10 +43,15 @@
         {% if results %}
             <h2>Query Results</h2>
             <table>
+                <tr>
+                    {% for attribute in results[0].keys() %}
+                        <th>{{ attribute }}</th>
+                    {% endfor %}
+                </tr>
                 {% for result in results %}
                     <tr>
-                        {% for column in result %}
-                            <td>{{ column }}</td>
+                        {% for value in result.values() %}
+                            <td>{{ value }}</td>
                         {% endfor %}
                     </tr>
                 {% endfor %}
