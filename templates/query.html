@@ -27,18 +27,14 @@
         <form action="/query" method="post">
             <label for="queryType">Select Query:</label>
             <select name="queryType" id="queryType">
-                <option value="1">Query 1 - List Channels with Most Subscribers</option>
-                <option value="2">Query 2 - List Videos with Highest Views</option>
-                <option value="3">Query 3 - List Channels Most Viewed Video</option>
-                <!-- Add more queries to dropdown here -->
+                <option value="1" {% if query_type == '1' %}selected{% endif %}>Query 1</option>
+                <option value="2" {% if query_type == '2' %}selected{% endif %}>Query 2</option>
+                <option value="3" {% if query_type == '3' %}selected{% endif %}>Query 3</option>
             </select>
-
-            <p id="queryDescription">Query Description:</p>
-
-            <button type="submit">Submit Query</button>
+            <button type="submit">Execute</button>
         </form>
 
-        <!-- Add ability to select stuff to WHERE in queries -->
+        <p id="queryDescription"></p> 
 
     </section>
 

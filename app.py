@@ -289,19 +289,30 @@ def update_post(post_id):
 def query():
     if request.method == 'POST':
         query_type = request.form.get('queryType')
+        sql_query = ""
 
         if query_type:
             if query_type == '1':
-                cursor.execute("SELECT channelID, channelName, channelSubs FROM CHANNEL ORDER BY channelSubs DESC LIMIT 10;")
-                results = cursor.fetchall()
+                sql_query = "SELECT * FROM CHANNEL ORDER BY channelSubs DESC LIMIT 10;"
             elif query_type == '2':
-                cursor.execute("SELECT videoID, videoName, videoViews FROM VIDEO ORDER BY videoViews DESC LIMIT 10;")
-                results = cursor.fetchall()
+                sql_query = "SELECT * FROM VIDEO ORDER BY videoViews DESC LIMIT 10;"
             elif query_type == '3':
-                cursor.execute("SELECT ch.channelName AS channelName, v.videoName AS mostViewedVideoName, v.videoViews AS mostViewedVideoViews FROM CHANNEL ch JOIN VIDEO v ON ch.channelID = v.channelID WHERE (v.categoryID, v.videoViews) = (SELECT video.categoryID, video.videoViews AS maxViews FROM VIDEO video WHERE video.channelID = ch.channelID ORDER BY video.videoViews DESC LIMIT 1);")
-                results = cursor.fetchall()
+                sql_query = """
+                    SELECT ch.channelID, ch.channelName, v.videoID AS mostViewedVideoID, v.videoName AS mostViewedVideoName, v.videoViews AS mostViewedVideoViews
+                    FROM CHANNEL ch
+                    JOIN VIDEO v ON ch.channelID = v.channelID
+                    WHERE (v.categoryID, v.videoViews) = (
+                        SELECT video.categoryID, MAX(video.videoViews) AS maxViews
+                        FROM VIDEO
+                        WHERE video.channelID = ch.channelID
+                        GROUP BY video.categoryID
+                    );
+                """
 
-    return render_template('query.html')
+            cursor.execute(sql_query)
+            results = cursor.fetchall()
+
+    return render_template('query.html', results=results, query_type=query_type)
 
 @app.route('/submit_query')
 def submit_query():
@@ -309,18 +320,3 @@ def submit_query():
 
 if __name__ == '__main__':
     app.run()
-
-
-
-
-
-#TEST FUNCTION
-@app.route('/queries', methods=['GET', 'POST'])
-def queries():
-    if request.method == 'POST':
-        query_type = request.form['query_type']
-        print(query_type)
-        
-        return render_template('queries.html', results=dummy_result)
-
-    return render_template('queries.html', results=None)
