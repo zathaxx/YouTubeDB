@@ -301,15 +301,26 @@ def query():
                 sql_query = "SELECT * FROM VIDEO ORDER BY videoViews DESC LIMIT 10;"
             elif query_type == '3':
                 sql_query = """
-                    SELECT ch.channelID, ch.channelName, v.videoID AS mostViewedVideoID, v.videoName AS mostViewedVideoName, v.videoViews AS mostViewedVideoViews
-                    FROM CHANNEL ch
-                    JOIN VIDEO v ON ch.channelID = v.channelID
-                    WHERE (v.categoryID, v.videoViews) = (
-                        SELECT video.categoryID, MAX(video.videoViews) AS maxViews
-                        FROM VIDEO
-                        WHERE video.channelID = ch.channelID
-                        GROUP BY video.categoryID
-                    );
+                    SELECT
+                        ch.channelName AS channelName,
+                        v.videoName AS mostViewedVideoName,
+                        v.videoViews AS mostViewedVideoViews
+                    FROM
+                        CHANNEL ch
+                        JOIN VIDEO v ON ch.channelID = v.channelID
+                    WHERE
+                        (v.categoryID, v.videoViews) = (
+                            SELECT
+                                video.categoryID,
+                                video.videoViews AS maxViews
+                            FROM
+                                VIDEO video
+                            WHERE
+                                video.channelID = ch.channelID
+                            ORDER BY
+                                video.videoViews DESC
+                            LIMIT 1
+                        );
                 """
 
             cursor.execute(sql_query)
