@@ -22,15 +22,37 @@
 </header>
 <body>
     <h1>Sponsors</h1>
+    <form method="post" action="{{ url_for('insert_sponsor') }}">
+        <label for="sponsor_name">Sponsor Name:</label>
+        <input type="text" id="sponsor_name" name="sponsor_name" required>
+        
+        <label for="sponsor_website">Sponsor Website:</label>
+        <input type="text" id="sponsor_website" name="sponsor_website" required>
+        
+        <button type="submit">Add Sponsor</button>
+    </form>
     <table>
         <tr>
             <th>Name</th>
             <th>Website</th>
+            <th>Action</th>
+            <th>Update URL</th>
         </tr>
         {% for row in sponsors %}
             <tr>
                 <td>{{ row[0] }}</td>
                 <td><a href="{{ row[1] }}">{{ row[1] }}</a></td>
+                <td>
+                    <form method="post" action="{{ url_for('delete_sponsor', sponsor_id=row[0]) }}" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="{{ url_for('update_sponsor', sponsor_id=row[0]) }}" style="display:inline;">
+                        <input type="text" name="updated_website" required>
+                        <button type="submit">Update</button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </table>

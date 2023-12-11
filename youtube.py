@@ -287,5 +287,22 @@ def get_top_comments(video_id, max_results=10):
 
     return top_comments_sql
 
+def update_comment(comment_id):
+    params = {
+        'part': 'snippet',
+        'id': comment_id,
+        'key': API_KEY,
+    }
 
+    response = requests.get(f"{BASE_URL}/comments", params=params)
+    items = response.json().get('items', [])
 
+    if not items:
+        return None
+
+    snippet = items[0].get('snippet', {})
+    display_name = clean_text(snippet['authorDisplayName'])
+    contents = clean_text(snippet['textDisplay'])
+    likes = snippet['likeCount']
+
+    return f"UPDATE COMMENT SET channelName = '{display_name}', commentDescription = '{contents}', commentLikes = {likes} WHERE commentID = '{comment_id}';"

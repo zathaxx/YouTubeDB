@@ -64,11 +64,11 @@ def videos():
         video_id = request.form['video_id']
         if video_id:
             query = get_video(video_id)
-
-            cursor.execute(f"SELECT channelID FROM VIDEO WHERE videoID = '{video_id}';")
+            channel_id = query[42:66]
+            cursor.execute(f"SELECT channelID FROM CHANNEL WHERE channelID = '{channel_id}';")
             result = cursor.fetchone()
             if result is None:
-                channel_query = get_channel(query[42:66])
+                channel_query = get_channel(channel_id)
                 cursor.execute(channel_query)
                 db.commit()
             cursor.execute(query)
@@ -148,8 +148,19 @@ def update_playlist_route(playlist_id):
         db.commit()
     return redirect(url_for('playlists'))
 
-@app.route('/comments')
-def comments():
+
+@app.route('/comments', methods=['GET', 'POST'])
+def comments():        
+    if request.method == 'POST':
+        video_id = request.form['video_id']
+        if video_id:
+            top_comments_sql = get_top_comments(video_id)
+
+            if top_comments_sql:
+                for comment_sql in top_comments_sql:
+                    cursor.execute(comment_sql)
+                    db.commit()
+    
     cursor.execute("SELECT * FROM COMMENT;")
     comments = cursor.fetchall()
     updated_comments = []
@@ -167,12 +178,57 @@ def comments():
 
     return render_template('comments.html', comments=updated_comments)
 
+@app.route('/delete_comment/<string:comment_id>', methods=['POST'])
+def delete_comment(comment_id):
+    if comment_id:
+        query = f"DELETE FROM COMMENT WHERE commentID = '{comment_id}';"
+        cursor.execute(query)
+        db.commit()
+    return redirect(url_for('comments'))
+
+@app.route('/update_comment/<string:comment_id>', methods=['POST'])
+def update_comment_route(comment_id):
+    if comment_id:
+        query= update_comment(comment_id)
+        cursor.execute(query)
+        db.commit()
+    return redirect(url_for('comments'))
 
 @app.route('/sponsors')
 def sponsors():
     cursor.execute("SELECT * FROM SPONSOR;")
     sponsors = cursor.fetchall()
     return render_template('sponsors.html', sponsors=sponsors)
+
+@app.route('/insert_sponsor', methods=['POST'])
+def insert_sponsor():
+    if request.method == 'POST':
+        sponsor_name = request.form['sponsor_name']
+        sponsor_website = request.form['sponsor_website']
+
+        if sponsor_name and sponsor_website:
+            query = f"INSERT INTO SPONSOR VALUES ('{sponsor_name}', '{sponsor_website}');"
+            cursor.execute(query)
+            db.commit()
+
+    return redirect(url_for('sponsors'))
+
+@app.route('/delete_sponsor/<string:sponsor_id>', methods=['POST'])
+def delete_sponsor(sponsor_id):
+    if sponsor_id:
+        query = f"DELETE FROM SPONSOR WHERE sponsorName = '{sponsor_id}';"
+        cursor.execute(query)
+        db.commit()
+    return redirect(url_for('sponsors'))
+
+@app.route('/update_sponsor/<string:sponsor_id>', methods=['POST'])
+def update_sponsor(sponsor_id):
+    if sponsor_id:
+        updated_website = request.form['updated_website']
+        update_query = f"UPDATE SPONSOR SET sponsorWebsite = '{updated_website}' WHERE sponsorName = '{sponsor_id}';"
+        cursor.execute(update_query)
+        db.commit()
+    return redirect(url_for('sponsors'))
 
 @app.route('/posts')
 def posts():
