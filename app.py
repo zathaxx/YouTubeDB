@@ -275,6 +275,7 @@ def delete_post(post_id):
         db.commit()
     return redirect(url_for('posts'))
 
+@app.route('/update_post/<string:post_id>', methods=['POST'])
 def update_post(post_id):
     if post_id:
         updated_contents = request.form['updated_contents']
