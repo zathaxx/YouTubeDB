@@ -290,12 +290,15 @@ def query():
     if request.method == 'POST':
         query_type = request.form.get('queryType')
         sql_query = ""
+        results = None
 
         if query_type:
             if query_type == '1':
                 sql_query = "SELECT * FROM CHANNEL ORDER BY channelSubs DESC LIMIT 10;"
+                results = cursor.fetchall()
             elif query_type == '2':
                 sql_query = "SELECT * FROM VIDEO ORDER BY videoViews DESC LIMIT 10;"
+                results = cursor.fetchall()
             elif query_type == '3':
                 sql_query = """
                     SELECT ch.channelID, ch.channelName, v.videoID AS mostViewedVideoID, v.videoName AS mostViewedVideoName, v.videoViews AS mostViewedVideoViews
@@ -308,9 +311,10 @@ def query():
                         GROUP BY video.categoryID
                     );
                 """
+                results = cursor.fetchall()
 
             cursor.execute(sql_query)
-            results = cursor.fetchall()
+            
 
     return render_template('query.html', results=results, query_type=query_type)
 
