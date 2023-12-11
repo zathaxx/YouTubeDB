@@ -38,7 +38,7 @@
         </form>
 
         <!--Add the ability to select specific data wanted to retrieve here-->
-        <form method="/query" action="{{ url_for('query') }}">
+        <form method="POST" action="{{ url_for('query') }}">
             <!-- First parameter input -->
             <label for="first_param" id="firstParamLabel" style="display: none;">First Parameter:</label>
             <input type="text" id="first_param" name="first_param" required style="display: none;">
