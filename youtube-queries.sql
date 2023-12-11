@@ -150,7 +150,7 @@ WHERE
             video.videoViews DESC
         LIMIT 1
     );
-
+-- QUERY #6
 -- List the top 3 channel within the Education category that has the most enagagement and order it by best to worst
 SELECT 
     ch.channelid,
@@ -179,7 +179,7 @@ WHERE
 GROUP  BY ch.channelid, ch.channelname
 ORDER  BY avgcommentspervideo DESC
 LIMIT  3; 
-
+-- QUERY #7
 -- Find a channel that has a video at least one video in 3 different category and get the average video duration of all videos
 SELECT
     ch.channelID,
@@ -212,9 +212,8 @@ ORDER BY
     likesToViewsRatio DESC
 LIMIT 5;
 
--- QUERY #9 (returns empty set)
+-- QUERY #8
 -- Identifies all channels that have posted videos in at least 3 categories and grab the number of average likes 
-
 SELECT
     ch.channelID,
     ch.channelName,
@@ -265,7 +264,7 @@ WHERE
 GROUP BY
     c.channelID, c.channelName;
 
--- Query that gets the engagement rates for a specific video 
+-- Query that gets the engagement rates for a specific video
 -- (number of likes, comments, etc for Mark Robers octopus maze vid).
 SELECT
     v.videoName,
@@ -302,5 +301,3 @@ FROM
 ORDER BY
     videoViews DESC
 LIMIT 10;
-
-
