@@ -108,7 +108,7 @@ def update_video_route(video_id):
         db.commit()
     return redirect(url_for('videos'))
 
-@app.route('/playlists')
+@app.route('/playlists', methods=['GET', 'POST'])
 def playlists():
     if request.method == 'POST':
         playlist_id = request.form['playlist_id']
