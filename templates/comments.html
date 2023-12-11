@@ -44,7 +44,7 @@
                 <td>{{ row[5] }}</td>
                 <td>{{ row[4] }}</td>
                 <td>
-                    <form method="post" action="{{ url_for('delete_comment', comment_id=comment[0]) }}">
+                    <form method="post" action="{{ url_for('delete_comment', comment_id=row[0]) }}">
                         <button type="submit">Delete</button>
                     </form>
                 </td>
