@@ -3,6 +3,7 @@ import mysql.connector
 import os
 from dotenv import load_dotenv
 from youtube import *
+import random
 
 load_dotenv()
 
@@ -245,6 +246,25 @@ def posts():
         updated_post = post + (channel_name[0],)
         updated_posts.append(updated_post)
     return render_template('posts.html', posts=updated_posts)
+
+@app.route('/insert_post', methods=['POST'])
+def insert_post():
+    if request.method == 'POST':
+        channel_id = request.form['channel_id']
+        post_description = request.form['post_description']
+        post_date = request.form['post_date']
+        post_likes = request.form['post_likes']
+
+
+        if channel_id and post_description and post_date and post_likes:
+            postID = random.randInt(100000, 999999) 
+            insert_query = (
+                "INSERT INTO POST "
+                f"VALUES ({postID}, '{channel_id}', '{post_description}', '{post_date}', {post_likes});"
+            )
+            cursor.execute(insert_query)
+            db.commit()
+    return redirect(url_for('posts'))
 
 @app.route('/query')
 def query():
