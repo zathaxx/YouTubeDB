@@ -41,11 +41,13 @@
         <form method="POST" action="{{ url_for('query') }}">
             <!-- First parameter input -->
             <label for="first_param" id="firstParamLabel" style="display: none;">First Parameter:</label>
-            <input type="text" id="first_param" name="first_param">
+            <input type="text" id="first_param" name="first_param" required style="display: none;">
 
             <!-- Second parameter input -->
             <label for="second_param" id="secondParamLabel" style="display: none;">Second Parameter:</label>
-            <input type="text" id="second_param" name="second_param">
+            <input type="text" id="second_param" name="second_param" required style="display: none;">
+
+            <button type="submit">Submit Parameter(s)</button>
         </form>
 
         <p id="queryDescription"></p>        
@@ -79,15 +81,20 @@
             var description = "Query Description: ";
             var selectedQuery = this.value;
             var firstParamLabel = document.getElementById('firstParamLabel');
+            var firstParamInput = document.getElementById('first_param');
             var secondParamLabel = document.getElementById('secondParamLabel');
+            var secondParamInput = document.getElementById('second_param');
 
             if (selectedQuery === '3' || selectedQuery === '4' ||selectedQuery === '5' || selectedQuery === '6') {
                 firstParamLabel.style.display = 'block';
+                firstParamInput.style.display = 'block';
             } else {
                 firstParamLabel.style.display = 'none';
+                firstParamInput.style.display = 'none';
             }
 
             secondParamLabel.style.display = (selectedQuery === '4') ? 'block' : 'none';
+            secondParamInput.style.display = (selectedQuery === '4') ? 'block' : 'none';
                 
             switch (selectedQuery) {
                 case '1':

@@ -332,9 +332,9 @@ def query():
 
         if query_type:
             if query_type == '1':
-                sql_query = print(f"SELECT * FROM CHANNEL ORDER BY channelSubs DESC LIMIT 10;")
+                sql_query = f"SELECT * FROM CHANNEL ORDER BY channelSubs DESC LIMIT 10;"
             elif query_type == '2':
-                sql_query = print(f"SELECT * FROM VIDEO ORDER BY videoViews DESC LIMIT 10;")
+                sql_query = f"SELECT * FROM VIDEO ORDER BY videoViews DESC LIMIT 10;"
             elif query_type == '3':
                 sql_query = f"""
                     SELECT
