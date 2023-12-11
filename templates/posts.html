@@ -50,6 +50,11 @@
                 <td style="max-width: 600px;">{{ row[3] }}</td>
                 <td>{{ row[2] }}</td>
                 <td>{{ row[4] }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('delete_post', post_id=row[0]) }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </table>

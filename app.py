@@ -267,6 +267,14 @@ def insert_post():
             db.commit()
     return redirect(url_for('posts'))
 
+@app.route('/delete_post/<string:post_id>', methods=['POST'])
+def delete_post(post_id):
+    if post_id:
+        query = f"DELETE FROM POST WHERE postID = '{post_id}';"
+        cursor.execute(query)
+        db.commit()
+    return redirect(url_for('posts'))
+
 @app.route('/query')
 def query():
     
