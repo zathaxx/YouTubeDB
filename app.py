@@ -324,7 +324,9 @@ def query():
     if request.method == 'POST':
         query_type = request.form.get('queryType')
         first_param = request.form.get('first_param')
+        print(first_param)
         second_param = request.form.get('second_param')
+        print(second_param)
 
         sql_query = ""
 
@@ -346,7 +348,7 @@ def query():
                     FROM
                         VIDEO v
                     JOIN
-                        CHANNEL ch ON v.channelID = ch.channelID and ch.channelID = '{first_param}'
+                        CHANNEL ch ON v.channelID = ch.channelID and ch.channelName = '{first_param}'
                     JOIN
                         CATEGORY c ON v.categoryID = c.categoryID
                     WHERE
