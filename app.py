@@ -33,20 +33,23 @@ def home():
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-        # record the user name
         session["password"] = request.form.get("password")
-        # redirect to the main page
-        return redirect("/")
+        return redirect(request.args.get("redirect", default="/"))
     else:
       return render_template("login.html")
 
 @app.route("/example")
 def example():
-  if session["password"] == PASSWORD:
-    return "Login success!"
+  if session.get("password") != PASSWORD:
+    return redirect(f"/login?redirect=/example")
   else:
-    "Is this Josias (or speedy) again?"
+    return "Welcome, authenticated team member!"
 
+def check_login(path="/"):
+  if session.get("password") != PASSWORD:
+    return redirect(f"/login?redirect={path}")
+  else:
+    return True
 
 @app.route('/channels', methods=['GET', 'POST'])
 def channels():
