@@ -289,11 +289,11 @@ def update_post(post_id):
 def query():
     results = None
     query_type = None
+    headers = []
 
     if request.method == 'POST':
         query_type = request.form.get('queryType')
         sql_query = ""
-        headers = []
 
         if query_type:
             if query_type == '1':
@@ -346,6 +346,62 @@ def query():
                             WHERE
                                 p1.playlistID = 'PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8'
                             );
+                """
+            elif query_type == '5':
+                sql_query = """
+                    SELECT
+                        ch.channelName AS 'YouTuber Name',
+                            ch.channelSubs AS 'Subscribers'
+                        FROM
+                            CHANNEL ch
+                            JOIN CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
+                            JOIN CATEGORY cat ON cu.categoryID = cat.categoryID
+                        WHERE
+                            cat.categoryName = 'Science & Technology'
+                            AND ch.channelSubs > (
+                                SELECT
+                                    AVG(ch_sub.channelSubs)
+                                FROM
+                                    CHANNEL ch_sub
+                                    JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
+                                    JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
+                                WHERE
+                                    cat_sub.categoryName = 'Science & Technology'
+                            );
+                """
+            elif query_type == '6':
+                sql_query = """
+                    SELECT
+                        ch_sub.channelID,
+                        ch_sub.channelName AS 'YouTuber Name',
+                        COUNT(v_sub.videoID) AS 'Number of Videos'
+                    FROM
+                        CHANNEL ch_sub
+                        JOIN VIDEO v_sub ON ch_sub.channelID = v_sub.channelID
+                        JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
+                        JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
+                    WHERE
+                        cat_sub.categoryName = 'Science & Technology'
+                    GROUP BY
+                        ch_sub.channelID, ch_sub.channelName
+                    HAVING
+                        COUNT(v_sub.videoID) > (
+                            SELECT
+                                AVG(video_count)
+                            FROM
+                                (SELECT
+                                    ch_sub_inner.channelID,
+                                    COUNT(v_sub_inner.videoID) AS video_count
+                                FROM
+                                    CHANNEL ch_sub_inner
+                                    JOIN VIDEO v_sub_inner ON ch_sub_inner.channelID = v_sub_inner.channelID
+                                    JOIN CATEGORIZED_UNDER cu_sub_inner ON ch_sub_inner.channelID = cu_sub_inner.channelID
+                                    JOIN CATEGORY cat_sub_inner ON cu_sub_inner.categoryID = cat_sub_inner.categoryID
+                                WHERE
+                                    cat_sub_inner.categoryName = 'Science & Technology'
+                                GROUP BY
+                                    ch_sub_inner.channelID) AS avg_video_count
+                        );
                 """
 
             cursor.execute(sql_query)
