@@ -285,8 +285,22 @@ def update_post(post_id):
         db.commit()
     return redirect(url_for('posts'))
 
-@app.route('/query')
+@app.route('/query', methods=['GET', 'POST'])
 def query():
+    if request.method == 'POST':
+        query_type = request.form.get('queryType')
+
+        if query_type:
+            if query_type == '1':
+                cursor.execute("SELECT channelID, channelName, channelSubs FROM CHANNEL ORDER BY channelSubs DESC LIMIT 10;")
+                results = cursor.fetchall()
+            elif query_type == '2':
+                cursor.execute("SELECT videoID, videoName, videoViews FROM VIDEO ORDER BY videoViews DESC LIMIT 10;")
+                results = cursor.fetchall()
+            elif query_type == '3':
+                cursor.execute("SELECT ch.channelName AS channelName, v.videoName AS mostViewedVideoName, v.videoViews AS mostViewedVideoViews FROM CHANNEL ch JOIN VIDEO v ON ch.channelID = v.channelID WHERE (v.categoryID, v.videoViews) = (SELECT video.categoryID, video.videoViews AS maxViews FROM VIDEO video WHERE video.channelID = ch.channelID ORDER BY video.videoViews DESC LIMIT 1);")
+                results = cursor.fetchall()
+
     return render_template('query.html')
 
 @app.route('/submit_query')
