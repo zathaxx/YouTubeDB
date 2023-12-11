@@ -40,17 +40,17 @@
     </section>
 
     <section class="query-results">
-        {% if results %}
+        {% if results and headers %}
             <h2>Query Results</h2>
             <table>
                 <tr>
-                    {% for attribute in results[0].keys() %}
-                        <th>{{ attribute }}</th>
+                    {% for header in headers %}
+                        <th>{{ header }}</th>
                     {% endfor %}
                 </tr>
                 {% for result in results %}
                     <tr>
-                        {% for value in result.values() %}
+                        {% for value in result %}
                             <td>{{ value }}</td>
                         {% endfor %}
                     </tr>
@@ -58,6 +58,7 @@
             </table>
         {% endif %}
     </section>
+    
 
     <script>
         // Add query descriptions based on the selected query

@@ -349,8 +349,9 @@ def query():
 
             cursor.execute(sql_query)
             results = cursor.fetchall()
+            headers = [desc[0] for desc in cursor.description]
 
-    return render_template('query.html', results=results, query_type=query_type)
+    return render_template('query.html', results=results, headers=headers, query_type=query_type)
 
 
 @app.route('/submit_query')
