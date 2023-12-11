@@ -39,21 +39,11 @@ def login():
     else:
       return render_template("login.html", path=path)
 
-@app.route("/example")
-def example():
-  if session.get("password") != PASSWORD:
-    return redirect(url_for("login", redirect="/example"))
-  else:
-    return "Welcome, authenticated team member!"
-
-def check_login(path="/"):
-  if session.get("password") != PASSWORD:
-    return redirect(f"/login?redirect={path}")
-  else:
-    return True
-
 @app.route('/channels', methods=['GET', 'POST'])
 def channels():
+    if session.get("password") != PASSWORD:
+        return redirect(url_for("login", redirect="/channels"))
+    
     if request.method == 'POST':
         channel_id = request.form['channel_id']
         print(channel_id)
@@ -91,6 +81,8 @@ def categories():
 
 @app.route('/videos', methods=['GET', 'POST'])
 def videos():
+    if session.get("password") != PASSWORD:
+        return redirect(url_for("login", redirect="/videos"))
     if request.method == 'POST':
         video_id = request.form['video_id']
         if video_id:
@@ -141,6 +133,8 @@ def update_video_route(video_id):
 
 @app.route('/playlists', methods=['GET', 'POST'])
 def playlists():
+    if session.get("password") != PASSWORD:
+        return redirect(url_for("login", redirect="/playlists"))
     if request.method == 'POST':
         playlist_id = request.form['playlist_id']
         if playlist_id:
@@ -181,7 +175,9 @@ def update_playlist_route(playlist_id):
 
 
 @app.route('/comments', methods=['GET', 'POST'])
-def comments():        
+def comments():
+    if session.get("password") != PASSWORD:
+        return redirect(url_for("login", redirect="/comments"))        
     if request.method == 'POST':
         video_id = request.form['video_id']
         if video_id:
@@ -227,6 +223,8 @@ def update_comment_route(comment_id):
 
 @app.route('/sponsors')
 def sponsors():
+    if session.get("password") != PASSWORD:
+        return redirect(url_for("login", redirect="/sponsors"))
     cursor.execute("SELECT * FROM SPONSOR;")
     sponsors = cursor.fetchall()
     return render_template('sponsors.html', sponsors=sponsors)
@@ -263,6 +261,8 @@ def update_sponsor(sponsor_id):
 
 @app.route('/posts')
 def posts():
+    if session.get("password") != PASSWORD:
+        return redirect(url_for("login", redirect="/posts"))
     cursor.execute("SELECT * FROM POST;")
     posts = cursor.fetchall()
 
