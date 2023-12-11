@@ -1,4 +1,6 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, session
+from flask_session import Session
+from flask_login import LoginManager
 import mysql.connector
 import os
 from dotenv import load_dotenv
@@ -18,9 +20,33 @@ cursor = db.cursor()
 
 app = Flask(__name__, static_url_path='/static')
 
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
+PASSWORD = os.environ["S_PASSWORD"]
+
 @app.route('/')
 def home():
     return render_template('index.html')
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if request.method == "POST":
+        # record the user name
+        session["password"] = request.form.get("password")
+        # redirect to the main page
+        return redirect("/")
+    else:
+      return render_template("login.html")
+
+@app.route("/example")
+def example():
+  if session["password"] == PASSWORD:
+    return "Login success!"
+  else:
+    "Is this Josias (or speedy) again?"
+
 
 @app.route('/channels', methods=['GET', 'POST'])
 def channels():
