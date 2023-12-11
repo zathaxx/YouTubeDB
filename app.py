@@ -200,6 +200,19 @@ def sponsors():
     sponsors = cursor.fetchall()
     return render_template('sponsors.html', sponsors=sponsors)
 
+@app.route('/insert_sponsor', methods=['POST'])
+def insert_sponsor():
+    if request.method == 'POST':
+        sponsor_name = request.form['sponsor_name']
+        sponsor_website = request.form['sponsor_website']
+
+        if sponsor_name and sponsor_website:
+            query = f"INSERT INTO SPONSOR VALUES ('{sponsor_name}', '{sponsor_website}');"
+            cursor.execute(query)
+            db.commit()
+
+    return redirect(url_for('sponsors'))
+
 @app.route('/posts')
 def posts():
     cursor.execute("SELECT * FROM POST;")
