@@ -221,6 +221,15 @@ def delete_sponsor(sponsor_id):
         db.commit()
     return redirect(url_for('sponsors'))
 
+@app.route('/update_sponsor/<string:sponsor_id>', methods=['POST'])
+def update_sponsor(sponsor_id):
+    if sponsor_id:
+        updated_website = request.form['updated_website']
+        update_query = f"UPDATE SPONSOR SET sponsorWebsite = '{updated_website}' WHERE sponsorID = '{sponsor_id}';"
+        cursor.execute(update_query)
+        db.commit()
+    return redirect(url_for('sponsors'))
+
 @app.route('/posts')
 def posts():
     cursor.execute("SELECT * FROM POST;")

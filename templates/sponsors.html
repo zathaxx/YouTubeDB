@@ -35,7 +35,8 @@
         <tr>
             <th>Name</th>
             <th>Website</th>
-            <th>Actions</th>
+            <th>Action</th>
+            <th>Update URL</th>
         </tr>
         {% for row in sponsors %}
             <tr>
@@ -44,6 +45,12 @@
                 <td>
                     <form method="post" action="{{ url_for('delete_sponsor', sponsor_id=row[0]) }}" style="display:inline;">
                         <button type="submit">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="{{ url_for('update_sponsor', sponsor_id=row[0]) }}" style="display:inline;">
+                        <input type="text" name="updated_website" value="{{ sponsor[2] }}">
+                        <button type="submit">Update</button>
                     </form>
                 </td>
             </tr>
