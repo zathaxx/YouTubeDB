@@ -22,22 +22,52 @@
 </header>
 <body>
     <section class="query-section">
-        <h2>Query</h2>
+        <h2>Query Data</h2>
         <form action="/query" method="post">
-            <label for="queryType">Select Attributes:</label>    
+            <label for="queryType">Select Query:</label>
+            <select name="queryType" id="queryType">
+                <option value="1">Query 1 - List Channels with Most Subscribers</option>
+                <option value="2">Query 2 - List Videos with Highest Views</option>
+                <option value="3">Query 3 - List Channels Most Viewed Video</option>
+                <!-- Add more queries to dropdown here -->
+            </select>
 
-            <label for="parameter1">Parameter 1:</label>
-            <input type="text" name="parameter1" id="parameter1">
+            <p id="queryDescription">Query Description:</p>
 
-            <label for="parameter2">Parameter 2:</label>
-            <input type="text" name="parameter2" id="parameter2">
-
-            <button type="submit">Submit</button>
+            <button type="submit">Submit Query</button>
         </form>
+
+        <!-- Add ability to select stuff to WHERE in queries -->
+
+
     </section>
 
     <section class="query-results">
         <!-- Display query results here -->
     </section>
+
+    <script>
+        // Add query descriptions based on the selected query
+        document.getElementById('queryType').addEventListener('change', function () {
+            var description = "Query Description: ";
+            var selectedQuery = this.options[this.selectedIndex].text;
+            
+            switch (selectedQuery) {
+                case 'Query 1 - List Channels with Most Subscribers':
+                    description += "This query lists channels with the highest number of subscribers.";
+                    break;
+                case 'Query 2 - List Videos with Highest Views':
+                    description += "This query lists videos with the highest number of views.";
+                    break;
+                case 'Query 3 - List Channels Most Viewed Video':
+                    description += "This query lists the channel that has the most viewed video matching the category video and channel";
+                    break;
+                default:
+                    description += "Please select a query to see its description.";
+            }
+
+            document.getElementById('queryDescription').textContent = description;
+        });
+    </script>
 </body>
 </html>
