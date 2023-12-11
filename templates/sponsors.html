@@ -35,11 +35,17 @@
         <tr>
             <th>Name</th>
             <th>Website</th>
+            <th>Actions</th>
         </tr>
         {% for row in sponsors %}
             <tr>
                 <td>{{ row[0] }}</td>
                 <td><a href="{{ row[1] }}">{{ row[1] }}</a></td>
+                <td>
+                    <form method="post" action="{{ url_for('delete_sponsor', sponsor_id=row[0]) }}" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </table>

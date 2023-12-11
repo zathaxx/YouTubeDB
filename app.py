@@ -213,6 +213,14 @@ def insert_sponsor():
 
     return redirect(url_for('sponsors'))
 
+@app.route('/delete_sponsor/<string:sponsor_id>', methods=['POST'])
+def delete_sponsor(sponsor_id):
+    if sponsor_id:
+        query = f"DELETE FROM SPONSOR WHERE sponsorName = '{sponsor_id}';"
+        cursor.execute(query)
+        db.commit()
+    return redirect(url_for('sponsors'))
+
 @app.route('/posts')
 def posts():
     cursor.execute("SELECT * FROM POST;")
