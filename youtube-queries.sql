@@ -58,7 +58,7 @@ FROM
     JOIN CHANNEL ch ON p.channelID = ch.channelID
 WHERE
     ch.channelName = 'Mark Rober'
-    AND p.playlistID = 'PLgeXOVaJo_gnexNopBzUKdl3QKoADJlS8'
+    AND p.playlistName = 'Glitterbomb Series'
     AND v.videoViews > (
         SELECT
             AVG(v1.videoViews)
