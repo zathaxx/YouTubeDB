@@ -346,7 +346,7 @@ def query():
                     FROM
                         VIDEO v
                     JOIN
-                        CHANNEL ch ON v.channelID = ch.channelID and ch.channelID = {first_param}
+                        CHANNEL ch ON v.channelID = ch.channelID and ch.channelID = '{first_param}'
                     JOIN
                         CATEGORY c ON v.categoryID = c.categoryID
                     WHERE
@@ -366,8 +366,8 @@ def query():
                         JOIN PLAYLIST p ON co.playlistID = p.playlistID
                         JOIN CHANNEL ch ON p.channelID = ch.channelID
                     WHERE
-                        ch.channelName = {first_param}
-                        AND p.playlistName = {second_param}
+                        ch.channelName = '{first_param}'
+                        AND p.playlistName = '{second_param}'
                         AND v.videoViews > (
                             SELECT
                                 AVG(v1.videoViews)
@@ -376,7 +376,7 @@ def query():
                                 JOIN VIDEO v1 ON c1.videoID = v1.videoID
                                 JOIN PLAYLIST p1 ON c1.playlistID = p1.playlistID
                             WHERE
-                                p1.playlistName = {second_param}
+                                p1.playlistName = '{second_param}'
                             );
                 """
             elif query_type == '5':
@@ -389,7 +389,7 @@ def query():
                         JOIN CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
                         JOIN CATEGORY cat ON cu.categoryID = cat.categoryID
                     WHERE
-                        cat.categoryName = {first_param}
+                        cat.categoryName = '{first_param}'
                         AND ch.channelSubs > (
                             SELECT
                                 AVG(ch_sub.channelSubs)
@@ -398,7 +398,7 @@ def query():
                                 JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
                                 JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
                             WHERE
-                                cat_sub.categoryName = {first_param}
+                                cat_sub.categoryName = '{first_param}'
                         );
                 """
             elif query_type == '6':
@@ -413,7 +413,7 @@ def query():
                         JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
                         JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
                     WHERE
-                        cat_sub.categoryName = {first_param}
+                        cat_sub.categoryName = '{first_param}'
                     GROUP BY
                         ch_sub.channelID, ch_sub.channelName
                     HAVING
@@ -430,7 +430,7 @@ def query():
                                     JOIN CATEGORIZED_UNDER cu_sub_inner ON ch_sub_inner.channelID = cu_sub_inner.channelID
                                     JOIN CATEGORY cat_sub_inner ON cu_sub_inner.categoryID = cat_sub_inner.categoryID
                                 WHERE
-                                    cat_sub_inner.categoryName = {first_param}
+                                    cat_sub_inner.categoryName = '{first_param}'
                                 GROUP BY
                                     ch_sub_inner.channelID) AS avg_video_count
                         );
