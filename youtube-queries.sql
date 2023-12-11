@@ -212,9 +212,7 @@ ORDER BY
     likesToViewsRatio DESC
 LIMIT 5;
 
--- QUERY #9 (returns empty set)
 -- Identifies all channels that have posted videos in at least 3 categories and grab the number of average likes 
-
 SELECT
     ch.channelID,
     ch.channelName,
@@ -265,7 +263,7 @@ WHERE
 GROUP BY
     c.channelID, c.channelName;
 
--- Query that gets the engagement rates for a specific video 
+-- Query that gets the engagement rates for a specific video
 -- (number of likes, comments, etc for Mark Robers octopus maze vid).
 SELECT
     v.videoName,
@@ -302,5 +300,3 @@ FROM
 ORDER BY
     videoViews DESC
 LIMIT 10;
-
-
