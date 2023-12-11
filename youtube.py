@@ -211,6 +211,27 @@ def get_playlist(playlist_id):
 
     return (f"INSERT into PLAYLIST values ('{items[0]['id']}', '{p_snippet['channelId']}', '{title}');")
 
+def update_playlist(playlist_id):
+    params = {
+        'part': 'snippet,contentDetails',
+        'id': playlist_id,
+        'key': API_KEY,
+    }
+    response = requests.get(f"{BASE_URL}/playlists", params)
+    items = response.json().get('items', [])
+    
+    if not items:
+        return None
+
+    p_snippet = items[0]["snippet"]
+    p_details = items[0]["contentDetails"]
+    
+    title = p_snippet['title']
+    title = clean_text(title)
+
+    return (f"UPDATE PLAYLIST SET playlistName = '{title}'"
+            f"WHERE playlistID = '{playlist_id}';")
+
 def clean_text(comment_text):
     # Remove quotes
     comment_text = comment_text.replace("'", "").replace('"', '')

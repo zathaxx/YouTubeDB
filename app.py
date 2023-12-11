@@ -132,6 +132,22 @@ def playlists():
 
     return render_template('playlists.html', playlists=updated_playlists)
 
+@app.route('/delete_playlist/<string:playlist_id>', methods=['POST'])
+def delete_playlist(playlist_id):
+    if playlist_id:
+        query = f"DELETE FROM PLAYLIST WHERE playlistID = '{playlist_id}';"
+        cursor.execute(query)
+        db.commit()
+    return redirect(url_for('playlists'))
+
+@app.route('/update_playlist/<string:playlist_id>', methods=['POST'])
+def update_playlist_route(playlist_id):
+    if playlist_id:
+        update_query = update_playlist(playlist_id)
+        cursor.execute(update_query)
+        db.commit()
+    return redirect(url_for('playlists'))
+
 @app.route('/comments')
 def comments():
     cursor.execute("SELECT * FROM COMMENT;")
