@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queries</title>
+</head>
+<body>
+
+    <h1>Execute Query</h1>
+
+    <form action="/queries" method="post">
+        <label for="query_type">Select Query:</label>
+        <select name="query_type" id="query_type">
+            <option value="1">Query 1</option>
+            <!-- Add other query options here -->
+        </select>
+        <button type="submit">Execute</button>
+    </form>
+
+    {% if results %}
+        <h2>Query Results</h2>
+        <table border="1">
+            <tr>
+                <th>POST_DATE</th>
+                <th>Video_Views</th>
+                <th>Channel Name</th>
+            </tr>
+            {% for result in results %}
+                <tr>
+                    <td>{{ result[0] }}</td>
+                    <td>{{ result[1] }}</td>
+                    <td>{{ result[2] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+</body>
+</html>

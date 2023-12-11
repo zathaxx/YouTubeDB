@@ -295,3 +295,18 @@ def submit_query():
 
 if __name__ == '__main__':
     app.run()
+
+
+
+
+
+#TEST FUNCTION
+@app.route('/queries', methods=['GET', 'POST'])
+def queries():
+    if request.method == 'POST':
+        query_type = request.form['query_type']
+        print(query_type)
+        
+        return render_template('queries.html', results=dummy_result)
+
+    return render_template('queries.html', results=None)
