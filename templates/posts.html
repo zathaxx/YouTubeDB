@@ -43,6 +43,8 @@
             <th>Contents</th>
             <th>Published</th>
             <th>Likes</th>
+            <th>Action</th>
+            <th>Update Contents</th>
         </tr>
         {% for row in posts %}
             <tr>
@@ -54,6 +56,8 @@
                     <form method="post" action="{{ url_for('delete_post', post_id=row[0]) }}">
                         <button type="submit">Delete</button>
                     </form>
+                </td>
+                <td>
                     <form method="post" action="{{ url_for('update_post', post_id=row[0]) }}">
                         <input type="text" name="updated_contents" required>
                         <button type="submit">Update</button>
