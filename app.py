@@ -64,11 +64,11 @@ def videos():
         video_id = request.form['video_id']
         if video_id:
             query = get_video(video_id)
-
-            cursor.execute(f"SELECT channelID FROM VIDEO WHERE videoID = '{video_id}';")
+            channel_id = query[42:66]
+            cursor.execute(f"SELECT channelID FROM CHANNEL WHERE channelID = '{channel_id}';")
             result = cursor.fetchone()
             if result is None:
-                channel_query = get_channel(query[42:66])
+                channel_query = get_channel(channel_id)
                 cursor.execute(channel_query)
                 db.commit()
             cursor.execute(query)
