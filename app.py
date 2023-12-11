@@ -293,6 +293,7 @@ def query():
     if request.method == 'POST':
         query_type = request.form.get('queryType')
         sql_query = ""
+        headers = []
 
         if query_type:
             if query_type == '1':
