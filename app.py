@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 from flask_session import Session
-from flask_login import LoginManager
 import mysql.connector
 import os
 from dotenv import load_dotenv
@@ -60,8 +59,7 @@ def channels():
 @app.route('/delete_channel/<string:channel_id>', methods=['POST'])
 def delete_channel(channel_id):
     if channel_id:
-        query = f"DELETE FROM CHANNEL WHERE channelID = '{channel_id}';"
-        cursor.execute(query)
+        cursor.execute("DELETE FROM CHANNEL WHERE channelID = %s;", (channel_id))
         db.commit()
     return redirect(url_for('channels'))
 
@@ -118,8 +116,7 @@ def videos():
 @app.route('/delete_video/<string:video_id>', methods=['POST'])
 def delete_video(video_id):
     if video_id:
-        query = f"DELETE FROM VIDEO WHERE videoID = '{video_id}';"
-        cursor.execute(query)
+        cursor.execute("DELETE FROM VIDEO WHERE videoID = %s;", (video_id))
         db.commit()
     return redirect(url_for('videos'))
 
@@ -160,8 +157,7 @@ def playlists():
 @app.route('/delete_playlist/<string:playlist_id>', methods=['POST'])
 def delete_playlist(playlist_id):
     if playlist_id:
-        query = f"DELETE FROM PLAYLIST WHERE playlistID = '{playlist_id}';"
-        cursor.execute(query)
+        cursor.execute("DELETE FROM PLAYLIST WHERE playlistID = %s;", (playlist_id))
         db.commit()
     return redirect(url_for('playlists'))
 
@@ -194,7 +190,7 @@ def comments():
 
     for comment in comments:
         comment_id = comment[0]
-        cursor.execute(f"SELECT DISTINCT VIDEO.videoName FROM VIDEO JOIN COMMENT ON VIDEO.videoID = COMMENT.videoID AND COMMENT.commentID = '{comment_id}';")
+        cursor.execute("SELECT DISTINCT VIDEO.videoName FROM VIDEO JOIN COMMENT ON VIDEO.videoID = COMMENT.videoID AND COMMENT.commentID = %s;", (comment_id))
         video_name = cursor.fetchone()
 
         if video_name is not None:
@@ -208,8 +204,7 @@ def comments():
 @app.route('/delete_comment/<string:comment_id>', methods=['POST'])
 def delete_comment(comment_id):
     if comment_id:
-        query = f"DELETE FROM COMMENT WHERE commentID = '{comment_id}';"
-        cursor.execute(query)
+        cursor.execute("DELETE FROM COMMENT WHERE commentID = %s;", (comment_id))
         db.commit()
     return redirect(url_for('comments'))
 
@@ -236,8 +231,7 @@ def insert_sponsor():
         sponsor_website = request.form['sponsor_website']
 
         if sponsor_name and sponsor_website:
-            query = f"INSERT INTO SPONSOR VALUES ('{sponsor_name}', '{sponsor_website}');"
-            cursor.execute(query)
+            cursor.execute("INSERT INTO SPONSOR VALUES (%s, %s)", (sponsor_name, sponsor_website))
             db.commit()
 
     return redirect(url_for('sponsors'))
@@ -245,8 +239,7 @@ def insert_sponsor():
 @app.route('/delete_sponsor/<string:sponsor_id>', methods=['POST'])
 def delete_sponsor(sponsor_id):
     if sponsor_id:
-        query = f"DELETE FROM SPONSOR WHERE sponsorName = '{sponsor_id}';"
-        cursor.execute(query)
+        cursor.execute("DELETE FROM SPONSOR WHERE sponsorName = %s", (sponsor_id))
         db.commit()
     return redirect(url_for('sponsors'))
 
@@ -254,8 +247,7 @@ def delete_sponsor(sponsor_id):
 def update_sponsor(sponsor_id):
     if sponsor_id:
         updated_website = request.form['updated_website']
-        update_query = f"UPDATE SPONSOR SET sponsorWebsite = '{updated_website}' WHERE sponsorName = '{sponsor_id}';"
-        cursor.execute(update_query)
+        cursor.execute("UPDATE SPONSOR SET sponsorWebsite = %s WHERE sponsorName = %s;", (updated_website, sponsor_id))
         db.commit()
     return redirect(url_for('sponsors'))
 
@@ -270,7 +262,7 @@ def posts():
 
     for post in posts:
         post_id = post[0]
-        cursor.execute(f"SELECT DISTINCT CHANNEL.channelName FROM CHANNEL JOIN POST ON CHANNEL.channelID = POST.channelID AND POST.postID = '{post_id}';")
+        cursor.execute("SELECT DISTINCT CHANNEL.channelName FROM CHANNEL JOIN POST ON CHANNEL.channelID = POST.channelID AND POST.postID = %s;", (post_id))
         channel_name = cursor.fetchone()
 
         updated_post = post + (channel_name[0],)
@@ -289,19 +281,17 @@ def insert_post():
 
         if channel_id and post_description and post_date and post_likes:
             postID = random.randint(100000, 999999) 
-            insert_query = (
-                "INSERT INTO POST "
-                f"VALUES ({postID}, '{channel_id}', '{post_date}', '{post_description}', {post_likes});"
+            cursor.execute(
+                "INSERT INTO POST VALUES (%s, %s, %s, %s, %s);",
+                (postID, channel_id, post_date, post_description, post_likes)
             )
-            cursor.execute(insert_query)
             db.commit()
     return redirect(url_for('posts'))
 
 @app.route('/delete_post/<string:post_id>', methods=['POST'])
 def delete_post(post_id):
     if post_id:
-        query = f"DELETE FROM POST WHERE postID = '{post_id}';"
-        cursor.execute(query)
+        cursor.execute("DELETE FROM POST WHERE postID = %s;", (post_id))
         db.commit()
     return redirect(url_for('posts'))
 
@@ -310,8 +300,7 @@ def update_post(post_id):
     if post_id:
         updated_contents = request.form['updated_contents']
         updated_contents = clean_text(updated_contents)
-        update_query = f"UPDATE POST SET postDescription = '{updated_contents}' WHERE postID = '{post_id}';"
-        cursor.execute(update_query)
+        cursor.execute("UPDATE POST SET postDescription = '{updated_contents}' WHERE postID = %s;", (post_id))
         db.commit()
     return redirect(url_for('posts'))
 
