@@ -21,7 +21,8 @@ app.config.update(
 mysql = MySQL()
 mysql.init_app(app)
 
-cursor = mysql.connection.cursor()
+with app.app_context():
+    cursor = mysql.connection.cursor()
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
