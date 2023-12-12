@@ -1,70 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>YouTube Database</title>
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
-</head>
-<header>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/channels">Channels</a>
-        <a href="/categories">Categories</a>    
-        <a href="/videos">Videos</a>
-        <a href="/playlists">Playlists</a>
-        <a href="/comments">Comments</a>
-        <a href="/sponsors">Sponsors</a>
-        <a href="/posts">Community Posts</a>
-        <a href="/query">Queries</a>
-    </nav>
-</header>
-<body>
-    <h1>Posts</h1>
-    <form method="post" action="{{ url_for('insert_post') }}">
-        <label for="channel_id">Channel ID:</label>
-        <input type="text" name="channel_id" required>
-        
-        <label for="post_description">Post Description:</label>
-        <input type="text" name="post_description" required>
-    
-        <label for="post_date">Post Date:</label>
-        <input type="date" name="post_date" required>
-    
-        <label for="post_likes">Post Likes:</label>
-        <input type="number" name="post_likes" required>
-    
-        <button type="submit">Insert Post</button>
-    </form>
-    <table>
-        <tr>
-            <th>Channel</th>
-            <th>Contents</th>
-            <th>Published</th>
-            <th>Likes</th>
-            <th>Action</th>
-            <th>Update Contents</th>
-        </tr>
-        {% for row in posts %}
-            <tr>
-                <td>{{ row[5] }}</td>
-                <td style="max-width: 600px;">{{ row[3] }}</td>
-                <td>{{ row[2] }}</td>
-                <td>{{ row[4] }}</td>
-                <td>
-                    <form method="post" action="{{ url_for('delete_post', post_id=row[0]) }}">
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-                <td>
-                    <form method="post" action="{{ url_for('update_post', post_id=row[0]) }}">
-                        <input type="text" name="updated_contents" required>
-                        <button type="submit">Update</button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h1>Posts</h1>
+<form method="post" action="{{ url_for('insert_post') }}">
+  <label for="channel_id">Channel ID:</label>
+  <input type="text" name="channel_id" required>
+  
+  <label for="post_description">Post Description:</label>
+  <input type="text" name="post_description" required>
+  
+  <label for="post_date">Post Date:</label>
+  <input type="date" name="post_date" required>
+  
+  <label for="post_likes">Post Likes:</label>
+  <input type="number" name="post_likes" required>
+  
+  <button type="submit">Insert Post</button>
+</form>
+<table>
+  <tr>
+    <th>Channel</th>
+    <th>Contents</th>
+    <th>Published</th>
+    <th>Likes</th>
+    <th>Action</th>
+    <th>Update Contents</th>
+  </tr>
+  {% for row in posts %}
+  <tr>
+    <td>{{ row[5] }}</td>
+    <td style="max-width: 600px;">{{ row[3] }}</td>
+    <td>{{ row[2] }}</td>
+    <td>{{ row[4] }}</td>
+    <td>
+      <form method="post" action="{{ url_for('delete_post', post_id=row[0]) }}">
+        <button type="submit">Delete</button>
+      </form>
+    </td>
+    <td>
+      <form method="post" action="{{ url_for('update_post', post_id=row[0]) }}">
+        <input type="text" name="updated_contents" required>
+        <button type="submit">Update</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
