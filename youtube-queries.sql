@@ -93,6 +93,32 @@ WHERE
             cat_sub.categoryName = 'Science & Technology'
     );
 
+-- QUERY #3.1
+-- List all the youtube videos under the "Science & Technology" category that have more views
+-- than the average number of views of videos in the "Science & Technology" category
+SELECT
+    ch.channelName AS 'Channel Name',
+    v.videoID AS 'Video ID',
+    v.videoName AS 'Video Name',
+    v.videoViews AS 'Views',
+    cat.categoryName as 'Category'
+FROM
+    CHANNEL ch
+    JOIN VIDEO v ON v.channelID = ch.channelID
+    JOIN CATEGORY cat ON v.categoryID = cat.categoryID
+WHERE
+    cat.categoryName = 'Music'
+    AND v.videoViews > (
+        SELECT
+            AVG(v1.videoViews)
+        FROM
+            VIDEO v1
+            JOIN CATEGORY cat_sub ON v1.categoryID = cat_sub.categoryID
+        WHERE
+            cat_sub.categoryName = 'Music'
+    );
+
+
 -- QUERY #4
 -- List all the youtubers under the "Science & Technology" catagory that have more videos
 -- than the average number of videos that a "Science & Technology" youtuber has

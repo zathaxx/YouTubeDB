@@ -383,25 +383,27 @@ def query():
                 """
             elif query_type == '5':
                 sql_query = f"""
-                    SELECT
-                        ch.channelName AS 'YouTuber Name',
-                        ch.channelSubs AS 'Subscribers'
-                    FROM
-                        CHANNEL ch
-                        JOIN CATEGORIZED_UNDER cu ON ch.channelID = cu.channelID
-                        JOIN CATEGORY cat ON cu.categoryID = cat.categoryID
-                    WHERE
-                        cat.categoryName = '{first_param}'
-                        AND ch.channelSubs > (
-                            SELECT
-                                AVG(ch_sub.channelSubs)
-                            FROM
-                                CHANNEL ch_sub
-                                JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
-                                JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
-                            WHERE
-                                cat_sub.categoryName = '{first_param}'
-                        );
+                SELECT
+                    ch.channelName AS 'Channel Name',
+                    v.videoID AS 'Video ID',
+                    v.videoName AS 'Video Name',
+                    v.videoViews AS 'Views',
+                    cat.categoryName as 'Category'
+                FROM
+                    CHANNEL ch
+                    JOIN VIDEO v ON v.channelID = ch.channelID
+                    JOIN CATEGORY cat ON v.categoryID = cat.categoryID
+                WHERE
+                    cat.categoryName = '{first_param}'
+                    AND v.videoViews > (
+                        SELECT
+                            AVG(v1.videoViews)
+                        FROM
+                            VIDEO v1
+                            JOIN CATEGORY cat_sub ON v1.categoryID = cat_sub.categoryID
+                        WHERE
+                            cat_sub.categoryName = '{first_param}'
+                    );
                 """
             elif query_type == '6':
                 sql_query = f"""
