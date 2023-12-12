@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <title>YouTube Database</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+    {% endblock %}
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/channels">Channels</a>
+      <a href="/categories">Categories</a>    
+      <a href="/videos">Videos</a>
+      <a href="/playlists">Playlists</a>
+      <a href="/comments">Comments</a>
+      <a href="/sponsors">Sponsors</a>
+      <a href="/posts">Community Posts</a>
+      <a href="/query">Queries</a>
+    </nav>
+  </header>
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

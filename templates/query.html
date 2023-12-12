@@ -1,120 +1,98 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>YouTube Database</title>
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
-</head>
-<header>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/channels">Channels</a>
-        <a href="/categories">Categories</a>    
-        <a href="/videos">Videos</a>
-        <a href="/playlists">Playlists</a>
-        <a href="/comments">Comments</a>
-        <a href="/sponsors">Sponsors</a>
-        <a href="/posts">Community Posts</a>
-        <a href="/query">Queries</a>
-    </nav>
-</header>
-<body>
-    <section class="query-section">
-        <h2>Query Data</h2>
-        
-        <form action="/query" method="post">
-            <label for="queryType">Select Query:</label>
-            <select name="queryType" id="queryType">
-                <option value="1" {% if query_type == '1' %}selected{% endif %}>Query 1</option>
-                <option value="2" {% if query_type == '2' %}selected{% endif %}>Query 2</option>
-                <option value="3" {% if query_type == '3' %}selected{% endif %}>Query 3</option>
-                <option value="4" {% if query_type == '4' %}selected{% endif %}>Query 4</option>
-                <option value="5" {% if query_type == '5' %}selected{% endif %}>Query 5</option>
-                <option value="6" {% if query_type == '6' %}selected{% endif %}>Query 6</option>
-            </select>
+{% extends "base.html" %}
+{% block content %}
+<section class="query-section">
+  <h2>Query Data</h2>
+  
+  <form action="/query" method="post">
+    <label for="queryType">Select Query:</label>
+    <select name="queryType" id="queryType">
+      <option value="1" {% if query_type == '1' %}selected{% endif %}>Query 1</option>
+      <option value="2" {% if query_type == '2' %}selected{% endif %}>Query 2</option>
+      <option value="3" {% if query_type == '3' %}selected{% endif %}>Query 3</option>
+      <option value="4" {% if query_type == '4' %}selected{% endif %}>Query 4</option>
+      <option value="5" {% if query_type == '5' %}selected{% endif %}>Query 5</option>
+      <option value="6" {% if query_type == '6' %}selected{% endif %}>Query 6</option>
+    </select>
 
-            <label for="first_param" id="firstParamLabel" style="display: none;">First Parameter:</label>
-            <input type="text" id="first_param" name="first_param" style="display: none;">
+    <label for="first_param" id="firstParamLabel" style="display: none;">First Parameter:</label>
+    <input type="text" id="first_param" name="first_param" style="display: none;">
 
-            <label for="second_param" id="secondParamLabel" style="display: none;">Second Parameter:</label>
-            <input type="text" id="second_param" name="second_param" style="display: none;">
+    <label for="second_param" id="secondParamLabel" style="display: none;">Second Parameter:</label>
+    <input type="text" id="second_param" name="second_param" style="display: none;">
 
-            <button type="submit">Execute</button>
-        </form>
+    <button type="submit">Execute</button>
+  </form>
 
-        <p id="queryDescription"></p>        
+  <p id="queryDescription"></p>        
 
-    </section>
+</section>
 
-    <section class="query-results">
-        {% if results and headers %}
-            <h2>Query Results</h2>
-            <table>
-                <tr>
-                    {% for header in headers %}
-                        <th>{{ header }}</th>
-                    {% endfor %}
-                </tr>
-                {% for result in results %}
-                    <tr>
-                        {% for value in result %}
-                            <td>{{ value }}</td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-        {% endif %}
-    </section>
-    
+<section class="query-results">
+  {% if results and headers %}
+  <h2>Query Results</h2>
+  <table>
+    <tr>
+      {% for header in headers %}
+      <th>{{ header }}</th>
+      {% endfor %}
+    </tr>
+    {% for result in results %}
+    <tr>
+      {% for value in result %}
+      <td>{{ value }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+</section>
 
-    <script>
-        // Add query descriptions based on the selected query
-        document.getElementById('queryType').addEventListener('change', function () {
-            var description = "Query Description: ";
-            var selectedQuery = this.value;
-            var firstParamLabel = document.getElementById('firstParamLabel');
-            var firstParamInput = document.getElementById('first_param');
-            var secondParamLabel = document.getElementById('secondParamLabel');
-            var secondParamInput = document.getElementById('second_param');
 
-            if (selectedQuery === '3' || selectedQuery === '4' ||selectedQuery === '5' || selectedQuery === '6') {
-                firstParamLabel.style.display = 'block';
-                firstParamInput.style.display = 'block';
-            } else {
-                firstParamLabel.style.display = 'none';
-                firstParamInput.style.display = 'none';
-            }
+<script>
+  // Add query descriptions based on the selected query
+  document.getElementById('queryType').addEventListener('change', function () {
+      var description = "Query Description: ";
+      var selectedQuery = this.value;
+      var firstParamLabel = document.getElementById('firstParamLabel');
+      var firstParamInput = document.getElementById('first_param');
+      var secondParamLabel = document.getElementById('secondParamLabel');
+      var secondParamInput = document.getElementById('second_param');
 
-            secondParamLabel.style.display = (selectedQuery === '4') ? 'block' : 'none';
-            secondParamInput.style.display = (selectedQuery === '4') ? 'block' : 'none';
-                
-            switch (selectedQuery) {
-                case '1':
-                    description += "This query lists channels with the highest number of subscribers.";
-                    break;
-                case '2':
-                    description += "This query lists videos with the highest number of views.";
-                    break;
-                case '3':
-                    description += "Find the top 5 videos that a give YouTuber has posted, given it has more than 10k views. Results are ordered by the \"Views to Likes\" ratio. (Parameter 1 = Channel Name)";
-                    break;
-                case '4':
-                    description += "This query retrieves videos from a youtubers playlist with views exceeding the series average views count. (Parameter 1 = Channel Name | Paramerter 2 = Playlist Name)";
-                    break;
-                case '5':
-                    description += "This query retrieves all the youtube videos under the given category that have more views than the average number of views of videos in that given category (Parameter 1 = Category Name)";
-                    break;
-                case '6':
-                    description += "This query retrieves details about videos in the given category,filtering out videos with a comment count below the average for the category (Parameter 1 = Category Name)";
-                    break;
-                default:
-                    description += "Please select a query to see its description.";
-            }
-    
-            document.getElementById('queryDescription').textContent = description;
-        });
-    </script>
-</body>
-</html>
+      if (selectedQuery === '3' || selectedQuery === '4' ||selectedQuery === '5' || selectedQuery === '6') {
+          firstParamLabel.style.display = 'block';
+          firstParamInput.style.display = 'block';
+      } else {
+          firstParamLabel.style.display = 'none';
+          firstParamInput.style.display = 'none';
+      }
+
+      secondParamLabel.style.display = (selectedQuery === '4') ? 'block' : 'none';
+      secondParamInput.style.display = (selectedQuery === '4') ? 'block' : 'none';
+      
+      switch (selectedQuery) {
+      case '1':
+          description += "This query lists channels with the highest number of subscribers.";
+          break;
+      case '2':
+          description += "This query lists videos with the highest number of views.";
+          break;
+      case '3':
+          description += "Find the top 5 videos that a give YouTuber has posted, given it has more than 10k views. Results are ordered by the \"Views to Likes\" ratio. (Parameter 1 = Channel Name)";
+          break;
+      case '4':
+          description += "This query retrieves videos from a youtubers playlist with views exceeding the series average views count. (Parameter 1 = Channel Name | Paramerter 2 = Playlist Name)";
+          break;
+      case '5':
+          description += "This query retrieves all the youtube videos under the given category that have more views than the average number of views of videos in that given category (Parameter 1 = Category Name)";
+          break;
+      case '6':
+          description += "This query retrieves details about videos in the given category,filtering out videos with a comment count below the average for the category (Parameter 1 = Category Name)";
+          break;
+      default:
+          description += "Please select a query to see its description.";
+      }
+      
+      document.getElementById('queryDescription').textContent = description;
+  });
+</script>
+{% endblock %}

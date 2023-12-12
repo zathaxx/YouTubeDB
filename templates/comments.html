@@ -1,58 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>YouTube Database</title>
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
-</head>
-<header>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/channels">Channels</a>
-        <a href="/categories">Categories</a>    
-        <a href="/videos">Videos</a>
-        <a href="/playlists">Playlists</a>
-        <a href="/comments">Comments</a>
-        <a href="/sponsors">Sponsors</a>
-        <a href="/posts">Community Posts</a>
-        <a href="/query">Queries</a>
-        </nav>
-</header>
-<body>
-    <h1>Comments</h1>
-    <form method="POST" action="{{ url_for('comments') }}">
-        <label for="video_id">Enter Video ID:</label>
-        <input type="text" id="video_id" name="video_id" required>
-        <button type="submit">Submit</button>
-    </form>
-    <table>
-        <tr>
-            <th>Video Commented On</th>
-            <th>Author of Comment</th>
-            <th>Contents</th>
-            <th>Published</th>
-            <th>Likes</th>
-            <th>Action</th>
-        </tr>
-        {% for row in comments %}
-            <tr>
-                <td>{{ row[6] }}</td>
-                <td>{{ row[2] }}</td>
-                <td>{{ row[3] }}</td>
-                <td>{{ row[5] }}</td>
-                <td>{{ row[4] }}</td>
-                <td>
-                    <form method="post" action="{{ url_for('delete_comment', comment_id=row[0]) }}">
-                        <button type="submit">Delete</button>
-                    </form>
-                    <form method="post" action="{{ url_for('update_comment_route', comment_id=row[0]) }}">
-                        <button type="submit">Update</button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h1>Comments</h1>
+<form method="POST" action="{{ url_for('comments') }}">
+  <label for="video_id">Enter Video ID:</label>
+  <input type="text" id="video_id" name="video_id" required>
+  <button type="submit">Submit</button>
+</form>
+<table>
+  <tr>
+    <th>Video Commented On</th>
+    <th>Author of Comment</th>
+    <th>Contents</th>
+    <th>Published</th>
+    <th>Likes</th>
+    <th>Action</th>
+  </tr>
+  {% for row in comments %}
+  <tr>
+    <td>{{ row[6] }}</td>
+    <td>{{ row[2] }}</td>
+    <td>{{ row[3] }}</td>
+    <td>{{ row[5] }}</td>
+    <td>{{ row[4] }}</td>
+    <td>
+      <form method="post" action="{{ url_for('delete_comment', comment_id=row[0]) }}">
+        <button type="submit">Delete</button>
+      </form>
+      <form method="post" action="{{ url_for('update_comment_route', comment_id=row[0]) }}">
+        <button type="submit">Update</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
