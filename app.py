@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 from flask_session import Session
 from flask_login import LoginManager
-import mysql.connector
+from flaskext.mysql import MySQL
 import os
 from dotenv import load_dotenv
 from youtube import *
@@ -9,16 +9,19 @@ import random
 
 load_dotenv()
 
-db = mysql.connector.connect(
-  host="localhost",
-  user=os.environ["USERNAME"],
-  password=os.environ["PASSWORD"],
-  db="youtube"
+app = Flask(__name__, static_url_path='/static')
+
+app.config.update(
+    MYSQL_DATABASE_HOST="localhost",
+    MYSQL_DATABASE_USER=os.environ["USERNAME"],
+    MYSQL_DATABASE_PASSWORD=os.environ["PASSWORD"],
+    MYSQL_DATABASE_DB="youtube"
 )
 
-cursor = db.cursor()
+mysql = MySQL()
+mysql.init_app(app)
 
-app = Flask(__name__, static_url_path='/static')
+cursor = mysql.get_db().cursor()
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
