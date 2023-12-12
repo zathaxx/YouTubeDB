@@ -317,6 +317,8 @@ def update_post(post_id):
 
 @app.route('/query', methods=['GET', 'POST'])
 def query():
+    if session.get("password") != PASSWORD:
+        return redirect(url_for("login", redirect="/query"))
     results = None
     query_type = None
     headers = []
