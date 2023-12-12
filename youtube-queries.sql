@@ -154,6 +154,81 @@ HAVING
                 ch_sub_inner.channelID) AS avg_video_count
     );
 
+-- QUERY #4.1
+-- This query retrieves details about videos in the "Science & Technology" category, 
+-- filtering out videos with a comment count below the average for the category, and presenting the results 
+-- in descending order of video views.
+
+SELECT
+    v.videoID,
+    v.videoName,
+    ch.channelName AS 'Channel Name',
+    v.videoViews,
+    COUNT(c.commentID) AS 'Number of Comments',
+    AVG(c.commentLikes) AS 'Average Comment Likes'
+FROM
+    VIDEO v
+    JOIN CHANNEL ch ON v.channelID = ch.channelID
+    JOIN COMMENT c ON v.videoID = c.videoID
+    JOIN CATEGORY cat ON v.categoryID = cat.categoryID
+WHERE
+    cat.categoryName = 'Science & Technology'
+GROUP BY
+    v.videoID, v.videoName, ch.channelName, v.videoViews
+HAVING
+    COUNT(c.commentID) > (
+        SELECT
+            AVG(comment_count)
+        FROM
+            (SELECT
+                v_inner.videoID,
+                COUNT(c_inner.commentID) AS comment_count
+            FROM
+                VIDEO v_inner
+                JOIN COMMENT c_inner ON v_inner.videoID = c_inner.videoID
+                JOIN CATEGORY cat_inner ON v_inner.categoryID = cat_inner.categoryID
+            WHERE
+                cat_inner.categoryName = 'Science & Technology'
+            GROUP BY
+                v_inner.videoID) AS avg_comment_count
+    )
+ORDER BY
+    v.videoViews DESC;
+
+
+-- QUERY #4.2
+-- List all the YouTubers in the database with at least one "Science and Technology" video
+-- where their most viewed video in that category is above the average views for a video in that category.
+SELECT
+    CHANNEL.channelName AS 'YouTuber Name',
+    VIDEO.videoName AS 'Video Name',
+    cat_sub.categoryName
+FROM
+    CHANNEL ch_sub
+    JOIN VIDEO v_sub ON ch_sub.channelID = v_sub.channelID
+    JOIN CATEGORY cat_sub ON v_sub.categoryID = cat_sub.categoryID
+WHERE
+    cat_sub.categoryName = 'Science & Technology'
+GROUP BY
+    ch_sub.channelID, ch_sub.channelName
+HAVING
+    COUNT(v_sub.videoID) > (
+        SELECT
+            AVG(video_count)
+        FROM
+            (SELECT
+                ch_sub_inner.channelID,
+                COUNT(v_sub_inner.videoID) AS video_count
+            FROM
+                CHANNEL ch_sub_inner
+                JOIN VIDEO v_sub_inner ON ch_sub_inner.channelID = v_sub_inner.channelID
+                JOIN CATEGORY cat_sub_inner ON v_sub_inner.categoryID = cat_sub_inner.categoryID
+            WHERE
+                cat_sub_inner.categoryName = 'Science & Technology'
+            GROUP BY
+                ch_sub_inner.channelID) AS avg_video_count
+    );
+
 -- QUERY #5
 -- Find the channel that has the most viewed video matching the category video and channel
 SELECT

@@ -407,37 +407,41 @@ def query():
                 """
             elif query_type == '6':
                 sql_query = f"""
-                    SELECT
-                        ch_sub.channelID,
-                        ch_sub.channelName AS 'YouTuber Name',
-                        COUNT(v_sub.videoID) AS 'Number of Videos'
-                    FROM
-                        CHANNEL ch_sub
-                        JOIN VIDEO v_sub ON ch_sub.channelID = v_sub.channelID
-                        JOIN CATEGORIZED_UNDER cu_sub ON ch_sub.channelID = cu_sub.channelID
-                        JOIN CATEGORY cat_sub ON cu_sub.categoryID = cat_sub.categoryID
-                    WHERE
-                        cat_sub.categoryName = '{first_param}'
-                    GROUP BY
-                        ch_sub.channelID, ch_sub.channelName
-                    HAVING
-                        COUNT(v_sub.videoID) > (
-                            SELECT
-                                AVG(video_count)
+                SELECT
+                    v.videoID,
+                    v.videoName,
+                    ch.channelName AS 'Channel Name',
+                    v.videoViews,
+                    COUNT(c.commentID) AS 'Number of Comments',
+                    AVG(c.commentLikes) AS 'Average Comment Likes'
+                FROM
+                    VIDEO v
+                    JOIN CHANNEL ch ON v.channelID = ch.channelID
+                    JOIN COMMENT c ON v.videoID = c.videoID
+                    JOIN CATEGORY cat ON v.categoryID = cat.categoryID
+                WHERE
+                    cat.categoryName = '{first_param}'
+                GROUP BY
+                    v.videoID, v.videoName, ch.channelName, v.videoViews
+                HAVING
+                    COUNT(c.commentID) > (
+                        SELECT
+                            AVG(comment_count)
+                        FROM
+                            (SELECT
+                                v_inner.videoID,
+                                COUNT(c_inner.commentID) AS comment_count
                             FROM
-                                (SELECT
-                                    ch_sub_inner.channelID,
-                                    COUNT(v_sub_inner.videoID) AS video_count
-                                FROM
-                                    CHANNEL ch_sub_inner
-                                    JOIN VIDEO v_sub_inner ON ch_sub_inner.channelID = v_sub_inner.channelID
-                                    JOIN CATEGORIZED_UNDER cu_sub_inner ON ch_sub_inner.channelID = cu_sub_inner.channelID
-                                    JOIN CATEGORY cat_sub_inner ON cu_sub_inner.categoryID = cat_sub_inner.categoryID
-                                WHERE
-                                    cat_sub_inner.categoryName = '{first_param}'
-                                GROUP BY
-                                    ch_sub_inner.channelID) AS avg_video_count
-                        );
+                                VIDEO v_inner
+                                JOIN COMMENT c_inner ON v_inner.videoID = c_inner.videoID
+                                JOIN CATEGORY cat_inner ON v_inner.categoryID = cat_inner.categoryID
+                            WHERE
+                                cat_inner.categoryName = '{first_param}'
+                            GROUP BY
+                                v_inner.videoID) AS avg_comment_count
+                    )
+                ORDER BY
+                    v.videoViews DESC;
                 """
 
             cursor.execute(sql_query)
