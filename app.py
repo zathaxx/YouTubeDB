@@ -12,10 +12,10 @@ load_dotenv()
 app = Flask(__name__, static_url_path='/static')
 
 app.config.update(
-    MYSQL_DATABASE_HOST="localhost",
-    MYSQL_DATABASE_USER=os.environ["USERNAME"],
-    MYSQL_DATABASE_PASSWORD=os.environ["PASSWORD"],
-    MYSQL_DATABASE_DB="youtube"
+    MYSQL_HOST="localhost",
+    MYSQL_USER=os.environ["USERNAME"],
+    MYSQL_PASSWORD=os.environ["PASSWORD"],
+    MYSQL_DB="youtube"
 )
 
 mysql = MySQL()
