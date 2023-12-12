@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 from flask_session import Session
 from flask_login import LoginManager
-from flaskext.mysql import MySQL
+from flask_mysqldb import MySQL
 import os
 from dotenv import load_dotenv
 from youtube import *
