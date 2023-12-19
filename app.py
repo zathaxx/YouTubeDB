@@ -59,7 +59,7 @@ def channels():
 @app.route('/delete_channel/<string:channel_id>', methods=['POST'])
 def delete_channel(channel_id):
     if channel_id:
-        cursor.execute("DELETE FROM CHANNEL WHERE channelID = %s;", (channel_id))
+        cursor.execute("DELETE FROM CHANNEL WHERE channelID = %s;", (channel_id,))
         db.commit()
     return redirect(url_for('channels'))
 
@@ -116,7 +116,7 @@ def videos():
 @app.route('/delete_video/<string:video_id>', methods=['POST'])
 def delete_video(video_id):
     if video_id:
-        cursor.execute("DELETE FROM VIDEO WHERE videoID = %s;", (video_id))
+        cursor.execute("DELETE FROM VIDEO WHERE videoID = %s;", (video_id,))
         db.commit()
     return redirect(url_for('videos'))
 
@@ -157,7 +157,7 @@ def playlists():
 @app.route('/delete_playlist/<string:playlist_id>', methods=['POST'])
 def delete_playlist(playlist_id):
     if playlist_id:
-        cursor.execute("DELETE FROM PLAYLIST WHERE playlistID = %s;", (playlist_id))
+        cursor.execute("DELETE FROM PLAYLIST WHERE playlistID = %s;", (playlist_id,))
         db.commit()
     return redirect(url_for('playlists'))
 
@@ -204,7 +204,7 @@ def comments():
 @app.route('/delete_comment/<string:comment_id>', methods=['POST'])
 def delete_comment(comment_id):
     if comment_id:
-        cursor.execute("DELETE FROM COMMENT WHERE commentID = %s;", (comment_id))
+        cursor.execute("DELETE FROM COMMENT WHERE commentID = %s;", (comment_id,))
         db.commit()
     return redirect(url_for('comments'))
 
@@ -239,7 +239,7 @@ def insert_sponsor():
 @app.route('/delete_sponsor/<string:sponsor_id>', methods=['POST'])
 def delete_sponsor(sponsor_id):
     if sponsor_id:
-        cursor.execute("DELETE FROM SPONSOR WHERE sponsorName = %s", (sponsor_id))
+        cursor.execute("DELETE FROM SPONSOR WHERE sponsorName = %s", (sponsor_id,))
         db.commit()
     return redirect(url_for('sponsors'))
 
@@ -291,7 +291,7 @@ def insert_post():
 @app.route('/delete_post/<string:post_id>', methods=['POST'])
 def delete_post(post_id):
     if post_id:
-        cursor.execute("DELETE FROM POST WHERE postID = %s;", (post_id))
+        cursor.execute("DELETE FROM POST WHERE postID = %s;", (post_id,))
         db.commit()
     return redirect(url_for('posts'))
 
@@ -300,7 +300,7 @@ def update_post(post_id):
     if post_id:
         updated_contents = request.form['updated_contents']
         updated_contents = clean_text(updated_contents)
-        cursor.execute("UPDATE POST SET postDescription = '{updated_contents}' WHERE postID = %s;", (post_id))
+        cursor.execute("UPDATE POST SET postDescription = %s WHERE postID = %s;", (updated_contents, post_id))
         db.commit()
     return redirect(url_for('posts'))
 
