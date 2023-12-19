@@ -190,7 +190,7 @@ def comments():
 
     for comment in comments:
         comment_id = comment[0]
-        cursor.execute("SELECT DISTINCT VIDEO.videoName FROM VIDEO JOIN COMMENT ON VIDEO.videoID = COMMENT.videoID AND COMMENT.commentID = %s;", (comment_id))
+        cursor.execute("SELECT DISTINCT VIDEO.videoName FROM VIDEO JOIN COMMENT ON VIDEO.videoID = COMMENT.videoID AND COMMENT.commentID = %s;", (comment_id,))
         video_name = cursor.fetchone()
 
         if video_name is not None:
@@ -262,7 +262,7 @@ def posts():
 
     for post in posts:
         post_id = post[0]
-        cursor.execute("SELECT DISTINCT CHANNEL.channelName FROM CHANNEL JOIN POST ON CHANNEL.channelID = POST.channelID AND POST.postID = %s;", (post_id))
+        cursor.execute("SELECT DISTINCT CHANNEL.channelName FROM CHANNEL JOIN POST ON CHANNEL.channelID = POST.channelID AND POST.postID = %s;", (post_id,))
         channel_name = cursor.fetchone()
 
         updated_post = post + (channel_name[0],)
